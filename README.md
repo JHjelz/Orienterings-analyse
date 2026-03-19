@@ -1,7 +1,7 @@
-# 🚴‍♂️ Strava-analyse 🏃‍♀️
+# 🚴‍♂️ Orienterings-analyse 🏃‍♀️
 
-Dette prosjektet er en Python-klient for å koble seg opp mot [Strava sitt API](https://developers.strava.com/).  
-Systemet lar deg autentisere med dine egne Strava-nøkler, hente tokens og bruke disse til å kjøre spørringer mot Strava-data (f.eks. aktiviteter).
+Dette prosjektet er en Python-klient for å koble seg opp mot [Strava sitt API](https://developers.strava.com/) og å lese og analysere resultater fra [WinSplit](https://obasen.orientering.se/winsplits/online/en/default.asp?ct=true).
+Systemet lar deg autentisere med dine egne Strava-nøkler, hente tokens og bruke disse til å kjøre spørringer mot Strava-data (f.eks. aktiviteter). Du kan også gi inn lenke til WinSplit-sider fra dine orienteringsløp og gjøre analyser på dataene der.
 
 ## 📑 Innhold
 

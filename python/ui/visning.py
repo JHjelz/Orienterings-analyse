@@ -1,4 +1,4 @@
-# STRAVA-ANALYSE/python/visning.py
+# ORIENTERINGS-ANALYSE/python/ui/visning.py
 
 # Bibliotek
 

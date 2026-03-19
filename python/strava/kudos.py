@@ -1,4 +1,4 @@
-# STRAVA-ANALYSE/python/kudos.py
+# ORIENTERINGS-ANALYSE/python/strava/kudos.py
 
 # Bibliotek
 
