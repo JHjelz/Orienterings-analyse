@@ -1,4 +1,4 @@
-# STRAVA-ANALYSE/python/rekorder.py
+# ORIENTERINGS-ANALYSE/python/strava/rekorder.py
 
 # Bibliotek
 

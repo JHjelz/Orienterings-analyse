@@ -1,4 +1,4 @@
-# STRAVA-ANALYSE/python/tilgang.py
+# ORIENTERINGS-ANALYSE/python/strava/tilgang.py
 
 # Bibliotek:
 
@@ -6,7 +6,7 @@ import requests
 import time
 
 from privat import PrivatInfo
-from .visning import sekunder_til_tid
+from python.ui.visning import sekunder_til_tid
 
 # Funksjoner:
 
@@ -100,12 +100,12 @@ def hent_access_token(client_id: str, client_secret: str, authorization_code: st
 
 def sikre_tokens(info: PrivatInfo) -> tuple[str | None, str | None]:
     """
-    Sørger for atgyldige tokens er tilgjengelige og oppdaterer dem ved behov.
+    Sørger for at gyldige tokens er tilgjengelige og oppdaterer dem ved behov.
 
     Logikken er:
         - Hvis ingen tokens er lagret: henter nye med authorization_code
         - Hvis access_token er utløpt: oppdaterer med refresh_token
-        - Hvis access_token fortsatt er gyldig: returnerer eksisterende tokens
+        - Hvis access_token fremdeles er gyldig: returnerer eksisterende tokens
 
     Bruk denne funksjonen som hovedinngang for å hente gyldige tokens til API-kall.
 

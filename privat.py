@@ -1,4 +1,4 @@
-# STRAVA-ANALYSE/private.py
+# ORIENTERINGS-ANALYSE/private.py
 
 # Bibliotek:
 

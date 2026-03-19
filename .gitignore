@@ -10,7 +10,7 @@ venv/
 env/
 
 # Private data
-strava_tokens.json
+strava_nokler.json
 
 # Genererte filer
 *.png

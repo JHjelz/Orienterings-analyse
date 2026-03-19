@@ -1,4 +1,4 @@
-# STRAVA-ANALYSE/python/geo.py
+# ORIENTERINGS-ANALYSE/python/strava/geo.py
 
 # Bibliotek
 

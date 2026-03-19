@@ -1,9 +1,9 @@
-# STRAVA-ANALYSE/python/strava.py
+# ORIENTERINGS-ANALYSE/python/strava/strava.py
 
 # Bibliotek:
 
 from privat import PrivatInfo
-from .tilgang import sikre_tokens
+from python.strava.tilgang import sikre_tokens
 
 # Klasse:
 

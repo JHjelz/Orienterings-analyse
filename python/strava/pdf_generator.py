@@ -1,4 +1,4 @@
-# STRAVA-ANALYSE/python/pdf_generator.py
+# ORIENTERINGS-ANALYSE/python/strava/pdf_generator.py
 
 # Bibliotek
 
@@ -10,8 +10,8 @@ from reportlab.pdfgen.canvas import Canvas
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import BaseDocTemplate, Frame, PageTemplate, Paragraph, Spacer, Table, TableStyle
 
-from .geo import lag_rutekart, lag_hoydeprofil
-from .visning import hent_dato_for_Norge, sekunder_til_tid
+from python.strava.geo import lag_hoydeprofil, lag_rutekart
+from python.ui.visning import hent_dato_for_Norge, sekunder_til_tid
 
 # Funksjoner
 

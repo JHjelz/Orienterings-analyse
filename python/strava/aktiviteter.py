@@ -1,4 +1,4 @@
-# STRAVA-ANALYSE/python/aktiviteter.py
+# ORIENTERINGS-ANALYSE/python/strava/aktiviteter.py
 
 # Bibliotek
 
