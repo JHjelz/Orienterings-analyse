@@ -1,35 +1,36 @@
 # ORIENTERINGS-ANALYSE/main.py
 
-# Bibliotek:
+# Bibliotek
 
-from python.strava.strava import StravaKlient
+from python.kontroller.bruker_validering import valider_bruker_input
 
-# Program:
+# Program
 
-klient = StravaKlient()
+if __name__ == "__main__":
+    print("""\n====================
+\nORIENTERINGS-ANALYSE\n
+====================\n
+Velkommen til Orienterings-analyse.
+Her kan du koble deg til din Strava-konto via API eller gjøre analyser på resultater i WinSplit.\n
+====================""")
 
-"""
-Hva som finnes nå:
+    print("""
+Du kan når som helst avslutte programmet ved å skrive 'avslutt', eller gå tilbake ved å skrive 'tilbake'.
 
--[] Hent de siste 20 (x) aktivitetene dine
--[] Hent aktivitet(er) på navn
--[] Hent aktivitet(er) på dato
--[] Hent kudos-giver(e) for aktivitet på navn
--[] Hent aktivitet(er) på aktivitetstype
--[] Hente diverse rekorder
--[] Generere PDF av enkeltaktivitet
--[] Printer aktivitetene fint
--[] Printe rekorder pent og ryddig
-"""
+Hva vil du? Velg 'Strava' eller 'WinSplit':
+""")
 
-from python.strava.aktiviteter import hent_aktiviteter, finn_aktivitet_med_navn_og_dato, hent_detaljert_aktivitet, hent_streams
-from python.strava.pdf_generator import lag_aktivitetsrapport
+    bruker = input().lower()
 
-aktiviteter = finn_aktivitet_med_navn_og_dato(klient.access_token, "NM", "04-09-2025")
-aktivitet = aktiviteter[0]
-aktivitet = hent_detaljert_aktivitet(klient.access_token, aktivitet["id"])
-streams = hent_streams(klient.access_token, aktivitet["id"])
+    while (validering := valider_bruker_input(bruker=bruker, nivaa=1)):
+        bruker, gyldighet = validering
 
-if streams:
-    aktivitet["streams"] = streams
-    lag_aktivitetsrapport(aktivitet)
+        if not gyldighet:
+            break
+        
+        elif bruker == "strava":
+            print("Strava")
+        elif bruker == "winsplit":
+            print("WinSplit")
+        
+        bruker = ""

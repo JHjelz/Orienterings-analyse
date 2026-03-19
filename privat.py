@@ -23,7 +23,7 @@ class PrivatInfo():
         Initialiserer klassen med standardverdier.
         Tokens lagres i `strava_tokens.json`.
         """
-        self.token_file = "strava_tokens.json"
+        self.token_file = "strava_nokler.json"
     
     def hent_privat_info(self) -> dict:
         """
