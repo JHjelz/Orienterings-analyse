@@ -5,10 +5,11 @@
 import requests
 
 from datetime import datetime
+from typing import Any
 
 # Funksjoner
 
-def hent_aktiviteter(access_token: str, per_page: int = 20) -> list[dict]:
+def hent_aktiviteter(access_token: str, per_page: int = 20) -> list:
     """
     Henter aktiviteter fra Strava API for den autentiserte brukeren.
 
@@ -49,7 +50,7 @@ def hent_aktiviteter(access_token: str, per_page: int = 20) -> list[dict]:
         print(f"Feil ved parsing av respons: {e}")
     return []
 
-def finn_aktiviteter_med_navn(access_token: str, navn: str, maks_treff: int = 20, per_page: int = 200) -> list[dict]:
+def finn_aktiviteter_med_navn(access_token: str, navn: str, maks_treff: int = 20, per_page: int = 200) -> list:
     """
     Søker gjennom alle brukerens aktiviteter og returnerer de som matcher navnet.
 
@@ -95,7 +96,7 @@ def finn_aktiviteter_med_navn(access_token: str, navn: str, maks_treff: int = 20
 
     return treff
 
-def finn_aktiviteter_paa_dato(access_token: str, dato_str: str, per_page: int = 200) -> list[dict]:
+def finn_aktiviteter_paa_dato(access_token: str, dato_str: str, per_page: int = 200) -> list:
     """
     Henter alle aktiviteter som ble utført på en spesifikk dato.
 
@@ -164,7 +165,6 @@ def finn_aktivitet_med_navn_og_dato(access_token: str, navn: str, dato_str: str,
 
     valgt_dato = datetime.strptime(dato_str, "%d-%m-%Y").date()
     side = 1
-    treff = []
 
     while True:
         try:
@@ -184,17 +184,17 @@ def finn_aktivitet_med_navn_og_dato(access_token: str, navn: str, dato_str: str,
 
             if akt_dato < valgt_dato:
                 # Alle resterende aktiviteter vil være eldre, vi kan stoppe
-                return treff
+                return None
 
             if akt_dato == valgt_dato:
                 if navn in aktivitet["name"].lower():
-                    treff.append(aktivitet)
+                    return aktivitet
 
         side += 1
 
-    return treff
+    return None
 
-def finn_aktiviteter_med_type(access_token: str, aktivitetstype: str, maks_treff: int = 20, per_page: int = 200) -> list[dict]:
+def finn_aktiviteter_med_type(access_token: str, aktivitetstype: str, maks_treff: int = 20, per_page: int = 200) -> list:
     """
     Søker gjennom brukerens aktiviteter og returnerer de siste aktivitetene av valgt type.
 

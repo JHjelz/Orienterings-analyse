@@ -15,7 +15,7 @@ from python.ui.visning import hent_dato_for_Norge, sekunder_til_tid
 
 # Funksjoner
 
-def hent_stiler() -> tuple[ParagraphStyle, ParagraphStyle, ParagraphStyle]:
+def hent_stiler() -> tuple:
     """
     Henter nødvendige font-stiler for å bruke emojis i tekst.
 
@@ -66,7 +66,7 @@ def hent_ikon(aktivitet: str) -> str:
     }
     return aktivitetsikoner.get(aktivitet, "🔥")[0]
 
-def fancy_header(canvas: Canvas, doc):
+def fancy_header(canvas: Canvas, doc) -> None:
     """
     Tegner en fast topptekst på hver side i PDF-en.
 
@@ -119,7 +119,8 @@ def lag_aktivitetsrapport(aktivitet: dict, pdf_fil: str="aktivitetsrapport.pdf")
         story = []
 
         # Stor overskrift øverst
-        ikon = hent_ikon(aktivitet.get("sport_type"))
+        sport_type = aktivitet.get("sport_type") or ""
+        ikon = hent_ikon(sport_type)
         
         tittel_tabell = Table(
             [[Paragraph(f"{ikon} {aktivitet['name']}", tittel)]],

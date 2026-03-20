@@ -10,7 +10,7 @@ from python.ui.visning import sekunder_til_tid
 
 # Funksjoner:
 
-def oppdater_access_token(client_id: str, client_secret: str, refresh_token: str) -> tuple[str | None, str | None, str | None]:
+def oppdater_access_token(client_id: str, client_secret: str, refresh_token: str) -> tuple:
     """
     Henter nytt access_token og refresh_token fra Strava API.
 
@@ -50,7 +50,7 @@ def oppdater_access_token(client_id: str, client_secret: str, refresh_token: str
         print(f"Feil under oppdatering av access_token: {e}")
         return None, None, None
 
-def hent_access_token(client_id: str, client_secret: str, authorization_code: str) -> tuple[str | None, str | None, str | None]:
+def hent_access_token(client_id: str, client_secret: str, authorization_code: str) -> tuple:
     """
     Henter nytt access_token og refresh_token ved bruk av authorization_code.
 
@@ -98,7 +98,7 @@ def hent_access_token(client_id: str, client_secret: str, authorization_code: st
         print(f"Feil under oppdatering av access_token: {e}")
         return None, None, None
 
-def sikre_tokens(info: PrivatInfo) -> tuple[str | None, str | None]:
+def sikre_tokens(info: PrivatInfo) -> tuple:
     """
     Sørger for at gyldige tokens er tilgjengelige og oppdaterer dem ved behov.
 
@@ -119,8 +119,8 @@ def sikre_tokens(info: PrivatInfo) -> tuple[str | None, str | None]:
             - refresh_token (str | None): Refresh token knyttet til access token
     """
     kreditering = info.hent_privat_info()
-    client_id = kreditering.get("client_id")
-    client_secret = kreditering.get("client_secret")
+    client_id = str(kreditering.get("client_id"))
+    client_secret = str(kreditering.get("client_secret"))
     access_token = kreditering.get("access_token")
     refresh_token = kreditering.get("refresh_token")
     expires_at = kreditering.get("expires_at", 0)

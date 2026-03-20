@@ -6,7 +6,7 @@ import requests
 
 # Funksjoner
 
-def hent_kudosgivere(access_token: str, aktivitet_id: int, per_page: int = 200) -> list[dict]:
+def hent_kudosgivere(access_token: str, aktivitet_id: int, per_page: int = 200) -> list:
     """
     Henter alle brukere som har gitt kudos på en gitt aktivitet.
 

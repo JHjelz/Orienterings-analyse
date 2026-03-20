@@ -21,8 +21,9 @@ Hva vil du? Velg 'Strava' eller 'WinSplit':
 """)
 
     bruker = input().lower()
+    forste = False
 
-    while (validering := valider_bruker_input(bruker=bruker, nivaa=1)):
+    while (validering := valider_bruker_input(bruker=bruker, nivaa=1, forste=forste)):
         bruker, gyldighet = validering
 
         if not gyldighet:
@@ -33,4 +34,7 @@ Hva vil du? Velg 'Strava' eller 'WinSplit':
         elif bruker == "winsplit":
             print("WinSplit")
         
+        print("\nDu er nå tilbake i hovedmenyen.\n\nHva vil du? Velg 'Strava' eller 'WinSplit':")
+
         bruker = ""
+        forste = True

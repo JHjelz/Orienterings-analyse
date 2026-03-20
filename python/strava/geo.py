@@ -13,12 +13,13 @@ from matplotlib.collections import LineCollection
 from matplotlib.colors import ListedColormap, Normalize
 from reportlab.platypus import Image
 from shapely.geometry import LineString, Point
+from typing import Any
 
 # Funksjoner
 
-def lag_rutekart(aktivitet: dict, bredde: float) -> io.BytesIO:
+def lag_rutekart(aktivitet: dict[str, Any], bredde: float) -> Image | None:
     """
-    Tegner ruten til aktiviteten oppå et kart og returnerer som et io-objekt.
+    Tegner ruten til aktiviteten oppå et kart og returnerer som et bilde.
     Bruker OpenStreetMap-fliser via contextily.
 
     Args:
@@ -91,7 +92,7 @@ def lag_rutekart(aktivitet: dict, bredde: float) -> io.BytesIO:
     ax.set_axis_off()
 
     # Steg 8: Legg til bakgrunnskart
-    ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik)
+    ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik) # type: ignore
 
     # Steg 9: Generer kilometermarkører langs ruta
     streams = aktivitet.get("streams", None)
@@ -188,7 +189,7 @@ def lag_hoydeprofil(aktivitet: dict) -> Image | None:
 
     # Lag segmenter for LineCollection
     punkt = np.array([distanse, høyder]).T.reshape(-1, 1, 2)
-    segmenter = np.concatenate([punkt[:-1], punkt[1:]], axis=1)
+    segmenter = [segment for segment in np.concatenate([punkt[:-1], punkt[1:]], axis=1)]
 
     lc = LineCollection(segmenter, cmap=cmap, norm=norm, linewidth=1.8)
     lc.set_array(stigning)

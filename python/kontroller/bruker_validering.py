@@ -14,13 +14,14 @@ nivaa_kontroll = [
 
 # Funksjoner
 
-def valider_bruker_input(bruker: str, nivaa: int) -> tuple:
+def valider_bruker_input(bruker: str, nivaa: int, forste: bool) -> tuple:
     """
     Validerer bruker-input.
 
     Args:
         bruker (str): Input fra brukeren
         nivaa (int): Heltall som indikerer nivået i programmet kontrollen skal utføres på
+        forste (bool): Bool som sier om det er første runde i spørringa eller ikke
     
     Returns:
         tuple:
@@ -31,7 +32,9 @@ def valider_bruker_input(bruker: str, nivaa: int) -> tuple:
     gyldig_str = f"({' ,'.join(gyldig)})"
 
     while bruker not in gyldig:
-        print(f"Ugyldig input!\nValgmuligheter: {gyldig_str}.\n")
+        if not forste:
+            print(f"Ugyldig input!\nValgmuligheter: {gyldig_str}.\n")
         bruker = input().lower()
+        forste = False
     
     return bruker, not (bruker == "avslutt" or bruker == "tilbake")

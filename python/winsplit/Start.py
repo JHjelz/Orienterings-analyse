@@ -2,7 +2,6 @@
 
 # Libraries
 import matplotlib.pyplot as plt
-import re
 import requests
 
 from bs4 import BeautifulSoup
