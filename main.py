@@ -3,6 +3,8 @@
 # Bibliotek
 
 from python.kontroller.bruker_validering import valider_bruker_input
+from python.kontroller.strava import StravaProgram
+from python.kontroller.winsplit import WinSplitProgram
 
 # Program
 
@@ -21,20 +23,25 @@ Hva vil du? Velg 'Strava' eller 'WinSplit':
 """)
 
     bruker = input().lower()
-    forste = False
+    forste = True
 
     while (validering := valider_bruker_input(bruker=bruker, nivaa=1, forste=forste)):
-        bruker, gyldighet = validering
+        bruker, gyldig = validering
 
-        if not gyldighet:
+        if not gyldig:
             break
         
         elif bruker == "strava":
-            print("Strava")
+            bruker = StravaProgram()
         elif bruker == "winsplit":
-            print("WinSplit")
+            bruker = WinSplitProgram()
         
+        if bruker == "avslutt":
+            break
+
         print("\nDu er nå tilbake i hovedmenyen.\n\nHva vil du? Velg 'Strava' eller 'WinSplit':")
 
         bruker = ""
-        forste = True
+        forste = False
+    
+    print("\nTakk for nå :)\n")

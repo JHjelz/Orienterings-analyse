@@ -72,6 +72,8 @@ def fin_print(aktiviteter: list[dict]) -> None:
     Args:
         aktiviteter (list[dict]): En liste av aktiviter på dictionary-format
     """
+    print()
+    
     for akt in aktiviteter:
         dato = hent_dato_for_Norge(akt)
         navn = akt.get("name", "Uten navn")
@@ -89,6 +91,8 @@ def fin_print(aktiviteter: list[dict]) -> None:
             streng = f"{dato} - {navn} - {akt_type} - Tid: {tid} - Distanse: {distanse_km:.2f} km - {fart} - Kudos: {kudos} - Kommentarer: {kommentarer}"
         
         print(streng)
+    
+    print()
 
 def fin_print_av_rekorder(rekorder: dict) -> None:
     """
