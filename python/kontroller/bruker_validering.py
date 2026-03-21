@@ -49,3 +49,78 @@ def valider_bruker_input(bruker: str, nivaa: int, forste: bool, valg: int=0) -> 
         forste = True
     
     return bruker, not (bruker == "avslutt" or bruker == "tilbake")
+
+def ja_nei(sporsmal: str) -> str:
+    """
+    Ber om bruker-input som må være av typen ja-nei.
+
+    Args:
+        sporsmal (str): Spørsmål til brukeren som definerer input
+
+    Returns:
+        str: Brukers input
+    """
+    valg = ["j", "ja", "n", "nei"]
+    while True:
+        bruker = input(f"{sporsmal} (J/N): ").lower()
+        if bruker in valg:
+            return bruker
+        elif er_stop_tilbake(bruker=bruker):
+            return bruker
+        else:
+            print(f"Ugyldig input! må være en av ({', '.join(valg)}).")
+
+def positivt_heltall() -> str:
+    """
+    Ber om bruker-input som må være et positivt heltall.
+
+    Returns:
+        str: Brukers input
+    """
+    while True:
+        bruker = input("Hvor mange vil du ha (heltall): ")
+        try:
+            heltall = int(bruker)
+            if heltall > 0:
+                return bruker
+        except:
+            if er_stop_tilbake(bruker=bruker):
+                return bruker
+            else:
+                print(f"'{bruker}' er ikke et heltall! Prøv igjen.")
+
+def er_stop_tilbake(bruker: str) -> bool:
+    """
+    Sjekker om bruker vil tilbake eller stoppe programmet.
+
+    Args:
+        bruker (str): Bruker-input
+
+    Returns:
+        bool: True hvis bruker in ('avslutt', 'tilbake'), else False
+    """
+    return bruker.lower() in nivaa_2
+
+def er_stop(bruker: str) -> bool:
+    """
+    Sjekker om bruker vil stoppe programmet.
+
+    Args:
+        bruker (str): Bruker-input
+
+    Returns:
+        bool: True if bruker=='avslutt', else False
+    """
+    return bruker.lower() == "avslutt"
+
+def er_tilbake(bruker: str) -> bool:
+    """
+    Sjekker om bruker vil tilbake et hakk i programmet.
+
+    Args:
+        bruker (str): Bruker-input
+
+    Returns:
+        bool: True if bruker=='tilbake', else False
+    """
+    return bruker.lower() == "tilbake"

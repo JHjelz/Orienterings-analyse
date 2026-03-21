@@ -2,7 +2,7 @@
 
 # Bibliotek
 
-from .bruker_validering import valider_bruker_input
+from .bruker_validering import er_stop, er_tilbake, ja_nei, positivt_heltall, valider_bruker_input
 from ..strava.aktiviteter import hent_aktiviteter
 from ..strava.strava import StravaKlient
 from ..ui.visning import fin_print
@@ -55,16 +55,23 @@ Her kan du:
             break
 
         if bruker == "1":
-            s = input("Vil du ha fler enn 20 (J/N): ").lower()
-            if s == "j":
-                a = int(input("Hvor mange vil du ha: "))
-                aktiviteter = hent_aktiviteter(access_token=klient.access_token, per_page=a)
+            s = ja_nei(sporsmal="Vil du ha fler enn 20")
+            if er_stop(s):
+                return s
+            elif er_tilbake(s):
+                pass
+            elif s in ["j", "ja"]:
+                a = positivt_heltall()
+                if er_stop(a):
+                    return a
+                elif er_tilbake(a):
+                    pass
+                else:
+                    fin_print(aktiviteter=hent_aktiviteter(access_token=klient.access_token, per_page=int(a)))
             else:
-                aktiviteter = hent_aktiviteter(access_token=klient.access_token)
-            fin_print(aktiviteter=aktiviteter)
+                fin_print(aktiviteter=hent_aktiviteter(access_token=klient.access_token))
 
-
-        print(f"Vil du analysere noe mer fra Strava?\nVelg {1 if valg == 1 else f'1 - {valg}'}.")
+        print(f"\nVil du analysere noe mer fra Strava?\nVelg {1 if valg == 1 else f'1 - {valg}'}.")
         bruker = ""
         forste = False
 
