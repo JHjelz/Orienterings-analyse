@@ -36,7 +36,7 @@ Hva vil du? Velg 'Strava' eller 'WinSplit':
         elif bruker == "winsplit":
             bruker = WinSplitProgram()
         
-        if bruker == "avslutt":
+        if bruker.lower() == "avslutt":
             break
 
         print("\nDu er nå tilbake i hovedmenyen.\n\nHva vil du? Velg 'Strava' eller 'WinSplit':")

@@ -42,7 +42,7 @@ class PrivatInfo():
                 - "refresh_token" (str | None): Token for å fornye tilgangstoken (langvarig).
                 - "expires_at" (int): Unix-tidspunkt for når `access_token` utløper
         """
-        tokens = self._last_tokens()
+        tokens = self.last_tokens()
         return {
             "client_id": tokens.get("client_id"),
             "client_secret": tokens.get("client_secret"),
@@ -52,7 +52,7 @@ class PrivatInfo():
             "expires_at": tokens.get("expires_at", 0)
         }
 
-    def _last_tokens(self) -> dict:
+    def last_tokens(self) -> dict:
         """
         Leser inn tokens fra lokal JSON-fil.
 

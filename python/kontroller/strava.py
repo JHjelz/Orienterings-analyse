@@ -3,7 +3,7 @@
 # Bibliotek
 
 from .bruker_validering import er_stop, er_tilbake, ja_nei, positivt_heltall, valider_bruker_input
-from ..strava.aktiviteter import hent_aktiviteter
+from ..strava.aktiviteter import finn_aktiviteter_med_navn, finn_aktiviteter_paa_dato, hent_aktiviteter
 from ..strava.strava import StravaKlient
 from ..ui.visning import fin_print
 
@@ -70,6 +70,22 @@ Her kan du:
                     fin_print(aktiviteter=hent_aktiviteter(access_token=klient.access_token, per_page=int(a)))
             else:
                 fin_print(aktiviteter=hent_aktiviteter(access_token=klient.access_token))
+        elif bruker == "2":
+            n = input("Hvilken aktivitet vil du søke etter: ")
+            if er_stop(n):
+                return n
+            elif er_tilbake(n):
+                pass
+            else:
+                a = positivt_heltall()
+                if er_stop(a):
+                    return a
+                elif er_tilbake(a):
+                    pass
+                else:
+                    fin_print(finn_aktiviteter_med_navn(klient.access_token, navn=n, maks_treff=int(a)))
+        elif bruker == "3":
+            finn_aktiviteter_paa_dato(access_token=klient.access_token, dato_str="")
 
         print(f"\nVil du analysere noe mer fra Strava?\nVelg {1 if valg == 1 else f'1 - {valg}'}.")
         bruker = ""

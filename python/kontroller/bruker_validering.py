@@ -1,5 +1,9 @@
 # ORIENTERINGS-ANALYSE/python/kontroller/bruker_validering.py
 
+# Bibliotek
+
+from datetime import datetime
+
 # Konstanter
 
 nivaa_1 = set([
@@ -124,3 +128,20 @@ def er_tilbake(bruker: str) -> bool:
         bool: True if bruker=='tilbake', else False
     """
     return bruker.lower() == "tilbake"
+
+def gyldig_dato() -> str:
+    """
+    Ber om bruker-input som må være gyldig dato.
+
+    Returns:
+        str: Dato på format dd-mm-åååå som tekst
+    """
+    while True:
+        dato_input = input("Skriv inn dato (dd-mm-åååå): ")
+        if er_stop_tilbake(dato_input):
+            return dato_input
+        try:
+            gyldig_dato = datetime.strptime(dato_input, "%d-%m-%Y")
+            return gyldig_dato.strftime('%d-%m-%Y')
+        except:
+            print("Ugyldig format eller dato. Vennligst prøv igjen (DD-MM-YYYY).")
