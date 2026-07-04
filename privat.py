@@ -7,7 +7,8 @@ import os
 
 # Klasse:
 
-class PrivatInfo():
+
+class PrivatInfo:
     """
     Klasse for håndtering av private Strava API-data.
 
@@ -18,13 +19,14 @@ class PrivatInfo():
     Attributter:
         token_file (str): Filbane til lokal lagring av tokens.
     """
+
     def __init__(self):
         """
         Initialiserer klassen med standardverdier.
         Tokens lagres i `strava_tokens.json`.
         """
-        self.token_file = "strava_tokens.json"
-    
+        self.token_file = "strava_nokler.json"
+
     def hent_privat_info(self) -> dict:
         """
         Returnerer private API-data og tokens.
@@ -42,17 +44,17 @@ class PrivatInfo():
                 - "refresh_token" (str | None): Token for å fornye tilgangstoken (langvarig).
                 - "expires_at" (int): Unix-tidspunkt for når `access_token` utløper
         """
-        tokens = self._last_tokens()
+        tokens = self.last_tokens()
         return {
             "client_id": tokens.get("client_id"),
             "client_secret": tokens.get("client_secret"),
             "authorization_code": tokens.get("authorization_code"),
             "access_token": tokens.get("access_token"),
             "refresh_token": tokens.get("refresh_token"),
-            "expires_at": tokens.get("expires_at", 0)
+            "expires_at": tokens.get("expires_at", 0),
         }
 
-    def _last_tokens(self) -> dict:
+    def last_tokens(self) -> dict:
         """
         Leser inn tokens fra lokal JSON-fil.
 
@@ -66,7 +68,7 @@ class PrivatInfo():
             with open(self.token_file, "r") as f:
                 return json.load(f)
         return {}
-    
+
     def lagre_tokens(self, oppdatert_data: dict) -> None:
         """
         Oppdaterer og lagrer tokens i lokal JSON-fil.
@@ -86,15 +88,10 @@ class PrivatInfo():
         """
         with open(self.token_file, "r") as f:
             data = json.load(f)
-        
+
         for key in data:
             if key in oppdatert_data:
                 data[key] = oppdatert_data[key]
-        
+
         with open(self.token_file, "w", encoding="utf-8") as f:
-            json.dump(
-                data,
-                f,
-                indent=4,
-                ensure_ascii=False
-            )
+            json.dump(data, f, indent=4, ensure_ascii=False)

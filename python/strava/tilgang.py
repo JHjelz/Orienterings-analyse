@@ -10,7 +10,10 @@ from python.ui.visning import sekunder_til_tid
 
 # Funksjoner:
 
-def oppdater_access_token(client_id: str, client_secret: str, refresh_token: str) -> tuple[str | None, str | None, str | None]:
+
+def oppdater_access_token(
+    client_id: str, client_secret: str, refresh_token: str
+) -> tuple:
     """
     Henter nytt access_token og refresh_token fra Strava API.
 
@@ -31,13 +34,13 @@ def oppdater_access_token(client_id: str, client_secret: str, refresh_token: str
     """
     try:
         respons = requests.post(
-            'https://www.strava.com/api/v3/oauth/token',
+            "https://www.strava.com/api/v3/oauth/token",
             data={
-                'client_id': client_id,
-                'client_secret': client_secret,
-                'refresh_token': refresh_token,
-                'grant_type': 'refresh_token'
-            }
+                "client_id": client_id,
+                "client_secret": client_secret,
+                "refresh_token": refresh_token,
+                "grant_type": "refresh_token",
+            },
         )
         respons.raise_for_status()  # Sjekker for HTTP-feil
         response_data = respons.json()
@@ -50,7 +53,10 @@ def oppdater_access_token(client_id: str, client_secret: str, refresh_token: str
         print(f"Feil under oppdatering av access_token: {e}")
         return None, None, None
 
-def hent_access_token(client_id: str, client_secret: str, authorization_code: str) -> tuple[str | None, str | None, str | None]:
+
+def hent_access_token(
+    client_id: str, client_secret: str, authorization_code: str
+) -> tuple:
     """
     Henter nytt access_token og refresh_token ved bruk av authorization_code.
 
@@ -79,13 +85,13 @@ def hent_access_token(client_id: str, client_secret: str, authorization_code: st
     """
     try:
         respons = requests.post(
-            'https://www.strava.com/api/v3/oauth/token',
+            "https://www.strava.com/api/v3/oauth/token",
             data={
-                'client_id': client_id,
-                'client_secret': client_secret,
-                'code': authorization_code,
-                'grant_type': 'authorization_code'
-            }
+                "client_id": client_id,
+                "client_secret": client_secret,
+                "code": authorization_code,
+                "grant_type": "authorization_code",
+            },
         )
         respons.raise_for_status()  # Sjekker for HTTP-feil
         response_data = respons.json()
@@ -98,7 +104,8 @@ def hent_access_token(client_id: str, client_secret: str, authorization_code: st
         print(f"Feil under oppdatering av access_token: {e}")
         return None, None, None
 
-def sikre_tokens(info: PrivatInfo) -> tuple[str | None, str | None]:
+
+def sikre_tokens(info: PrivatInfo) -> tuple:
     """
     Sørger for at gyldige tokens er tilgjengelige og oppdaterer dem ved behov.
 
@@ -119,8 +126,8 @@ def sikre_tokens(info: PrivatInfo) -> tuple[str | None, str | None]:
             - refresh_token (str | None): Refresh token knyttet til access token
     """
     kreditering = info.hent_privat_info()
-    client_id = kreditering.get("client_id")
-    client_secret = kreditering.get("client_secret")
+    client_id = str(kreditering.get("client_id"))
+    client_secret = str(kreditering.get("client_secret"))
     access_token = kreditering.get("access_token")
     refresh_token = kreditering.get("refresh_token")
     expires_at = kreditering.get("expires_at", 0)
@@ -133,23 +140,33 @@ def sikre_tokens(info: PrivatInfo) -> tuple[str | None, str | None]:
             client_id, client_secret, kreditering["authorization_code"]
         )
         if access_token:
-            info.lagre_tokens({
-                "access_token": access_token,
-                "refresh_token": refresh_token,
-                "expires_at": expires_at
-            })
+            info.lagre_tokens(
+                {
+                    "access_token": access_token,
+                    "refresh_token": refresh_token,
+                    "expires_at": expires_at,
+                }
+            )
     elif now >= expires_at:
         print("Access_token er utløpt, oppdaterer tokens med refresh_token...")
         new_access_token, new_refresh_token, new_expires_at = oppdater_access_token(
             client_id, client_secret, refresh_token
         )
         if new_access_token:
-            access_token, refresh_token, expires_at = new_access_token, new_refresh_token, new_expires_at
-            info.lagre_tokens({
-                "access_token": access_token,
-                "refresh_token": refresh_token,
-                "expires_at": expires_at,
-            })
+            access_token, refresh_token, expires_at = (
+                new_access_token,
+                new_refresh_token,
+                new_expires_at,
+            )
+            info.lagre_tokens(
+                {
+                    "access_token": access_token,
+                    "refresh_token": refresh_token,
+                    "expires_at": expires_at,
+                }
+            )
     else:
-        print(f"Access token er fortsatt gyldig i {sekunder_til_tid(expires_at - now)}.")
+        print(
+            f"Access token er fortsatt gyldig i {sekunder_til_tid(expires_at - now)}."
+        )
     return access_token, refresh_token
