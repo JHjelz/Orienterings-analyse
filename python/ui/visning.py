@@ -7,6 +7,7 @@ from zoneinfo import ZoneInfo
 
 # Funksjoner
 
+
 def hent_dato_for_Norge(aktivitet: dict) -> str:
     """
     Henter dato med korrekt tid for norsk tidssone.
@@ -17,17 +18,20 @@ def hent_dato_for_Norge(aktivitet: dict) -> str:
     Returns:
         str: Korrekt dato med tid på streng-format
     """
-    return datetime.fromisoformat(aktivitet["start_date"].replace("Z", "+00:00"))\
-        .astimezone(ZoneInfo("Europe/Oslo"))\
-            .strftime("%Y-%m-%d %H:%M")
+    return (
+        datetime.fromisoformat(aktivitet["start_date"].replace("Z", "+00:00"))
+        .astimezone(ZoneInfo("Europe/Oslo"))
+        .strftime("%Y-%m-%d %H:%M")
+    )
+
 
 def sekunder_til_tid(sek: int) -> str:
     """
     Konverterer sekunder til H:MM:SS.
-    
+
     Args:
         sek (int): Tid i sekunder
-    
+
     Returns:
         str: Streng med tid vist som (timer:)minutter:sekunder
     """
@@ -39,7 +43,10 @@ def sekunder_til_tid(sek: int) -> str:
     else:
         return f"{minutter}:{sekunder:02}"
 
-def beregn_pace_eller_hastighet(distance_m: float, moving_time_s: int, aktivitetstype: str) -> str:
+
+def beregn_pace_eller_hastighet(
+    distance_m: float, moving_time_s: int, aktivitetstype: str
+) -> str:
     """
     Returnerer enten pace (min/km) eller hastighet (km/t).
 
@@ -47,14 +54,14 @@ def beregn_pace_eller_hastighet(distance_m: float, moving_time_s: int, aktivitet
         distance_m (float): Aktivitetens distanse i meter
         moving_time_s (int): Aktivitetens varighet i sekunder
         aktivitetstype (str): Løp/sykkel/...
-    
+
     Returns:
         str: Aktivitetens pace hvis løping som min:sek/km, ellers hastighet som km/h
     """
     distance_km = distance_m / 1000
     if distance_km == 0 or moving_time_s == 0:
         return "-"
-    
+
     if aktivitetstype.lower() == "run":
         pace = moving_time_s / 60 / distance_km  # min/km
         minutter = int(pace)
@@ -63,6 +70,7 @@ def beregn_pace_eller_hastighet(distance_m: float, moving_time_s: int, aktivitet
     else:
         hastighet = distance_km / (moving_time_s / 3600)  # km/t
         return f"{hastighet:.1f} km/t"
+
 
 def fin_print(aktiviteter: list[dict]) -> None:
     """
@@ -73,7 +81,7 @@ def fin_print(aktiviteter: list[dict]) -> None:
         aktiviteter (list[dict]): En liste av aktiviter på dictionary-format
     """
     print()
-    
+
     for akt in aktiviteter:
         dato = hent_dato_for_Norge(akt)
         navn = akt.get("name", "Uten navn")
@@ -81,7 +89,9 @@ def fin_print(aktiviteter: list[dict]) -> None:
         akt_variant = akt.get("sport_type", "?")
         tid = sekunder_til_tid(akt.get("moving_time", 0))
         distanse_km = akt.get("distance", 0) / 1000
-        fart = beregn_pace_eller_hastighet(akt.get("distance", 0), akt.get("moving_time", 0), akt_type)
+        fart = beregn_pace_eller_hastighet(
+            akt.get("distance", 0), akt.get("moving_time", 0), akt_type
+        )
         kudos = akt.get("kudos_count", 0)
         kommentarer = akt.get("comment_count", 0)
 
@@ -89,10 +99,11 @@ def fin_print(aktiviteter: list[dict]) -> None:
             streng = f"{dato} - {navn} - {akt_type} ({akt_variant}) - Tid: {tid} - Distanse: {distanse_km:.2f} km - {fart} - Kudos: {kudos} - Kommentarer: {kommentarer}"
         else:
             streng = f"{dato} - {navn} - {akt_type} - Tid: {tid} - Distanse: {distanse_km:.2f} km - {fart} - Kudos: {kudos} - Kommentarer: {kommentarer}"
-        
+
         print(streng)
-    
+
     print()
+
 
 def fin_print_av_rekorder(rekorder: dict) -> None:
     """
@@ -113,10 +124,14 @@ def fin_print_av_rekorder(rekorder: dict) -> None:
                 akt_type = akt.get("type", "?")
                 tid = sekunder_til_tid(akt.get("moving_time", 0))
                 distanse_km = akt.get("distance", 0) / 1000
-                fart = beregn_pace_eller_hastighet(akt.get("distance", 0), akt.get("moving_time", 0), akt_type)
+                fart = beregn_pace_eller_hastighet(
+                    akt.get("distance", 0), akt.get("moving_time", 0), akt_type
+                )
                 kudos = akt.get("kudos_count", 0)
                 kommentarer = akt.get("comment_count", 0)
-                print(f"{dato} - {navn} - {akt_type} - Tid: {tid} - Distanse: {distanse_km:.2f} km - {fart} - Kudos: {kudos} - Kommentarer: {kommentarer}")
+                print(
+                    f"{dato} - {navn} - {akt_type} - Tid: {tid} - Distanse: {distanse_km:.2f} km - {fart} - Kudos: {kudos} - Kommentarer: {kommentarer}"
+                )
 
     print("\n=== REKORDER PER AKTIVITETSTYPE ===")
     per_type_kategorier = {}
@@ -138,7 +153,11 @@ def fin_print_av_rekorder(rekorder: dict) -> None:
                 navn = akt.get("name", "Uten navn")
                 tid = sekunder_til_tid(akt.get("moving_time", 0))
                 distanse_km = akt.get("distance", 0) / 1000
-                fart = beregn_pace_eller_hastighet(akt.get("distance", 0), akt.get("moving_time", 0), akt_type)
+                fart = beregn_pace_eller_hastighet(
+                    akt.get("distance", 0), akt.get("moving_time", 0), akt_type
+                )
                 kudos = akt.get("kudos_count", 0)
                 kommentarer = akt.get("comment_count", 0)
-                print(f"{dato} - {navn} - Tid: {tid} - Distanse: {distanse_km:.2f} km - {fart} - Kudos: {kudos} - Kommentarer: {kommentarer}")
+                print(
+                    f"{dato} - {navn} - Tid: {tid} - Distanse: {distanse_km:.2f} km - {fart} - Kudos: {kudos} - Kommentarer: {kommentarer}"
+                )

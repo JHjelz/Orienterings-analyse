@@ -8,6 +8,7 @@ from datetime import datetime
 
 # Funksjoner
 
+
 def hent_aktiviteter(access_token: str, per_page: int = 20) -> list:
     """
     Henter aktiviteter fra Strava API for den autentiserte brukeren.
@@ -49,7 +50,10 @@ def hent_aktiviteter(access_token: str, per_page: int = 20) -> list:
         print(f"Feil ved parsing av respons: {e}")
     return []
 
-def finn_aktiviteter_med_navn(access_token: str, navn: str, maks_treff: int = 20, per_page: int = 200) -> list:
+
+def finn_aktiviteter_med_navn(
+    access_token: str, navn: str, maks_treff: int = 20, per_page: int = 200
+) -> list:
     """
     Søker gjennom alle brukerens aktiviteter og returnerer de som matcher navnet.
 
@@ -65,17 +69,19 @@ def finn_aktiviteter_med_navn(access_token: str, navn: str, maks_treff: int = 20
     """
     url = "https://www.strava.com/api/v3/athlete/activities"
     headers = {"Authorization": f"Bearer {access_token}"}
-    navn =  navn.lower()
-    
+    navn = navn.lower()
+
     side = 1
     treff = []
 
     while len(treff) < maks_treff:
         try:
-            respons = requests.get(url, headers=headers, params={"per_page": per_page, "page": side})
+            respons = requests.get(
+                url, headers=headers, params={"per_page": per_page, "page": side}
+            )
             respons.raise_for_status()
             aktiviteter = respons.json()
-        
+
         except requests.exceptions.RequestException as e:
             print(f"Feil ved henting av aktiviteter: {e}")
             break
@@ -95,7 +101,10 @@ def finn_aktiviteter_med_navn(access_token: str, navn: str, maks_treff: int = 20
 
     return treff
 
-def finn_aktiviteter_paa_dato(access_token: str, dato_str: str, per_page: int = 200) -> list:
+
+def finn_aktiviteter_paa_dato(
+    access_token: str, dato_str: str, per_page: int = 200
+) -> list:
     """
     Henter alle aktiviteter som ble utført på en spesifikk dato.
 
@@ -118,10 +127,12 @@ def finn_aktiviteter_paa_dato(access_token: str, dato_str: str, per_page: int = 
 
     while True:
         try:
-            respons = requests.get(url, headers=headers, params={"per_page": per_page, "page": side})
+            respons = requests.get(
+                url, headers=headers, params={"per_page": per_page, "page": side}
+            )
             respons.raise_for_status()
             aktiviteter = respons.json()
-        
+
         except requests.exceptions.RequestException as e:
             print(f"Feil ved henting av aktiviteter: {e}")
             break
@@ -130,7 +141,9 @@ def finn_aktiviteter_paa_dato(access_token: str, dato_str: str, per_page: int = 
             break
 
         for aktivitet in aktiviteter:
-            akt_dato = datetime.fromisoformat(aktivitet["start_date_local"].split("Z")[0]).date()
+            akt_dato = datetime.fromisoformat(
+                aktivitet["start_date_local"].split("Z")[0]
+            ).date()
 
             if akt_dato < valgt_dato:
                 # Alle resterende aktiviteter vil være eldre, vi kan stoppe
@@ -143,7 +156,10 @@ def finn_aktiviteter_paa_dato(access_token: str, dato_str: str, per_page: int = 
 
     return treff
 
-def finn_aktivitet_med_navn_og_dato(access_token: str, navn: str, dato_str: str, per_page: int=200) -> dict | None:
+
+def finn_aktivitet_med_navn_og_dato(
+    access_token: str, navn: str, dato_str: str, per_page: int = 200
+) -> dict | None:
     """
     Kombinerer søk på navn og dato for å finne en spesifikk aktivitet.
     Returnerer første treff, eller None hvis ingen finnes.
@@ -167,10 +183,12 @@ def finn_aktivitet_med_navn_og_dato(access_token: str, navn: str, dato_str: str,
 
     while True:
         try:
-            respons = requests.get(url, headers=headers, params={"per_page": per_page, "page": side})
+            respons = requests.get(
+                url, headers=headers, params={"per_page": per_page, "page": side}
+            )
             respons.raise_for_status()
             aktiviteter = respons.json()
-        
+
         except requests.exceptions.RequestException as e:
             print(f"Feil ved henting av aktiviteter: {e}")
             break
@@ -179,7 +197,9 @@ def finn_aktivitet_med_navn_og_dato(access_token: str, navn: str, dato_str: str,
             break
 
         for aktivitet in aktiviteter:
-            akt_dato = datetime.fromisoformat(aktivitet["start_date_local"].split("Z")[0]).date()
+            akt_dato = datetime.fromisoformat(
+                aktivitet["start_date_local"].split("Z")[0]
+            ).date()
 
             if akt_dato < valgt_dato:
                 # Alle resterende aktiviteter vil være eldre, vi kan stoppe
@@ -193,7 +213,10 @@ def finn_aktivitet_med_navn_og_dato(access_token: str, navn: str, dato_str: str,
 
     return None
 
-def finn_aktiviteter_med_type(access_token: str, aktivitetstype: str, maks_treff: int = 20, per_page: int = 200) -> list:
+
+def finn_aktiviteter_med_type(
+    access_token: str, aktivitetstype: str, maks_treff: int = 20, per_page: int = 200
+) -> list:
     """
     Søker gjennom brukerens aktiviteter og returnerer de siste aktivitetene av valgt type.
 
@@ -214,12 +237,14 @@ def finn_aktiviteter_med_type(access_token: str, aktivitetstype: str, maks_treff
         "svømming": ("type", "Swim"),
         "gåtur": ("type", "Walk"),
         "fjelltur": ("type", "Hike"),
-        "terrengløp": ("sport_type", "TrailRun")
+        "terrengløp": ("sport_type", "TrailRun"),
     }
 
     aktivitetstype = aktivitetstype.lower()
     if aktivitetstype not in type_map:
-        print(f"Ukjent aktivitetstype: {aktivitetstype}. Gyldige er: {', '.join(type_map.keys())}")
+        print(
+            f"Ukjent aktivitetstype: {aktivitetstype}. Gyldige er: {', '.join(type_map.keys())}"
+        )
         return []
 
     strava_felt, strava_aktivitet = type_map[aktivitetstype]
@@ -232,7 +257,9 @@ def finn_aktiviteter_med_type(access_token: str, aktivitetstype: str, maks_treff
 
     while len(treff) < maks_treff:
         try:
-            respons = requests.get(url, headers=headers, params={"per_page": per_page, "page": side})
+            respons = requests.get(
+                url, headers=headers, params={"per_page": per_page, "page": side}
+            )
             respons.raise_for_status()
             aktiviteter = respons.json()
         except requests.exceptions.RequestException as e:
@@ -253,6 +280,7 @@ def finn_aktiviteter_med_type(access_token: str, aktivitetstype: str, maks_treff
 
     return treff
 
+
 def hent_detaljert_aktivitet(access_token: str, aktivitet_id: int) -> dict | None:
     """
     Henter mer detaljert informasjon for en spesifikk aktivitet.
@@ -260,7 +288,7 @@ def hent_detaljert_aktivitet(access_token: str, aktivitet_id: int) -> dict | Non
     Args:
         access_token (str): Gyldig Strava access token for brukeren
         aktivitet_id (int): IDen til aktiviteten en er ute etter
-    
+
     Returns:
         dict | None: Aktivitet fra Strava-API med mer detaljer, None ved feil
     """
@@ -274,6 +302,7 @@ def hent_detaljert_aktivitet(access_token: str, aktivitet_id: int) -> dict | Non
         print(f"Feil ved henting av detaljert aktivitet {aktivitet_id}: {e}")
         return None
 
+
 def hent_streams(access_token: str, aktivitet_id: int) -> dict | None:
     """
     Henter høyde-, distanse- og andre streams for en gitt Strava-aktivitet.
@@ -281,7 +310,7 @@ def hent_streams(access_token: str, aktivitet_id: int) -> dict | None:
     Args:
         access_token (str): Gyldig Strava access token for brukeren
         aktivitet_id (int): IDen til aktiviteten en er ute etter
-    
+
     Returns:
         dict: Stream-data (inneholder bl.a. 'altitude' og 'distance')
     """

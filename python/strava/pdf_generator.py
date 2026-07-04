@@ -8,12 +8,21 @@ from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import BaseDocTemplate, Frame, PageTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.platypus import (
+    BaseDocTemplate,
+    Frame,
+    PageTemplate,
+    Paragraph,
+    Spacer,
+    Table,
+    TableStyle,
+)
 
 from python.strava.geo import lag_hoydeprofil, lag_rutekart
 from python.ui.visning import hent_dato_for_Norge, sekunder_til_tid
 
 # Funksjoner
+
 
 def hent_stiler() -> tuple:
     """
@@ -24,7 +33,7 @@ def hent_stiler() -> tuple:
     """
     styles = getSampleStyleSheet()
     font = "EmojiFont"
-    pdfmetrics.registerFont(TTFont('EmojiFont', 'fonts/Symbola.ttf'))
+    pdfmetrics.registerFont(TTFont("EmojiFont", "fonts/Symbola.ttf"))
     emoji_title = ParagraphStyle(
         "EmojiTitle",
         parent=styles["Title"],
@@ -32,12 +41,10 @@ def hent_stiler() -> tuple:
         textColor=colors.HexColor("#FF6F00"),
         fontSize=24,
         leading=28,
-        alignment=1
+        alignment=1,
     )
     emoji_heading = ParagraphStyle(
-        "EmojiHeading2",
-        parent=styles["Heading2"],
-        fontName=font
+        "EmojiHeading2", parent=styles["Heading2"], fontName=font
     )
     emoji_paragraph = ParagraphStyle(
         "EmojiParagraph",
@@ -47,6 +54,7 @@ def hent_stiler() -> tuple:
         leading=14,
     )
     return emoji_title, emoji_heading, emoji_paragraph, font
+
 
 def hent_ikon(aktivitet: str) -> str:
     """
@@ -62,9 +70,10 @@ def hent_ikon(aktivitet: str) -> str:
         "Run": "🏃‍♂️",
         "Ride": "🚴‍♂️",
         "Swim": "🏊‍♀️",
-        "Walk": "🚶‍♂️"
+        "Walk": "🚶‍♂️",
     }
     return aktivitetsikoner.get(aktivitet, "🔥")[0]
+
 
 def fancy_header(canvas: Canvas, doc) -> None:
     """
@@ -79,6 +88,7 @@ def fancy_header(canvas: Canvas, doc) -> None:
     canvas.setFillColor(colors.HexColor("#FF6F00"))
     canvas.rect(0, height - 30, width, 30, fill=1, stroke=0)
     canvas.restoreState()
+
 
 def fancy_footer(canvas: Canvas, font: str, doc) -> None:
     """
@@ -96,10 +106,15 @@ def fancy_footer(canvas: Canvas, font: str, doc) -> None:
     canvas.rect(0, 0, width, 20, fill=1, stroke=0)
     canvas.setFillColor(colors.white)
     canvas.setFont(font, 8)
-    canvas.drawRightString(width - 40, 6, f"Generert med Strava API {hent_ikon('Run')} {hent_ikon('Ride')}")
+    canvas.drawRightString(
+        width - 40, 6, f"Generert med Strava API {hent_ikon('Run')} {hent_ikon('Ride')}"
+    )
     canvas.restoreState()
 
-def lag_aktivitetsrapport(aktivitet: dict, pdf_fil: str="aktivitetsrapport.pdf") -> None:
+
+def lag_aktivitetsrapport(
+    aktivitet: dict, pdf_fil: str = "aktivitetsrapport.pdf"
+) -> None:
     """
     Lager en PDF med overskrift, nøkkeltall og kartet til aktiviteten.
 
@@ -113,32 +128,46 @@ def lag_aktivitetsrapport(aktivitet: dict, pdf_fil: str="aktivitetsrapport.pdf")
 
     if kart_img:
         tittel, header, paragraf_stil, paragraf = hent_stiler()
-        frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="normal")
-        template = PageTemplate(id="footer", frames=frame, onPage=fancy_header, onPageEnd=lambda canvas, doc: fancy_footer(canvas, paragraf, doc))
+        frame = Frame(
+            doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="normal"
+        )
+        template = PageTemplate(
+            id="footer",
+            frames=frame,
+            onPage=fancy_header,
+            onPageEnd=lambda canvas, doc: fancy_footer(canvas, paragraf, doc),
+        )
         doc.addPageTemplates([template])
         story = []
 
         # Stor overskrift øverst
         sport_type = aktivitet.get("sport_type") or ""
         ikon = hent_ikon(sport_type)
-        
+
         tittel_tabell = Table(
-            [[Paragraph(f"{ikon} {aktivitet['name']}", tittel)]],
-            colWidths=[doc.width]
+            [[Paragraph(f"{ikon} {aktivitet['name']}", tittel)]], colWidths=[doc.width]
         )
-        tittel_tabell.setStyle(TableStyle([
-            ("ALIGN", (0,0), (-1,-1), "CENTER"),
-            ("VALIGN", (0,0), (-1,-1), "MIDDLE"),
-            ("BOTTOMPADDING", (0,0), (-1,-1), 16),
-            ("TOPPADDING", (0,0), (-1,-1), 16)
-        ]))
+        tittel_tabell.setStyle(
+            TableStyle(
+                [
+                    ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+                    ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                    ("BOTTOMPADDING", (0, 0), (-1, -1), 16),
+                    ("TOPPADDING", (0, 0), (-1, -1), 16),
+                ]
+            )
+        )
         story.append(tittel_tabell)
         story.append(Spacer(1, 10))
 
         # Beskrivelse
         if aktivitet.get("description"):
             story.append(Spacer(1, 5))
-            story.append(Paragraph(f"📝 {aktivitet['description'].replace('å', 'aa')}", paragraf_stil))
+            story.append(
+                Paragraph(
+                    f"📝 {aktivitet['description'].replace('å', 'aa')}", paragraf_stil
+                )
+            )
             story.append(Spacer(1, 15))
 
         # Litt større undertittel
@@ -149,20 +178,29 @@ def lag_aktivitetsrapport(aktivitet: dict, pdf_fil: str="aktivitetsrapport.pdf")
         data = [
             ["📅 Dato", hent_dato_for_Norge(aktivitet)],
             ["📏 Distanse", f"{aktivitet['distance']/1000:.2f} km"],
-            ["⏱️ Varighet", sekunder_til_tid(aktivitet['moving_time'])],
-            ["⛰️ Høydemeter", f"{aktivitet['total_elevation_gain']} m"]
+            ["⏱️ Varighet", sekunder_til_tid(aktivitet["moving_time"])],
+            ["⛰️ Høydemeter", f"{aktivitet['total_elevation_gain']} m"],
         ]
-        tabell = Table(data, colWidths=[100, doc.width-100])
-        tabell.setStyle(TableStyle([
-            ("TEXTCOLOR", (0,0), (-1,-1), colors.black),
-            ("ALIGN", (0,0), (0,-1), "RIGHT"),
-            ("ALIGN", (1,0), (1,-1), "LEFT"),
-            ("FONTNAME", (0,0), (-1,-1), paragraf),
-            ("FONTSIZE", (0,0), (-1,-1), 11),
-            ("BOTTOMPADDING", (0,0), (-1,-1), 6),
-            ("TOPPADDING", (0,0), (-1,-1), 6),
-            ("ROWBACKGROUNDS", (0,1), (-1,-1), [colors.whitesmoke, colors.lightgrey])
-        ]))
+        tabell = Table(data, colWidths=[100, doc.width - 100])
+        tabell.setStyle(
+            TableStyle(
+                [
+                    ("TEXTCOLOR", (0, 0), (-1, -1), colors.black),
+                    ("ALIGN", (0, 0), (0, -1), "RIGHT"),
+                    ("ALIGN", (1, 0), (1, -1), "LEFT"),
+                    ("FONTNAME", (0, 0), (-1, -1), paragraf),
+                    ("FONTSIZE", (0, 0), (-1, -1), 11),
+                    ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+                    ("TOPPADDING", (0, 0), (-1, -1), 6),
+                    (
+                        "ROWBACKGROUNDS",
+                        (0, 1),
+                        (-1, -1),
+                        [colors.whitesmoke, colors.lightgrey],
+                    ),
+                ]
+            )
+        )
         story.append(tabell)
         story.append(Spacer(1, 25))
 
@@ -173,29 +211,42 @@ def lag_aktivitetsrapport(aktivitet: dict, pdf_fil: str="aktivitetsrapport.pdf")
 
         sosial_data = [
             ["👍 Kudos", f"{aktivitet.get('kudos_count', 0)}"],
-            ["💭 Kommentarer", f"{aktivitet.get('comment_count', 0)}"]
+            ["💭 Kommentarer", f"{aktivitet.get('comment_count', 0)}"],
         ]
-        sosial_tabell = Table(sosial_data, colWidths=[100, doc.width-100])
-        sosial_tabell.setStyle(TableStyle([
-            ("FONTNAME", (0,0), (-1,-1), paragraf),
-            ("FONTSIZE", (0,0), (-1,-1), 11),
-            ("BOTTOMPADDING", (0,0), (-1,-1), 6),
-            ("TOPPADDING", (0,0), (-1,-1), 6),
-            ("ROWBACKGROUNDS", (0,1), (-1,-1), [colors.whitesmoke, colors.lightgrey])
-        ]))
+        sosial_tabell = Table(sosial_data, colWidths=[100, doc.width - 100])
+        sosial_tabell.setStyle(
+            TableStyle(
+                [
+                    ("FONTNAME", (0, 0), (-1, -1), paragraf),
+                    ("FONTSIZE", (0, 0), (-1, -1), 11),
+                    ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+                    ("TOPPADDING", (0, 0), (-1, -1), 6),
+                    (
+                        "ROWBACKGROUNDS",
+                        (0, 1),
+                        (-1, -1),
+                        [colors.whitesmoke, colors.lightgrey],
+                    ),
+                ]
+            )
+        )
         story.append(sosial_tabell)
 
         # Kart
         story.append(Paragraph("🗺️ Rute", header))
         story.append(Spacer(1, 10))
-        
+
         kart_tabell = Table([[kart_img]], colWidths=[kart_bredde])
-        kart_tabell.setStyle(TableStyle([
-            ("BOX", (0,0), (-1,-1), 2.5, colors.HexColor("#FF6F00")),
-            ("VALIGN", (0,0), (-1,-1), "MIDDLE"),
-            ("ALIGN", (0,0), (-1,-1), "CENTER"),
-            ("BACKGROUND", (0,0), (-1,-1), colors.whitesmoke)
-        ]))
+        kart_tabell.setStyle(
+            TableStyle(
+                [
+                    ("BOX", (0, 0), (-1, -1), 2.5, colors.HexColor("#FF6F00")),
+                    ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                    ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+                    ("BACKGROUND", (0, 0), (-1, -1), colors.whitesmoke),
+                ]
+            )
+        )
         story.append(kart_tabell)
 
         hoyde_img = lag_hoydeprofil(aktivitet)

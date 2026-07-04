@@ -17,6 +17,7 @@ from typing import Any
 
 # Funksjoner
 
+
 def lag_rutekart(aktivitet: dict[str, Any], bredde: float) -> Image | None:
     """
     Tegner ruten til aktiviteten oppå et kart og returnerer som et bilde.
@@ -34,7 +35,7 @@ def lag_rutekart(aktivitet: dict[str, Any], bredde: float) -> Image | None:
     if not poly:
         print("Ingen polyline-data tilgjengelig for denne aktiviteten")
         return None
-    
+
     # Steg 1: Hent koordinater
     coords = polyline.decode(poly)
     if len(coords) < 2:
@@ -65,10 +66,30 @@ def lag_rutekart(aktivitet: dict[str, Any], bredde: float) -> Image | None:
     # Steg 6: Marker start- og sluttpunkt
     start_lon, start_lat = coords[0][1], coords[0][0]
     end_lon, end_lat = coords[-1][1], coords[-1][0]
-    start_point = gpd.GeoSeries([Point(start_lon, start_lat)], crs="EPSG:4326").to_crs(epsg=3857)
-    end_point = gpd.GeoSeries([Point(end_lon, end_lat)], crs="EPSG:4326").to_crs(epsg=3857)
-    start_point.plot(ax=ax, color="#00CC66", markersize=180, marker="o", edgecolor="white", linewidth=1.5, zorder=4)
-    end_point.plot(ax=ax, color="#CC0000", markersize=180, marker="X", edgecolor="white", linewidth=1.5, zorder=4)
+    start_point = gpd.GeoSeries([Point(start_lon, start_lat)], crs="EPSG:4326").to_crs(
+        epsg=3857
+    )
+    end_point = gpd.GeoSeries([Point(end_lon, end_lat)], crs="EPSG:4326").to_crs(
+        epsg=3857
+    )
+    start_point.plot(
+        ax=ax,
+        color="#00CC66",
+        markersize=180,
+        marker="o",
+        edgecolor="white",
+        linewidth=1.5,
+        zorder=4,
+    )
+    end_point.plot(
+        ax=ax,
+        color="#CC0000",
+        markersize=180,
+        marker="X",
+        edgecolor="white",
+        linewidth=1.5,
+        zorder=4,
+    )
 
     # Steg 7: Tilpass aspect til figuren
     fig_aspect = bredde_inn / hoyde_inn
@@ -86,25 +107,24 @@ def lag_rutekart(aktivitet: dict[str, Any], bredde: float) -> Image | None:
         ekstra = (ny_bredde - bbox_bredde) / 2
         minx -= ekstra
         maxx += ekstra
-    
+
     ax.set_xlim(minx, maxx)
     ax.set_ylim(miny, maxy)
     ax.set_axis_off()
 
     # Steg 8: Legg til bakgrunnskart
-    ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik) # type: ignore
+    ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik)  # type: ignore
 
     # Steg 9: Generer kilometermarkører langs ruta
     streams = aktivitet.get("streams", None)
     if streams and "distance" in streams and "latlng" in streams:
-        distanser = np.array(streams["distance"]["data"]) # [m]
-        latlng = np.array(streams["latlng"]["data"]) # [[lat, lon], ...]
+        distanser = np.array(streams["distance"]["data"])  # [m]
+        latlng = np.array(streams["latlng"]["data"])  # [[lat, lon], ...]
 
         gdf_stream = gpd.GeoDataFrame(
-            geometry=[Point(lon, lat) for lat, lon in latlng],
-            crs="EPSG:4326"
+            geometry=[Point(lon, lat) for lat, lon in latlng], crs="EPSG:4326"
         ).to_crs(epsg=3857)
-        
+
         km_coords = []
         next_km = 1000
 
@@ -119,22 +139,19 @@ def lag_rutekart(aktivitet: dict[str, Any], bredde: float) -> Image | None:
                 color = "#FFA726" if i % 5 == 0 else "white"
                 size = 300 if i % 5 == 0 else 100
                 ax.scatter(
-                    x, y,
-                    s=size,
-                    facecolor=color,
-                    linewidth=0.8,
-                    alpha=0.8,
-                    zorder=2
+                    x, y, s=size, facecolor=color, linewidth=0.8, alpha=0.8, zorder=2
                 )
                 if i % 5 == 0:
                     ax.text(
-                        x, y, str(i),
+                        x,
+                        y,
+                        str(i),
                         fontsize=7,
                         color="black",
                         weight="bold",
                         ha="center",
                         va="center",
-                        zorder=3
+                        zorder=3,
                     )
 
     # Steg 10: Lagre til midlertidig objekt
@@ -150,6 +167,7 @@ def lag_rutekart(aktivitet: dict[str, Any], bredde: float) -> Image | None:
     img.drawHeight = bredde * aspect
 
     return img
+
 
 def lag_hoydeprofil(aktivitet: dict) -> Image | None:
     """
@@ -168,18 +186,18 @@ def lag_hoydeprofil(aktivitet: dict) -> Image | None:
         return None
 
     høyder = np.array(streams["altitude"]["data"])
-    distanse = np.array(streams["distance"]["data"]) / 1000 # [km]
+    distanse = np.array(streams["distance"]["data"]) / 1000  # [km]
 
     if len(høyder) < 2:
         return None
-    
+
     # Beregner stigning
     dh = np.gradient(høyder)
     dx = np.gradient(distanse)
     stigning = np.divide(dh, dx, out=np.zeros_like(dh), where=dx != 0)
 
     # Klipp ekstreme verdier for å unngå outlliers (typiske spikes)
-    stigning = np.clip(stigning, -0.3, 0.3) # -30% til +30%
+    stigning = np.clip(stigning, -0.3, 0.3)  # -30% til +30%
 
     # Normaliser for fargeskala
     norm = Normalize(vmin=0.3, vmax=0.3)
@@ -195,19 +213,21 @@ def lag_hoydeprofil(aktivitet: dict) -> Image | None:
     lc.set_array(stigning)
 
     # 🎨 -- Matplotlib-stil
-    plt.rcParams.update({
-        "font.family": "DejaVu Sans",
-        "font.size": 9,
-        "axes.labelsize": 9,
-        "xtick.labelsize": 8,
-        "ytick.labelsize": 8,
-        "axes.linewidth": 0.6,
-        "axes.edgecolor": "#555555",
-        "axes.labelcolor": "#333333",
-        "xtick.color": "#333333",
-        "ytick.color": "#333333",
-        "grid.alpha": 0.3,
-    })
+    plt.rcParams.update(
+        {
+            "font.family": "DejaVu Sans",
+            "font.size": 9,
+            "axes.labelsize": 9,
+            "xtick.labelsize": 8,
+            "ytick.labelsize": 8,
+            "axes.linewidth": 0.6,
+            "axes.edgecolor": "#555555",
+            "axes.labelcolor": "#333333",
+            "xtick.color": "#333333",
+            "ytick.color": "#333333",
+            "grid.alpha": 0.3,
+        }
+    )
 
     # Opprett figuren
     fig, ax = plt.subplots(figsize=(6, 2), dpi=300)
@@ -238,8 +258,13 @@ def lag_hoydeprofil(aktivitet: dict) -> Image | None:
     høyde_markører = [høyder[np.argmin(np.abs(distanse - km))] for km in km_markører]
 
     ax.scatter(
-        km_markører, høyde_markører,
-        color="#1f77b4", edgecolor="white", s=20, zorder=5, linewidth=0.6
+        km_markører,
+        høyde_markører,
+        color="#1f77b4",
+        edgecolor="white",
+        s=20,
+        zorder=5,
+        linewidth=0.6,
     )
 
     # 📸 Lagre til buffer med høy oppløsning

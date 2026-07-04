@@ -22,7 +22,12 @@ Hva som finnes nå:
 -[] Printe rekorder pent og ryddig
 """
 
-from python.strava.aktiviteter import hent_aktiviteter, finn_aktivitet_med_navn_og_dato, hent_detaljert_aktivitet, hent_streams
+from python.strava.aktiviteter import (
+    hent_aktiviteter,
+    finn_aktivitet_med_navn_og_dato,
+    hent_detaljert_aktivitet,
+    hent_streams,
+)
 from python.strava.pdf_generator import lag_aktivitetsrapport
 
 aktiviteter = finn_aktivitet_med_navn_og_dato(klient.access_token, "NM", "04-09-2025")

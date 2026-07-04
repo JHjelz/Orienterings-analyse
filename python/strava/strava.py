@@ -7,6 +7,7 @@ from python.strava.tilgang import sikre_tokens
 
 # Klasse:
 
+
 class StravaKlient:
     """
     Strava-klient som håndterer autentisering og tokens mot Strava API-et.

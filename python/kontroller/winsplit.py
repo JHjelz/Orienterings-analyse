@@ -12,6 +12,7 @@ valg = len([linje for linje in valgmuligheter.splitlines() if linje.strip() != "
 
 # Program
 
+
 def WinSplitProgram() -> str:
     """
     Funksjonalitet for å kjøre hovedprogrammet med WinSplit-analyser.
@@ -31,7 +32,9 @@ Hva vil du? Velg {1 if valg == 1 else f'1 - {valg}'}.
     bruker = input().lower()
     forste = True
 
-    while (validering := valider_bruker_input(bruker=bruker, nivaa=2, forste=forste, valg=valg)):
+    while validering := valider_bruker_input(
+        bruker=bruker, nivaa=2, forste=forste, valg=valg
+    ):
         bruker, gyldig = validering
 
         if not gyldig:

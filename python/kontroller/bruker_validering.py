@@ -6,24 +6,16 @@ from datetime import datetime
 
 # Konstanter
 
-nivaa_1 = set([
-    "avslutt",
-    "strava",
-    "winsplit"
-])
+nivaa_1 = set(["avslutt", "strava", "winsplit"])
 
-nivaa_2 = set([
-    "avslutt",
-    "tilbake"
-])
+nivaa_2 = set(["avslutt", "tilbake"])
 
-nivaa_kontroll = [
-    nivaa_1, nivaa_2
-]
+nivaa_kontroll = [nivaa_1, nivaa_2]
 
 # Funksjoner
 
-def valider_bruker_input(bruker: str, nivaa: int, forste: bool, valg: int=0) -> tuple:
+
+def valider_bruker_input(bruker: str, nivaa: int, forste: bool, valg: int = 0) -> tuple:
     """
     Validerer bruker-input.
 
@@ -32,7 +24,7 @@ def valider_bruker_input(bruker: str, nivaa: int, forste: bool, valg: int=0) -> 
         nivaa (int): Heltall som indikerer nivået i programmet kontrollen skal utføres på
         forste (bool): Bool som sier om det er første runde i spørringa eller ikke
         valg (int, optional): Antall valgmuligheter på spørringer, default 0
-    
+
     Returns:
         tuple:
             - str: Brukers input med små bokstaver
@@ -44,15 +36,20 @@ def valider_bruker_input(bruker: str, nivaa: int, forste: bool, valg: int=0) -> 
         for i in range(1, valg + 1):
             gyldig.add(str(i))
 
-    gyldig_str = f"({', '.join(gyldig)})" if valg == 0 else f"(avslutt, tilbake, {1 if valg == 1 else f'1 - {valg}'})"
+    gyldig_str = (
+        f"({', '.join(gyldig)})"
+        if valg == 0
+        else f"(avslutt, tilbake, {1 if valg == 1 else f'1 - {valg}'})"
+    )
 
     while bruker not in gyldig:
         if forste:
             print(f"Ugyldig input!\nValgmuligheter: {gyldig_str}.\n")
         bruker = input().lower()
         forste = True
-    
+
     return bruker, not (bruker == "avslutt" or bruker == "tilbake")
+
 
 def ja_nei(sporsmal: str) -> str:
     """
@@ -74,6 +71,7 @@ def ja_nei(sporsmal: str) -> str:
         else:
             print(f"Ugyldig input! må være en av ({', '.join(valg)}).")
 
+
 def positivt_heltall() -> str:
     """
     Ber om bruker-input som må være et positivt heltall.
@@ -93,6 +91,7 @@ def positivt_heltall() -> str:
             else:
                 print(f"'{bruker}' er ikke et heltall! Prøv igjen.")
 
+
 def er_stop_tilbake(bruker: str) -> bool:
     """
     Sjekker om bruker vil tilbake eller stoppe programmet.
@@ -104,6 +103,7 @@ def er_stop_tilbake(bruker: str) -> bool:
         bool: True hvis bruker in ('avslutt', 'tilbake'), else False
     """
     return bruker.lower() in nivaa_2
+
 
 def er_stop(bruker: str) -> bool:
     """
@@ -117,6 +117,7 @@ def er_stop(bruker: str) -> bool:
     """
     return bruker.lower() == "avslutt"
 
+
 def er_tilbake(bruker: str) -> bool:
     """
     Sjekker om bruker vil tilbake et hakk i programmet.
@@ -128,6 +129,7 @@ def er_tilbake(bruker: str) -> bool:
         bool: True if bruker=='tilbake', else False
     """
     return bruker.lower() == "tilbake"
+
 
 def gyldig_dato() -> str:
     """
@@ -142,6 +144,6 @@ def gyldig_dato() -> str:
             return dato_input
         try:
             gyldig_dato = datetime.strptime(dato_input, "%d-%m-%Y")
-            return gyldig_dato.strftime('%d-%m-%Y')
+            return gyldig_dato.strftime("%d-%m-%Y")
         except:
             print("Ugyldig format eller dato. Vennligst prøv igjen (DD-MM-YYYY).")

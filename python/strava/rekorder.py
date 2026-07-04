@@ -9,7 +9,8 @@ from tqdm import tqdm
 
 # Funksjoner
 
-def finn_rekorder(access_token: str, per_page: int=200) -> dict:
+
+def finn_rekorder(access_token: str, per_page: int = 200) -> dict:
     """
     Henter alle aktiviteter fra Strava og finner ulike 'rekorder' / 'ekstremalverdier',
     både samlet og delt opp etter aktivitetstype (Run, Ride, Swim, ...).
@@ -23,10 +24,10 @@ def finn_rekorder(access_token: str, per_page: int=200) -> dict:
     """
     url = "https://www.strava.com/api/v3/athlete/activities"
     headers = {"Authorization": f"Bearer {access_token}"}
-    
+
     globale_kategorier = {
         "flest_kudos": ("kudos_count", 10),
-        "flest_kommentarer": ("comment_count", 3)
+        "flest_kommentarer": ("comment_count", 3),
     }
 
     per_type_kategorier = {
@@ -35,7 +36,7 @@ def finn_rekorder(access_token: str, per_page: int=200) -> dict:
         "flest_høydemeter": ("total_elevation_gain", 3),
         "brattest": ("_bratthet", 3),
         "raskeste_snittfart": ("average_speed", 3),
-        "maksfart": ("max_speed", 3)
+        "maksfart": ("max_speed", 3),
     }
 
     heaps_global = {k: [] for k in globale_kategorier}
@@ -43,14 +44,18 @@ def finn_rekorder(access_token: str, per_page: int=200) -> dict:
 
     side = 1
     while True:
-        respons = requests.get(url, headers=headers, params={"per_page": per_page, "page": side})
+        respons = requests.get(
+            url, headers=headers, params={"per_page": per_page, "page": side}
+        )
         respons.raise_for_status()
         aktiviteter = respons.json()
 
         if not aktiviteter:
             break
 
-        for akt in tqdm(aktiviteter, desc=f"Sjekker side {side}", colour="yellow", leave=False):
+        for akt in tqdm(
+            aktiviteter, desc=f"Sjekker side {side}", colour="yellow", leave=False
+        ):
             akt_id = akt.get("id")
             akt_type = akt.get("type", "Unknown")
 
@@ -61,7 +66,7 @@ def finn_rekorder(access_token: str, per_page: int=200) -> dict:
                     heapq.heappush(heaps_global[kategori], (verdi, akt_id, akt))
                 else:
                     heapq.heappushpop(heaps_global[kategori], (verdi, akt_id, akt))
-            
+
             # --- Per-type kategorier ---
             for kategori, (felt, n) in per_type_kategorier.items():
                 if felt == "_bratthet":
@@ -79,7 +84,7 @@ def finn_rekorder(access_token: str, per_page: int=200) -> dict:
                     heapq.heappushpop(heaps_per_type[key], (verdi, akt_id, akt))
 
         side += 1
-    
+
     resultater = {
         kategori: [akt for _, _, akt in sorted(heap, key=lambda x: x[0], reverse=True)]
         for kategori, heap in heaps_global.items()
@@ -93,5 +98,5 @@ def finn_rekorder(access_token: str, per_page: int=200) -> dict:
     }
 
     resultater.update(resultater_per_type)
-    
+
     return resultater

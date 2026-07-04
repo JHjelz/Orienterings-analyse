@@ -25,23 +25,25 @@ Hva vil du? Velg 'Strava' eller 'WinSplit':
     bruker = input().lower()
     forste = True
 
-    while (validering := valider_bruker_input(bruker=bruker, nivaa=1, forste=forste)):
+    while validering := valider_bruker_input(bruker=bruker, nivaa=1, forste=forste):
         bruker, gyldig = validering
 
         if not gyldig:
             break
-        
+
         elif bruker == "strava":
             bruker = StravaProgram()
         elif bruker == "winsplit":
             bruker = WinSplitProgram()
-        
+
         if bruker.lower() == "avslutt":
             break
 
-        print("\nDu er nå tilbake i hovedmenyen.\n\nHva vil du? Velg 'Strava' eller 'WinSplit':")
+        print(
+            "\nDu er nå tilbake i hovedmenyen.\n\nHva vil du? Velg 'Strava' eller 'WinSplit':"
+        )
 
         bruker = ""
         forste = False
-    
+
     print("\nTakk for nå :)\n")
