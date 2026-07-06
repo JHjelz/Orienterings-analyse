@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = ["*"] #orienterings-analyse.onrender.com
+ALLOWED_HOSTS = ["orienterings-analyse.onrender.com"]
 
 
 # Application definition
@@ -130,4 +130,4 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:5173", "https://jhjelz.github.io/Orienterings-analyse/"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:5173", "http://localhost:4173", "https://jhjelz.github.io"]
