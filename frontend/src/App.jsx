@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div>
-      <h1>React + Django</h1>
+      <h1>Orienteringsanalyse</h1>
 
       <p>{ message }</p>
     </div>
