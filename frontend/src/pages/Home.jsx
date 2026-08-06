@@ -25,8 +25,8 @@ function Home() {
 
       <MainButton to="/strava">Analyser Strava-data</MainButton><br/>
       <MainButton to="/winsplit">Analyser WinSplit-data</MainButton><br/>
-      <MainButton to="calculator">Løpskalkulator</MainButton>
-
+      <MainButton to="calculator">Løpskalkulator</MainButton><br/>
+      
       <InfoModal />
     </div>
   );

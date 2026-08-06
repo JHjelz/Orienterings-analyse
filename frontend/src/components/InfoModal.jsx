@@ -1,12 +1,28 @@
-function InfoModal() {
-    return (
-        <div>
-            <h2>Om Orienterings-analyse</h2>
+import { useState } from "react";
 
-            <p>
-                Her kan du analysere orienteringsdata fra ulike kilder.
-            </p>
-        </div>
+function InfoModal() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <>
+            <button onClick={() => setIsOpen(true)}>
+                (i)
+            </button>
+
+            {isOpen && (
+                <div>
+                    <h2>Om Orienterings-analyse</h2>
+
+                    <p>
+                        Her kan du analysere orienteringsdata fra ulike kilder.
+                    </p>
+
+                    <button onClick={() => setIsOpen(false)}>
+                        Lukk
+                    </button>
+                </div>
+            )}
+        </>
     );
 }
 
