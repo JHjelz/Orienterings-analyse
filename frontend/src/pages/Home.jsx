@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import MainButton from "../components/MainButton";
+import InfoModal from "../components/InfoModal";
 
 function Home() {
   const [ message, setMessage ] = useState("");
@@ -20,6 +22,12 @@ function Home() {
       <h1>Orienteringsanalyse</h1>
 
       <p>{ message }</p>
+
+      <MainButton to="/strava">Analyser Strava-data</MainButton><br/>
+      <MainButton to="/winsplit">Analyser WinSplit-data</MainButton><br/>
+      <MainButton to="calculator">Løpskalkulator</MainButton>
+
+      <InfoModal />
     </div>
   );
 }
