@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import MainButton from "../components/MainButton";
-import InfoModal from "../components/InfoModal";
+import MainButton from "../components/MainButton/MainButton";
+import InfoModal from "../components/InfoModal/InfoModal";
 
 function Home() {
   const [ message, setMessage ] = useState("");
