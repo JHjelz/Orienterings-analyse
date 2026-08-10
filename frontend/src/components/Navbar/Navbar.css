@@ -1,0 +1,31 @@
+.navbar {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px 24px;
+
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+
+    box-sizing: border-box;
+}
+
+.navbar-logo {
+    color: var(--color-primary);
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.navbar-home {
+    color: var(--color-text);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.navbar-home:hover {
+    color: var(--color-primary);
+}
