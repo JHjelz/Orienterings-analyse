@@ -1,27 +1,28 @@
-import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom"
+
+import Home from "./pages/Home"
+
+import StravaPage from "./pages/StravaPage"
+import WinSplitPage from "./pages/WinSplitPage";
+import CalculatorPage from "./pages/CalculatorPage";
+
+import Navbar from "./components/Navbar/Navbar";
+
 
 function App() {
-  const [ message, setMessage ] = useState("");
-
-  useEffect(() => {
-    const API_URL = import.meta.env.VITE_API_URL;
-
-    fetch(`${API_URL}/api/hello/`).then(
-      response => response.json()
-    ).then(
-      data => {
-        setMessage(data.message);
-      }
-    );
-  }, []);
-
   return (
-    <div>
-      <h1>Orienteringsanalyse</h1>
-
-      <p>{ message }</p>
-    </div>
-  );
+    <>
+      <Navbar />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/strava" element={<StravaPage />} />
+          <Route path="/winsplit" element={<WinSplitPage />} />
+          <Route path="/calculator" element={<CalculatorPage />} />
+        </Routes>
+      </main>
+    </>
+  )
 }
 
 export default App;
