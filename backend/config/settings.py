@@ -135,3 +135,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:4173",
     "https://jhjelz.github.io",
 ]
+
+STRAVA_CLIENT_ID = os.environ.get("STRAVA_CLIENT_ID")
+STRAVA_CLIENT_SECRET = os.environ.get("STRAVA_CLIENT_SECRET")
