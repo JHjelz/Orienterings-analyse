@@ -2,6 +2,30 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import redirect
 
+from .client import StravaClient
+
+
+def callback(request):
+    code = request.GET.get("code")
+
+    client = StravaClient(
+        settings.STRAVA_CLIENT_ID,
+        settings.STRAVA_CLIENT_SECRET,
+    )
+
+    tokens = client.hent_tokens(code)
+
+    request.session["strava_access_token"] = tokens["access_token"]
+    request.session["strava_refresh_token"] = tokens["refresh_token"]
+    request.session["strava_expires_at"] = tokens["expires_at"]
+
+    return JsonResponse(
+        {
+            "message": "Strava connected!"
+        }
+    )
+
+
 def connect(request):
     strava_url = (
         "https://www.strava.com/oauth/authorize"
@@ -14,10 +38,10 @@ def connect(request):
 
     return redirect(strava_url)
 
-def callback(request):
-    code = request.GET.get("code")
+
+def status(request):
+    connected = "strava_access_token" in request.session
 
     return JsonResponse({
-        "message": "Strava callback works!",
-        "code_received": code is not None,
+        "connected": connected,
     })
