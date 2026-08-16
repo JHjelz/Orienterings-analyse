@@ -19,11 +19,7 @@ def callback(request):
     request.session["strava_refresh_token"] = tokens["refresh_token"]
     request.session["strava_expires_at"] = tokens["expires_at"]
 
-    return JsonResponse(
-        {
-            "message": "Strava connected!"
-        }
-    )
+    return redirect("http://127.0.0.1:5173/Orienterings-analyse/strava/")
 
 
 def connect(request):
@@ -42,6 +38,8 @@ def connect(request):
 def status(request):
     connected = "strava_access_token" in request.session
 
-    return JsonResponse({
-        "connected": connected,
-    })
+    return JsonResponse(
+        {
+            "connected": connected,
+        }
+    )
