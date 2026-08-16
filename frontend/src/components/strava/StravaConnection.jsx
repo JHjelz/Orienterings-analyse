@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import API_URL from "../../api/config";
 
 function StravaConnection() {
     const [connected,  setConnected] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/strava/status/", {
+        fetch(`${API_URL}/api/strava/status/`, {
             credentials: "include",
         })
             .then((response) => response.json())
@@ -33,7 +34,7 @@ function StravaConnection() {
     return (
         <button
             onClick={() => {
-                window.location.href = "http://127.0.0.1:8000/api/strava/connect/";
+                window.location.href = `${API_URL}/api/strava/connect/`;
             }}
         >
             Koble til Strava
