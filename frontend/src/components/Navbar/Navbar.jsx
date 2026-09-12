@@ -1,5 +1,6 @@
 import "./Navbar.css"
 import { Link } from"react-router-dom"
+import InfoModal from "../InfoModal/InfoModal";
 
 function Navbar() {
     return (
@@ -8,9 +9,7 @@ function Navbar() {
                 🧭 Orienterings-analyse
             </Link>
 
-            <Link to="/" className="navbar-home">
-                Hjem
-            </Link>
+            <InfoModal />
         </nav>
     );
 }
