@@ -19,13 +19,3 @@
     font-weight: 700;
     text-decoration: none;
 }
-
-.navbar-home {
-    color: var(--color-text);
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.navbar-home:hover {
-    color: var(--color-primary);
-}

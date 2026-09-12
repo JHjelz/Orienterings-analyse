@@ -13,8 +13,6 @@ function Home() {
         <MainButton to="/winsplit">Analyser WinSplit-data</MainButton><br/>
         <MainButton to="calculator">Løpskalkulator</MainButton><br/>
       </div>
-      
-      <InfoModal />
     </div>
   );
 }
