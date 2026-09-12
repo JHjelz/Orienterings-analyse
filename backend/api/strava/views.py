@@ -38,6 +38,8 @@ def callback(request):
 def status(request):
     connected = "strava_access_token" in request.session
 
-    return JsonResponse({
-        "connected": connected,
-    })
+    return JsonResponse(
+        {
+            "connected": connected,
+        }
+    )

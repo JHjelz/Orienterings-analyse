@@ -19,7 +19,6 @@ class StravaClient:
         self.client_id = client_id
         self.client_secret = client_secret
 
-
     def hent_tokens(self, authorization_code):
         """
         Bytter authorization code mot Strava tokens.
@@ -38,7 +37,6 @@ class StravaClient:
 
         return response.json()
 
-
     def refresh_access_token(self, refresh_token):
         """
         Henter et nytt access token fra Strava.
@@ -56,7 +54,6 @@ class StravaClient:
         response.raise_for_status()
 
         return response.json()
-    
 
     def hent_utover(self, access_token):
         """
@@ -67,11 +64,9 @@ class StravaClient:
         """
         response = requests.get(
             f"{self.API_URL}/athlete",
-            headers={
-                "Authorization": f"Bearer {access_token}"
-            },
+            headers={"Authorization": f"Bearer {access_token}"},
         )
-        
+
         response.raise_for_status()
 
         return response.json()
