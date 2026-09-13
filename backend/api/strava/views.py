@@ -6,6 +6,11 @@ from .client import StravaClient
 
 
 def connect(request):
+    print(
+        "STRAVA CLIENT ID FINNES:",
+        bool(settings.STRAVA_CLIENT_ID)
+    )
+
     strava_url = (
         "https://www.strava.com/oauth/authorize"
         f"?client_id={settings.STRAVA_CLIENT_ID}"
