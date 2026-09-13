@@ -6,8 +6,6 @@ from .client import StravaClient
 
 
 def connect(request):
-    print(f"{settings.BACKEND_URL}/api/strava/callback/")
-
     strava_url = (
         "https://www.strava.com/oauth/authorize"
         f"?client_id={settings.STRAVA_CLIENT_ID}"
