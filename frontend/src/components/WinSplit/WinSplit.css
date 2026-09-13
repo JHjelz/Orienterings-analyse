@@ -1,0 +1,84 @@
+/*
+=========================================================
+WINSPLIT PAGE
+=========================================================
+*/
+
+.winsplit-page {
+    width: min(1200px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 40px 0 60px;
+}
+
+/*
+=========================================================
+TEXT
+=========================================================
+*/
+
+.winsplit-header {
+    padding: 24px;
+
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+
+    border: 1px solid var(--color-primary-dark);
+    border-radius: 12px;
+
+    box-shadow: var(--shadow);
+}
+
+.winsplit-name {
+    display: block;
+    width: fit-content;
+    
+    margin: 0 0 20px;
+    padding: 10px 16px;
+
+    background-color: var(--color-accent);
+    color: var(--color-surface);
+
+    border: 2px solid var(--color-surface);
+    border-radius: 10px;
+
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.winsplit-info {
+    margin: 0;
+    padding: 14px 16px;
+
+    background-color: var(--color-surface);
+    color: var(--color-text);
+
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/*
+=========================================================
+RESPONSIVE
+=========================================================
+*/
+
+@media (max-width: 600px) {
+    .winsplit-page {
+        width: min(100% - 24px, 1200px);
+        padding: 24px 0 40px;
+    }
+    
+    .winsplit-header {
+        padding: 18px;
+    }
+    
+    .winsplit-name {
+        font-size: 1.6rem;
+    }
+}

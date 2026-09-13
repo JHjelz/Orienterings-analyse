@@ -1,6 +1,12 @@
+import WinSplitHeader from "../components/WinSplit/WinSplitHeader";
+
+import "../components/WinSplit/WinSplit.css";
+
 function WinSplitPage() {
     return (
-        <h1>WinSplit</h1>
+        <div className="winsplit-page">
+            <WinSplitHeader />
+        </div>
     );
 }
 
