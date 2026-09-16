@@ -83,6 +83,8 @@ INPUT
     align-items: center;
     gap: 16px;
 
+    width: 100%;
+
     margin-top: 16px;
     padding: 16px 20px;
 
@@ -105,8 +107,8 @@ INPUT
 
 .winsplit-input-field {
     flex: 1;
-    min-width: 0;
 
+    margin: 0 20px;
     padding: 11px 14px;
 
     background-color: var(--color-bg);
@@ -200,6 +202,9 @@ DATA / ANALYZE
 
     border: 1px solid var(--color-text);
     border-radius: 12px;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 /*
