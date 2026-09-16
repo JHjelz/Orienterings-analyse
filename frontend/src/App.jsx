@@ -11,9 +11,9 @@ import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
-    <>
+    <div className="app">
       <Navbar />
-      <main>
+      <main className="app-main">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/strava" element={<StravaPage />} />
@@ -21,7 +21,7 @@ function App() {
           <Route path="/calculator" element={<CalculatorPage />} />
         </Routes>
       </main>
-    </>
+    </div>
   )
 }
 
