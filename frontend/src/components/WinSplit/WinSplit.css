@@ -79,14 +79,11 @@ INPUT
 */
 
 .winsplit-input {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-
     width: 100%;
-
     margin-top: 16px;
     padding: 16px 20px;
+
+    box-sizing: border-box;
 
     background-color: var(--color-surface);
     color: var(--color-text);
@@ -95,6 +92,14 @@ INPUT
     border-radius: 12px;
 
     box-shadow: var(--shadow);
+}
+
+.winsplit-input form {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 .winsplit-input label {
