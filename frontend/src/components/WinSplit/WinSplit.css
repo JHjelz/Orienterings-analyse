@@ -1,0 +1,244 @@
+/*
+=========================================================
+WINSPLIT PAGE
+=========================================================
+*/
+
+.winsplit-page {
+    width: min(1200px, calc(100% - 40px));
+    height: 100%;
+
+    margin: 0 auto;
+    padding: 24px 0;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    min-height: 0;
+}
+
+/*
+=========================================================
+TEXT
+=========================================================
+*/
+
+.winsplit-header {
+    padding: 24px;
+
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+
+    border: 1px solid var(--color-primary-dark);
+    border-radius: 12px;
+
+    box-shadow: var(--shadow);
+}
+
+.winsplit-name {
+    display: block;
+    width: fit-content;
+    
+    margin: 0 0 20px;
+    padding: 10px 16px;
+
+    background-color: var(--color-accent);
+    color: var(--color-surface);
+
+    border: 2px solid var(--color-surface);
+    border-radius: 10px;
+
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.winsplit-info {
+    margin: 0;
+    padding: 14px 16px;
+
+    background-color: var(--color-surface);
+    color: var(--color-text);
+
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/*
+=========================================================
+INPUT
+=========================================================
+*/
+
+.winsplit-input {
+    width: 100%;
+    margin-top: 16px;
+    padding: 16px 20px;
+
+    box-sizing: border-box;
+
+    background-color: var(--color-surface);
+    color: var(--color-text);
+
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+
+    box-shadow: var(--shadow);
+}
+
+.winsplit-input form {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.winsplit-input label {
+    flex-shrink: 0;
+
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.winsplit-input-field {
+    flex: 1;
+
+    margin: 0 20px;
+    padding: 11px 14px;
+
+    background-color: var(--color-bg);
+    color: var(--color-text);
+
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+
+    font-size: 1rem;
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.winsplit-input-field::placeholder {
+    color: var(--color-text-light);
+}
+
+.winsplit-input-field:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--shadow);
+}
+
+.winsplit-button {
+    flex-shrink: 0;
+
+    padding: 11px 18px;
+
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+
+    border: 1px solid var(--color-primary-dark);
+    border-radius: 8px;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.1s ease;
+}
+
+.winsplit-button:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.winsplit-button:active {
+    transform: translateY(1px);
+}
+
+/*
+=========================================================
+DATA / ANALYZE
+=========================================================
+*/
+
+.winsplit-analyzer {
+    flex: 1;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: row;
+
+    padding: 10px;
+
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-primary-dark);
+    border-radius: 12px;
+}
+
+.winsplit-sidebar {
+    flex: 0 0 25%;
+
+    padding: 10px;
+
+    background-color: var(--color-bg);
+
+    border-radius: 8px;
+}
+
+.winsplit-container {
+    flex: 1;
+
+    margin-left: 10px;
+    padding: 10px;
+
+    border: 1px solid var(--color-text);
+    border-radius: 12px;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+/*
+=========================================================
+RESPONSIVE
+=========================================================
+*/
+
+@media (max-width: 600px) {
+    .winsplit-page {
+        width: min(100% - 24px, 1200px);
+        padding: 24px 0 40px;
+    }
+    
+    .winsplit-header {
+        padding: 18px;
+    }
+    
+    .winsplit-name {
+        font-size: 1.6rem;
+    }
+
+    .winsplit-input {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .winsplit-input-field, .winsplit-button {
+        width: 100%;
+    }
+}
