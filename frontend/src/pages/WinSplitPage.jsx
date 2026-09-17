@@ -7,7 +7,7 @@ import WinSplitAnalyzer from "../components/WinSplit/WinSplitAnalyzer";
 import "../components/WinSplit/WinSplit.css";
 
 function WinSplitPage() {
-    const [results, setResults] = useState(null);
+    const [winsplitData, setWinsplitData] = useState(null);
     const [status, setStatus] = useState({
         type: "idle",
         message: "",
@@ -18,12 +18,12 @@ function WinSplitPage() {
             <WinSplitHeader />
 
             <WinSplitInput
-                onResults={setResults}
+                onResults={setWinsplitData}
                 onStatus={setStatus}
             />
 
             <WinSplitAnalyzer
-                results={results}
+                data={winsplitData}
                 status={status}
             />
         </div>
