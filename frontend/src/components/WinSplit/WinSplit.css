@@ -9,67 +9,99 @@ WINSPLIT PAGE
     height: 100%;
 
     margin: 0 auto;
-    padding: 24px 0;
+    padding: 32px 0 40px;
 
     box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
     gap: 20px;
-
-    min-height: 0;
 }
 
 /*
 =========================================================
-TEXT
+HEADER
 =========================================================
 */
 
 .winsplit-header {
-    padding: 24px;
+    position: relative;
+    overflow: hidden;
 
-    background-color: var(--color-primary);
+    padding: 28px;
+
+    background-color: var(--color-primary-dark);
     color: var(--color-surface);
 
     border: 1px solid var(--color-primary-dark);
-    border-radius: 12px;
+    border-radius: 14px;
 
     box-shadow: var(--shadow);
 }
 
+/* Dekorativ sirkel */
+
+.winsplit-header::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -80px;
+    top: -110px;
+
+    border-radius: 50%;
+
+    background-color: var(--color-accent);
+    
+    opacity: 0.30;
+
+    pointer-events: none;
+}
+
+/*
+=========================================================
+HEADER TITLE
+=========================================================
+*/
+
 .winsplit-name {
+    position: relative;
+    z-index: 1;
+
     display: block;
     width: fit-content;
     
-    margin: 0 0 20px;
-    padding: 10px 16px;
+    margin: 0 0 18px;
+    padding: 8px 14px;
 
     background-color: var(--color-accent);
     color: var(--color-surface);
 
-    border: 2px solid var(--color-surface);
-    border-radius: 10px;
+    border-radius: 8px;
 
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 1.8rem;
+    font-weight: 800;
     line-height: 1.2;
 
     box-shadow: 0 4px 12px var(--shadow);
 }
 
 .winsplit-info {
+    position: relative;
+    z-index: 1;
+
+    width: 90%;
+    max-width: 700px;
+
     margin: 0;
-    padding: 14px 16px;
 
-    background-color: var(--color-surface);
-    color: var(--color-text);
-
-    border: 1px solid var(--color-border);
-    border-radius: 10px;
+    color: var(--color-surface);
 
     font-size: 1rem;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 /*
@@ -80,13 +112,12 @@ INPUT
 
 .winsplit-input {
     width: 100%;
-    margin-top: 16px;
-    padding: 16px 20px;
+    
+    padding: 18px 20px;
 
     box-sizing: border-box;
 
     background-color: var(--color-surface);
-    color: var(--color-text);
 
     border: 1px solid var(--color-border);
     border-radius: 12px;
@@ -99,21 +130,22 @@ INPUT
 
     display: flex;
     align-items: center;
-    gap: 16px;
+    
+    gap: 14px;
 }
 
 .winsplit-input label {
     flex-shrink: 0;
 
-    font-size: 1rem;
-    font-weight: 600;
     color: var(--color-text);
+
+    font-size: 0.95rem;
+    font-weight: 700;
 }
 
 .winsplit-input-field {
     flex: 1;
 
-    margin: 0 20px;
     padding: 11px 14px;
 
     background-color: var(--color-bg);
@@ -122,27 +154,40 @@ INPUT
     border: 1px solid var(--color-border);
     border-radius: 8px;
 
-    font-size: 1rem;
+    font-size: 0.95rem;
+
     outline: none;
 
     transition:
         border-color 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
 }
 
 .winsplit-input-field::placeholder {
     color: var(--color-text-light);
 }
 
+.winsplit-input-field:hover {
+    border-color: var(--color-text-light);
+}
+
 .winsplit-input-field:focus {
+    background-color: var(--color-surface);
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px var(--shadow);
 }
 
+/*
+=========================================================
+BUTTON
+=========================================================
+*/
+
 .winsplit-button {
     flex-shrink: 0;
 
-    padding: 11px 18px;
+    padding: 11px 20px;
 
     background-color: var(--color-primary);
     color: var(--color-surface);
@@ -150,66 +195,136 @@ INPUT
     border: 1px solid var(--color-primary-dark);
     border-radius: 8px;
 
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 700;
 
     cursor: pointer;
 
     transition:
         background-color 0.2s ease,
-        transform 0.1s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-.winsplit-button:hover {
+.winsplit-button:hover:not(:disabled) {
     background-color: var(--color-primary-dark);
+    
+    transform: translateY(-1px);
+
+    box-shadow: 0 5px 14px var(--shadow);
 }
 
-.winsplit-button:active {
-    transform: translateY(1px);
+.winsplit-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.winsplit-button:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
 }
 
 /*
 =========================================================
-DATA / ANALYZE
+ANALYZER
 =========================================================
 */
 
 .winsplit-analyzer {
     flex: 1;
-    min-height: 0;
+    min-height: 420px;
 
     display: flex;
-    flex-direction: row;
-
+    
     padding: 10px;
 
     background-color: var(--color-surface);
 
-    border: 1px solid var(--color-primary-dark);
-    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+
+    box-shadow: var(--shadow);
 }
 
-.winsplit-sidebar {
-    flex: 0 0 25%;
+/*
+=========================================================
+SIDEBAR
+=========================================================
+*/
 
-    padding: 10px;
+.winsplit-sidebar {
+    flex: 0 0 220px;
+
+    padding: 16px;
+
+    box-sizing: border-box;
 
     background-color: var(--color-bg);
 
-    border-radius: 8px;
+    border-radius: 9px;
 }
+
+/*
+=========================================================
+CONTENT
+=========================================================
+*/
 
 .winsplit-container {
     flex: 1;
+    min-width: 0;
 
     margin-left: 10px;
-    padding: 10px;
+    padding: 20px;
 
-    border: 1px solid var(--color-text);
-    border-radius: 12px;
+    box-sizing: border-box;
 
-    overflow-x: hidden;
-    overflow-y: scroll;
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+
+    overflow-x: auto;
+    overflow-y: auto;
+
+    color: var(--color-text);
+}
+
+.winsplit-container > p {
+    margin: 0;
+
+    color: var(--color-text-light);
+
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.winsplit-container pre {
+    margin: 0;
+
+    padding: 16px;
+
+    background-color: var(--color-bg);
+
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+
+    color: var(--color-text);
+
+    font-size: 0.85rem;
+    line-height: 1.5;
+
+    overflow-x: auto;
+}
+
+.winsplit-error {
+    padding: 14px 16px;
+
+    background-color: var(--color-bg);
+    color: var(--color-accent);
+
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
 }
 
 /*
@@ -218,27 +333,35 @@ RESPONSIVE
 =========================================================
 */
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
     .winsplit-page {
-        width: min(100% - 24px, 1200px);
-        padding: 24px 0 40px;
+        width: calc(100% - 24px);
+        padding: 18px 0 28px;
+        gap: 14px;
     }
     
     .winsplit-header {
-        padding: 18px;
+        padding: 20px;
     }
     
     .winsplit-name {
-        font-size: 1.6rem;
-    }
-
-    .winsplit-input {
-        align-items: stretch;
-        flex-direction: column;
-        gap: 10px;
+        margin-bottom: 14px;
+        font-size: 1.5rem;
     }
     
-    .winsplit-input-field, .winsplit-button {
-        width: 100%;
+    .winsplit-info {
+        font-size: 0.9rem;
+    }
+    
+    .winsplit-input {
+        padding: 16px;
+    }
+    
+    .winsplit-analyzer {
+        padding: 8px;
+    }
+    
+    .winsplit-container {
+        padding: 16px;
     }
 }

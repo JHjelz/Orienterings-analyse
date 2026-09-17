@@ -4,9 +4,9 @@ function WinSplitHeader() {
             <h1 className="winsplit-name">WinSplit</h1>
 
             <p className="winsplit-info">
-                Her kan du analysere resultater og strekktider fra løpene dine på WinSplit.
-                <br />
-                Bare gi inn en lenke og du er i gang!
+                Her kan du analysere resultater og strekktider
+                fra løpene dine på WinSplit. Bare gi inn en
+                lenke og du er i gang!
             </p>
         </div>
     );

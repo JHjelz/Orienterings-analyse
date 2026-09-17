@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 
 function MainButton({ children, to }) {
     return (
-        <Link to={to}>
-            <button className="main-button">
-                {children}
-            </button>
+        <Link to={to} className="main-button">
+            {children}
         </Link>
     );
 }
