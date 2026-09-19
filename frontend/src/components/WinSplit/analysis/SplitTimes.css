@@ -1,0 +1,305 @@
+.split-times {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    min-height: 0;
+}
+
+.split-times-header {
+    flex: 0 0 auto;
+
+    padding: 24px 24px 18px;
+
+    border-bottom: 1px solid var(--color-border);
+}
+
+.split-times-header h2 {
+    margin: 0;
+
+    color: var(--color-primary);
+
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.split-times-header p {
+    margin: 6px 0 0;
+
+    color: var(--color-text-light);
+
+    font-size: 0.9rem;
+}
+
+/*
+==================================================
+SCROLL CONTAINER
+==================================================
+*/
+
+.split-times-table-wrapper {
+    flex: 1;
+    min-height: 0;
+
+    overflow: auto;
+
+    background-color: var(--color-surface);
+}
+
+/*
+==================================================
+ROW
+==================================================
+*/
+
+.split-times-row {
+    /*
+        160px navn
+        N x 110px strekk
+        120px totaltid
+    */
+    display: grid;
+
+    grid-template-columns:
+        160px
+        repeat(var(--split-count), 110px)
+        120px;
+
+    width: max-content;
+    min-width: 100%;
+}
+
+/*
+==================================================
+HEADER
+==================================================
+*/
+
+.split-times-header-row {
+    position: sticky;
+    top: 0;
+
+    z-index: 10;
+}
+
+.split-times-header-row .split-times-cell {
+    height: 52px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+
+    border-right: 1px solid var(--color-primary-dark);
+    border-bottom: 1px solid var(--color-primary-dark);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+/*
+==================================================
+GENERIC CELLS
+==================================================
+*/
+
+.split-times-cell {
+    box-sizing: border-box;
+
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+/*
+==================================================
+NAME COLUMN
+==================================================
+*/
+
+.split-times-name {
+    position: sticky;
+    left: 0;
+
+    z-index: 8;
+
+    width: 160px;
+
+    box-sizing: border-box;
+
+    background-color: var(--color-surface);
+}
+
+.split-times-header-row .split-times-name {
+    z-index: 20;
+
+    background-color: var(--color-primary);
+}
+
+.split-times-runner-name {
+    grid-row: span 2;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 0 14px;
+
+    font-weight: 700;
+}
+
+.split-times-position {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 24px;
+    height: 24px;
+
+    border-radius: 50%;
+
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+/*
+==================================================
+SPLIT COLUMNS
+==================================================
+*/
+
+.split-times-split-header {
+    width: 110px;
+
+    text-align: center;
+}
+
+.split-times-split {
+    width: 110px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--color-surface);
+
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.split-times-split-time,
+.split-times-cumulative {
+    height: 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+}
+
+.split-times-split-time {
+    color: var(--color-text);
+
+    font-weight: 700;
+
+    border-bottom: 1px dotted var(--color-border);
+}
+
+.split-times-cumulative {
+    color: var(--color-text-light);
+
+    font-size: 0.8rem;
+}
+
+/*
+==================================================
+TOTAL COLUMN
+==================================================
+*/
+
+.split-times-total {
+    position: sticky;
+    right: 0;
+
+    z-index: 8;
+    
+    width: 120px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    background-color: var(--color-surface);
+
+    border-left: 1px solid var(--color-border);
+
+    font-weight: 700;
+    text-align: center;
+}
+
+.split-times-header-row .split-times-total {
+    z-index: 20;
+
+    background-color: var(--color-primary);
+}
+
+.split-times-runner-total {
+    color: var(--color-primary);
+
+    font-size: 1rem;
+}
+
+/*
+==================================================
+ROW INTERACTION
+==================================================
+*/
+
+.split-times-runner:hover .split-times-split,
+.split-times-runner:hover .split-times-runner-name,
+.split-times-runner:hover .split-times-runner-total {
+    background-color: var(--color-bg);
+}
+
+/*
+==================================================
+MOBILE
+==================================================
+*/
+
+@media (max-width: 700px) {
+    .split-times-header {
+        padding: 18px;
+    }
+
+    .split-times-row {
+        grid-template-columns:
+            140px
+            repeat(var(--split-count), 100px)
+            110px;
+    }
+
+    .split-times-name {
+        width: 140px;
+    }
+
+    .split-times-split,
+    .split-times-split-header {
+        width: 100px;
+    }
+
+    .split-times-total {
+        width: 110px;
+    }
+}
