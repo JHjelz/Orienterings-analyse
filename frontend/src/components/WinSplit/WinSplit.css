@@ -253,15 +253,77 @@ SIDEBAR
 */
 
 .winsplit-sidebar {
-    flex: 0 0 220px;
+    display: flex;
+    flex-direction: column;
 
+    width: 240px;
+    min-width: 240px;
+    
     padding: 16px;
 
     box-sizing: border-box;
 
     background-color: var(--color-bg);
+    border-right: 1px solid var(--color-border);
+}
 
-    border-radius: 9px;
+.winsplit-sidebar h3 {
+    margin: 0 0 16px;
+
+    color: var(--color-primary);
+
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.winsplit-sidebar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    overflow-y: auto;
+
+    min-height: 0;
+}
+
+.winsplit-sidebar-button {
+    width: 100%;
+
+    padding: 11px 14px;
+
+    box-sizing: border-box;
+
+    background-color: var(--color-surface);
+    color: var(--color-text);
+
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+
+    font: inherit;
+    font-weight: 600;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.winsplit-sidebar-button:hover {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border-color: var(--color-primary-dark);
+
+    transform: translateX(2px);
+}
+
+.winsplit-sidebar-button:focus-visible {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--shadow);
 }
 
 /*
