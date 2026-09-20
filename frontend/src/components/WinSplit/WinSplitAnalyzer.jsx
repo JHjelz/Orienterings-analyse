@@ -40,6 +40,12 @@ function WinSplitAnalyzer({ data, status }) {
                     </p>
                 )}
 
+                {data && status.type !== "loading" && !ActiveAnalysis && (
+                    <p>
+                        Data er hentet - velg en analyse fra menyen til venstre og kom i gang!
+                    </p>
+                )}
+
                 {data && status.type !== "loading" && ActiveAnalysis && (
                     <ActiveAnalysis data={data} />
                 )}
