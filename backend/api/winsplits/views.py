@@ -6,12 +6,16 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
-from .functionality.winsplit_urls import get_winsplit_results
+from .functionality.winsplit_urls import hent_winsplits_resultater
+
+##########################
+# Funksjonalitet
+##########################
 
 
 @csrf_exempt
 @require_POST
-def winsplit_results(request):
+def winsplits_resultater(request):
     try:
         data = json.loads(request.body)
 
@@ -23,9 +27,9 @@ def winsplit_results(request):
                 status=400,
             )
 
-        results = get_winsplit_results(url=url)
+        resultater = hent_winsplits_resultater(url=url)
 
-        return JsonResponse({"results": results})
+        return JsonResponse({"resultater": resultater})
     except ValueError as error:
         return JsonResponse({"error": str(error)})
     except Exception as error:
