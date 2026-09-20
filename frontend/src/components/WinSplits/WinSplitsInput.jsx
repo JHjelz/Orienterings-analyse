@@ -27,7 +27,7 @@ function WinSplitsInput({ onResults, onStatus }) {
 
         try {
             const response = await fetch(
-                `${API_URL}/api/winsplits/results/`,
+                `${API_URL}/api/winsplits/resultater/`,
                 {
                     method: "POST",
                     headers: {
@@ -58,7 +58,7 @@ function WinSplitsInput({ onResults, onStatus }) {
 
             const data = await response.json();
 
-            onResults(data.results);
+            onResults(data.resultater);
             onStatus({
                 type: "success",
                 message: "WinSplits-data hentet."

@@ -326,6 +326,11 @@ SIDEBAR
     box-shadow: 0 0 0 3px var(--shadow);
 }
 
+.winsplits-sidebar-button:active {
+    background-color: var(--color-accent);
+    color: var(--color-surface);
+}
+
 /*
 =========================================================
 CONTENT
