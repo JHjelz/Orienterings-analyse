@@ -6,6 +6,13 @@
     min-height: 0;
 }
 
+
+/*
+==================================================
+HEADER
+==================================================
+*/
+
 .split-times-header {
     flex: 0 0 auto;
 
@@ -14,7 +21,13 @@
     border-bottom: 1px solid var(--color-border);
 }
 
-.split-times-header h2 {
+.split-times-title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.split-times-title h2 {
     margin: 0;
 
     color: var(--color-primary);
@@ -32,30 +45,15 @@
     font-size: 0.9rem;
 }
 
-/*
-==================================================
-HEADER TITLE
-==================================================
-*/
-
-.split-times-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-}
-
-.split-times-title h2 {
-    margin: 0;
-}
 
 /*
 ==================================================
-EXPAND BUTTON
+FULLSCREEN BUTTONS
 ==================================================
 */
 
-.split-times-expand-button {
+.split-times-expand-button,
+.split-times-modal-close-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,10 +61,11 @@ EXPAND BUTTON
     width: auto;
     height: auto;
 
+    margin-left: auto;
     padding: 4px;
 
     border: none;
-    background-color: transparent;
+    background: transparent;
     color: var(--color-text-light);
 
     cursor: pointer;
@@ -76,23 +75,28 @@ EXPAND BUTTON
         transform 0.2s ease;
 }
 
-.split-times-expand-button:hover {
-    background-color: transparent;
+.split-times-expand-button:hover,
+.split-times-modal-close-button:hover {
+    background: transparent;
     color: var(--color-accent);
 
     transform: scale(1.1);
 }
 
 .split-times-expand-button svg {
-    display: block;
-
     width: 20px;
     height: 20px;
 }
 
+.split-times-modal-close-button svg {
+    width: 22px;
+    height: 22px;
+}
+
+
 /*
 ==================================================
-SCROLL CONTAINER
+TABLE SCROLL
 ==================================================
 */
 
@@ -102,21 +106,29 @@ SCROLL CONTAINER
 
     overflow: auto;
 
-    background-color: var(--color-surface);
+    background: var(--color-surface);
 }
+
 
 /*
 ==================================================
-ROW
+TABLE
+==================================================
+*/
+
+.split-times-table {
+    width: max-content;
+    min-width: 100%;
+}
+
+
+/*
+==================================================
+ROWS
 ==================================================
 */
 
 .split-times-row {
-    /*
-        160px navn
-        N x 110px strekk
-        120px totaltid
-    */
     display: grid;
 
     grid-template-columns:
@@ -128,9 +140,10 @@ ROW
     min-width: 100%;
 }
 
+
 /*
 ==================================================
-HEADER
+TABLE HEADER
 ==================================================
 */
 
@@ -142,15 +155,15 @@ HEADER
 }
 
 .split-times-header-row .split-times-cell {
-    height: 52px;
-
-    box-sizing: border-box;
-
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background-color: var(--color-primary);
+    height: 52px;
+
+    box-sizing: border-box;
+
+    background: var(--color-primary);
     color: var(--color-surface);
 
     border-right: 1px solid var(--color-primary-dark);
@@ -160,9 +173,10 @@ HEADER
     font-weight: 700;
 }
 
+
 /*
 ==================================================
-GENERIC CELLS
+CELLS
 ==================================================
 */
 
@@ -173,9 +187,10 @@ GENERIC CELLS
     border-bottom: 1px solid var(--color-border);
 }
 
+
 /*
 ==================================================
-NAME COLUMN
+NAME
 ==================================================
 */
 
@@ -189,21 +204,21 @@ NAME COLUMN
 
     box-sizing: border-box;
 
-    background-color: var(--color-surface);
+    background: var(--color-surface);
 }
 
 .split-times-header-row .split-times-name {
     z-index: 20;
 
-    background-color: var(--color-primary);
+    background: var(--color-primary);
 }
 
 .split-times-runner-name {
-    grid-row: span 2;
-
     display: flex;
     align-items: center;
     gap: 10px;
+
+    grid-row: span 2;
 
     padding: 0 14px;
 
@@ -220,34 +235,32 @@ NAME COLUMN
 
     border-radius: 50%;
 
-    background-color: var(--color-bg);
+    background: var(--color-bg);
     color: var(--color-primary);
 
     font-size: 0.75rem;
     font-weight: 800;
 }
 
+
 /*
 ==================================================
-SPLIT COLUMNS
+SPLITS
 ==================================================
 */
 
-.split-times-split-header {
+.split-times-split-header,
+.split-times-split {
     width: 110px;
-
-    text-align: center;
 }
 
 .split-times-split {
-    width: 110px;
-
-    box-sizing: border-box;
-
     display: flex;
     flex-direction: column;
 
-    background-color: var(--color-surface);
+    box-sizing: border-box;
+
+    background: var(--color-surface);
 
     border-right: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
@@ -255,18 +268,17 @@ SPLIT COLUMNS
 
 .split-times-split-time,
 .split-times-cumulative {
-    height: 31px;
-
     display: flex;
     align-items: center;
     justify-content: center;
+
+    height: 31px;
 
     box-sizing: border-box;
 }
 
 .split-times-split-time {
     color: var(--color-text);
-
     font-weight: 700;
 
     border-bottom: 1px dotted var(--color-border);
@@ -278,9 +290,10 @@ SPLIT COLUMNS
     font-size: 0.8rem;
 }
 
+
 /*
 ==================================================
-TOTAL COLUMN
+TOTAL
 ==================================================
 */
 
@@ -289,16 +302,16 @@ TOTAL COLUMN
     right: 0;
 
     z-index: 8;
-    
-    width: 120px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    width: 120px;
+
     box-sizing: border-box;
 
-    background-color: var(--color-surface);
+    background: var(--color-surface);
 
     border-left: 1px solid var(--color-border);
 
@@ -309,7 +322,7 @@ TOTAL COLUMN
 .split-times-header-row .split-times-total {
     z-index: 20;
 
-    background-color: var(--color-primary);
+    background: var(--color-primary);
 }
 
 .split-times-runner-total {
@@ -318,21 +331,23 @@ TOTAL COLUMN
     font-size: 1rem;
 }
 
+
 /*
 ==================================================
-ROW INTERACTION
+HOVER
 ==================================================
 */
 
 .split-times-runner:hover .split-times-split,
 .split-times-runner:hover .split-times-runner-name,
 .split-times-runner:hover .split-times-runner-total {
-    background-color: var(--color-bg);
+    background: var(--color-bg);
 }
+
 
 /*
 ==================================================
-FULLSCREEN MODAL
+MODAL
 ==================================================
 */
 
@@ -344,11 +359,10 @@ FULLSCREEN MODAL
 
     display: flex;
 
+    padding: 20px;
     box-sizing: border-box;
 
-    padding: 20px;
-
-    background-color: var(--color-text-light);
+    background: var(--color-text-light);
 
     backdrop-filter: blur(4px);
 
@@ -362,60 +376,35 @@ FULLSCREEN MODAL
     min-width: 0;
     min-height: 0;
 
-    background-color: var(--color-surface);
+    overflow: hidden;
+
+    background: var(--color-surface);
 
     border-radius: 8px;
-
-    overflow: hidden;
 
     box-shadow: 0 10px 40px var(--shadow);
 }
 
+
 /*
 ==================================================
-CLOSE BUTTON
+MODAL TABLE CENTERING
 ==================================================
 */
 
-.split-times-modal-close-button {
+/*
+    I popupen får tabellen lov til å være
+    sentrert når den får plass.
+*/
+.split-times-table-wrapper-modal {
     display: flex;
-    align-items: center;
     justify-content: center;
-
-    width: auto;
-    height: auto;
-
-    padding: 2px;
-
-    border: none;
-    background-color: transparent;
-    color: var(--color-text-light);
-
-    cursor: pointer;
-
-    transition:
-        color 0.2s ease,
-        transform 0.2s ease;
 }
 
-.split-times-modal-close-button:hover {
-    background-color: transparent;
-    color: var(--color-accent);
-
-    transform: scale(1.1);
+.split-times-table-wrapper-modal .split-times-table {
+    flex-shrink: 0;
 }
 
-.split-times-modal-close-button svg {
-    display: block;
-
-    width: 22px;
-    height: 22px;
-}
-
-.split-times-expand-button,
-.split-times-modal-close-button {
-    margin-left: auto;
-}
 
 /*
 ==================================================
@@ -424,8 +413,15 @@ ANIMATION
 */
 
 @keyframes modal-fade-in {
-    from { opacity: 0; } to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
+
 
 /*
 ==================================================
@@ -449,8 +445,8 @@ MOBILE
         width: 140px;
     }
 
-    .split-times-split,
-    .split-times-split-header {
+    .split-times-split-header,
+    .split-times-split {
         width: 100px;
     }
 
@@ -461,7 +457,7 @@ MOBILE
     .split-times-modal-backdrop {
         padding: 0;
     }
-    
+
     .split-times-modal {
         border-radius: 0;
     }
