@@ -3,7 +3,7 @@ import API_URL from "../../api/config";
 import { useState } from "react";
 
 
-function WinSplitInput({ onResults, onStatus }) {
+function WinSplitsInput({ onResults, onStatus }) {
     const [url, setUrl] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -13,7 +13,7 @@ function WinSplitInput({ onResults, onStatus }) {
         if (!url.trim()) {
             onStatus({
                 type: "error",
-                message: "Skriv inn en WinSplit-lenke.",
+                message: "Skriv inn en WinSplits-lenke.",
             });
 
             return;
@@ -22,12 +22,12 @@ function WinSplitInput({ onResults, onStatus }) {
         setLoading(true);
         onStatus({
             type: "loading",
-            message: "Henter WinSplit-data...",
+            message: "Henter WinSplits-data...",
         });
 
         try {
             const response = await fetch(
-                `${API_URL}/api/winsplit/results/`,
+                `${API_URL}/api/winsplits/results/`,
                 {
                     method: "POST",
                     headers: {
@@ -61,7 +61,7 @@ function WinSplitInput({ onResults, onStatus }) {
             onResults(data.results);
             onStatus({
                 type: "success",
-                message: "WinSplit-data hentet."
+                message: "WinSplits-data hentet."
             });
         } catch (error) {
             onStatus({
@@ -74,22 +74,22 @@ function WinSplitInput({ onResults, onStatus }) {
     }
 
     return (
-        <div className="winsplit-input">
+        <div className="winsplits-input">
             <form onSubmit={handleSubmit}>
-                <label htmlFor="winsplit-url">
-                    Gi inn WinSplit-lenke:
+                <label htmlFor="winsplits-url">
+                    Gi inn WinSplits-lenke:
                 </label>
 
                 <input
-                    id="winsplit-url"
+                    id="winsplits-url"
                     type="text"
                     value={url}
                     onChange={(event) => setUrl(event.target.value)}
-                    className="winsplit-input-field"
+                    className="winsplits-input-field"
                     placeholder="https://obasen.orientering.se/..."
                 />
 
-                <button type="submit" className="winsplit-button" disabled={loading}>
+                <button type="submit" className="winsplits-button" disabled={loading}>
                     {loading ? "Henter..." : "Hent data"}
                 </button>
             </form>
@@ -97,4 +97,4 @@ function WinSplitInput({ onResults, onStatus }) {
     );
 }
 
-export default WinSplitInput;
+export default WinSplitsInput;

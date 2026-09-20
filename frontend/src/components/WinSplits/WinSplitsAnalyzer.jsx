@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-import WinSplitSidebar from "./WinSplitSidebar";
+import WinSplitsSidebar from "./WinSplitsSidebar";
 
 import SplitTimes from "./analysis/SplitTimes";
 
-function WinSplitAnalyzer({ data, status }) {
+function WinSplitsAnalyzer({ data, status }) {
     const [activeAnalysis, setActiveAnalysis] = useState(null);
 
     const analyses = [
@@ -14,17 +14,17 @@ function WinSplitAnalyzer({ data, status }) {
     const ActiveAnalysis = activeAnalysis;
 
     return (
-        <div className="winsplit-analyzer">
-            <WinSplitSidebar
+        <div className="winsplits-analyzer">
+            <WinSplitsSidebar
                 analyses={analyses}
                 activeAnalysis={activeAnalysis}
                 onAnalysisSelect={setActiveAnalysis}
             />
 
-            <div className="winsplit-container">
+            <div className="winsplits-container">
                 {!data && status.type == "idle" && (
                     <p>
-                        Lim inn en WinSplit-lenke og trykk "Hent data".
+                        Lim inn en WinSplits-lenke og trykk "Hent data".
                     </p>
                 )}
 
@@ -35,7 +35,7 @@ function WinSplitAnalyzer({ data, status }) {
                 )}
 
                 {status.type == "error" && (
-                    <p className="winsplit-error">
+                    <p className="winsplits-error">
                         {status.message}
                     </p>
                 )}
@@ -54,4 +54,4 @@ function WinSplitAnalyzer({ data, status }) {
     );
 }
 
-export default WinSplitAnalyzer;
+export default WinSplitsAnalyzer;

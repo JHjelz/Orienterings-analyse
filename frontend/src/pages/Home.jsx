@@ -26,8 +26,8 @@ function Home() {
         </div>
 
         <div className="home-tool">
-          <MainButton to="/winsplit">
-            Analyser WinSplit-data
+          <MainButton to="/winsplits">
+            Analyser WinSplits-data
           </MainButton>
           <span>Analyser strekktider og resultater</span>
         </div>

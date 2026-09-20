@@ -1,16 +1,16 @@
-function WinSplitSidebar({ analyses, activeAnalysis, onAnalysisSelect }) {
+function WinSplitsSidebar({ analyses, activeAnalysis, onAnalysisSelect }) {
     return (
-        <aside className="winsplit-sidebar">
+        <aside className="winsplits-sidebar">
             <h3>Analyser</h3>
 
-            <div className="winsplit-sidebar-list">
+            <div className="winsplits-sidebar-list">
                 {analyses.map(({name, func}) => (
                     <button
                         key={name}
                         className={
                             activeAnalysis === func
-                                ? "winsplit-sidebar-button active"
-                                : "winsplit-sidebar-button"
+                                ? "winsplits-sidebar-button active"
+                                : "winsplits-sidebar-button"
                         }
                         onClick={() => onAnalysisSelect(() => func)}
                     >
@@ -22,4 +22,4 @@ function WinSplitSidebar({ analyses, activeAnalysis, onAnalysisSelect }) {
     );
 }
 
-export default WinSplitSidebar;
+export default WinSplitsSidebar;

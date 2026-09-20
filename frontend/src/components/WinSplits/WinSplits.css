@@ -1,10 +1,10 @@
 /*
 =========================================================
-WINSPLIT PAGE
+WINSPLITS PAGE
 =========================================================
 */
 
-.winsplit-page {
+.winsplits-page {
     width: min(1200px, calc(100% - 40px));
     height: 100%;
 
@@ -24,7 +24,7 @@ HEADER
 =========================================================
 */
 
-.winsplit-header {
+.winsplits-header {
     position: relative;
     overflow: hidden;
 
@@ -41,7 +41,7 @@ HEADER
 
 /* Dekorativ sirkel */
 
-.winsplit-header::after {
+.winsplits-header::after {
     content: "";
 
     position: absolute;
@@ -67,7 +67,7 @@ HEADER TITLE
 =========================================================
 */
 
-.winsplit-name {
+.winsplits-name {
     position: relative;
     z-index: 1;
 
@@ -89,7 +89,7 @@ HEADER TITLE
     box-shadow: 0 4px 12px var(--shadow);
 }
 
-.winsplit-info {
+.winsplits-info {
     position: relative;
     z-index: 1;
 
@@ -110,7 +110,7 @@ INPUT
 =========================================================
 */
 
-.winsplit-input {
+.winsplits-input {
     width: 100%;
     
     padding: 18px 20px;
@@ -125,7 +125,7 @@ INPUT
     box-shadow: var(--shadow);
 }
 
-.winsplit-input form {
+.winsplits-input form {
     width: 100%;
 
     display: flex;
@@ -134,7 +134,7 @@ INPUT
     gap: 14px;
 }
 
-.winsplit-input label {
+.winsplits-input label {
     flex-shrink: 0;
 
     color: var(--color-text);
@@ -143,7 +143,7 @@ INPUT
     font-weight: 700;
 }
 
-.winsplit-input-field {
+.winsplits-input-field {
     flex: 1;
 
     padding: 11px 14px;
@@ -164,15 +164,15 @@ INPUT
         background-color 0.2s ease;
 }
 
-.winsplit-input-field::placeholder {
+.winsplits-input-field::placeholder {
     color: var(--color-text-light);
 }
 
-.winsplit-input-field:hover {
+.winsplits-input-field:hover {
     border-color: var(--color-text-light);
 }
 
-.winsplit-input-field:focus {
+.winsplits-input-field:focus {
     background-color: var(--color-surface);
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px var(--shadow);
@@ -184,7 +184,7 @@ BUTTON
 =========================================================
 */
 
-.winsplit-button {
+.winsplits-button {
     flex-shrink: 0;
 
     padding: 11px 20px;
@@ -206,7 +206,7 @@ BUTTON
         box-shadow 0.2s ease;
 }
 
-.winsplit-button:hover:not(:disabled) {
+.winsplits-button:hover:not(:disabled) {
     background-color: var(--color-primary-dark);
     
     transform: translateY(-1px);
@@ -214,11 +214,11 @@ BUTTON
     box-shadow: 0 5px 14px var(--shadow);
 }
 
-.winsplit-button:active:not(:disabled) {
+.winsplits-button:active:not(:disabled) {
     transform: translateY(0);
 }
 
-.winsplit-button:disabled {
+.winsplits-button:disabled {
     opacity: 0.65;
 
     cursor: not-allowed;
@@ -230,7 +230,7 @@ ANALYZER
 =========================================================
 */
 
-.winsplit-analyzer {
+.winsplits-analyzer {
     flex: 1;
     min-height: 420px;
 
@@ -252,7 +252,7 @@ SIDEBAR
 =========================================================
 */
 
-.winsplit-sidebar {
+.winsplits-sidebar {
     display: flex;
     flex-direction: column;
 
@@ -267,7 +267,7 @@ SIDEBAR
     border-right: 1px solid var(--color-border);
 }
 
-.winsplit-sidebar h3 {
+.winsplits-sidebar h3 {
     margin: 0 0 16px;
 
     color: var(--color-primary);
@@ -276,7 +276,7 @@ SIDEBAR
     font-weight: 700;
 }
 
-.winsplit-sidebar-list {
+.winsplits-sidebar-list {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -286,7 +286,7 @@ SIDEBAR
     min-height: 0;
 }
 
-.winsplit-sidebar-button {
+.winsplits-sidebar-button {
     width: 100%;
 
     padding: 11px 14px;
@@ -312,7 +312,7 @@ SIDEBAR
         transform 0.2s ease;
 }
 
-.winsplit-sidebar-button:hover {
+.winsplits-sidebar-button:hover {
     background-color: var(--color-primary);
     color: var(--color-surface);
     border-color: var(--color-primary-dark);
@@ -320,7 +320,7 @@ SIDEBAR
     transform: translateX(2px);
 }
 
-.winsplit-sidebar-button:focus-visible {
+.winsplits-sidebar-button:focus-visible {
     outline: none;
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px var(--shadow);
@@ -332,7 +332,7 @@ CONTENT
 =========================================================
 */
 
-.winsplit-container {
+.winsplits-container {
     flex: 1;
     min-width: 0;
 
@@ -352,7 +352,7 @@ CONTENT
     color: var(--color-text);
 }
 
-.winsplit-container > p {
+.winsplits-container > p {
     margin: 0;
 
     color: var(--color-text-light);
@@ -361,7 +361,7 @@ CONTENT
     line-height: 1.6;
 }
 
-.winsplit-container pre {
+.winsplits-container pre {
     margin: 0;
 
     padding: 16px;
@@ -379,7 +379,7 @@ CONTENT
     overflow-x: auto;
 }
 
-.winsplit-error {
+.winsplits-error {
     padding: 14px 16px;
 
     background-color: var(--color-bg);
@@ -396,34 +396,34 @@ RESPONSIVE
 */
 
 @media (max-width: 500px) {
-    .winsplit-page {
+    .winsplits-page {
         width: calc(100% - 24px);
         padding: 18px 0 28px;
         gap: 14px;
     }
     
-    .winsplit-header {
+    .winsplits-header {
         padding: 20px;
     }
     
-    .winsplit-name {
+    .winsplits-name {
         margin-bottom: 14px;
         font-size: 1.5rem;
     }
     
-    .winsplit-info {
+    .winsplits-info {
         font-size: 0.9rem;
     }
     
-    .winsplit-input {
+    .winsplits-input {
         padding: 16px;
     }
     
-    .winsplit-analyzer {
+    .winsplits-analyzer {
         padding: 8px;
     }
     
-    .winsplit-container {
+    .winsplits-container {
         padding: 16px;
     }
 }

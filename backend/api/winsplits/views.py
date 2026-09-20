@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
-from .functionality.winsplit_urls import hent_winsplits_resultater
+from .functionality.winsplits_urls import hent_winsplits_resultater
 
 ##########################
 # Funksjonalitet
