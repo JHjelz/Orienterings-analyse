@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import WinSplitsSidebar from "./WinSplitsSidebar";
 
@@ -10,6 +10,12 @@ function WinSplitsAnalyzer({ data, status }) {
     const analyses = [
         { name: "Strekktider", func: SplitTimes }
     ];
+
+    useEffect(() => {
+        if (data) {
+            setActiveAnalysis(() => SplitTimes);
+        }
+    }, [data]);
 
     const ActiveAnalysis = activeAnalysis;
 
@@ -37,12 +43,6 @@ function WinSplitsAnalyzer({ data, status }) {
                 {status.type == "error" && (
                     <p className="winsplits-error">
                         {status.message}
-                    </p>
-                )}
-
-                {data && status.type !== "loading" && !ActiveAnalysis && (
-                    <p>
-                        Data er hentet - velg en analyse fra menyen til venstre og kom i gang!
                     </p>
                 )}
 

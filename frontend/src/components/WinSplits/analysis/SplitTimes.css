@@ -218,9 +218,7 @@ NAME
     align-items: center;
     gap: 10px;
 
-    grid-row: span 2;
-
-    padding: 0 14px;
+    padding: 5px 14px;
 
     font-weight: 700;
 }
@@ -260,7 +258,9 @@ SPLITS
 
     box-sizing: border-box;
 
-    background: var(--color-surface);
+    min-height: 62px;
+
+    background-color: var(--color-surface);
 
     border-right: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
@@ -272,7 +272,9 @@ SPLITS
     align-items: center;
     justify-content: center;
 
-    height: 31px;
+    flex: 1;
+
+    min-height: 31px;
 
     box-sizing: border-box;
 }
@@ -396,13 +398,10 @@ MODAL TABLE CENTERING
     I popupen får tabellen lov til å være
     sentrert når den får plass.
 */
-.split-times-table-wrapper-modal {
-    display: flex;
-    justify-content: center;
-}
 
 .split-times-table-wrapper-modal .split-times-table {
-    flex-shrink: 0;
+    width: max-content;
+    min-width: 100%;
 }
 
 

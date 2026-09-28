@@ -15,7 +15,7 @@ def winsplits_tabell_url(url: str) -> str:
     Henter en unik URL for bare tidtabellen.
 
     Args:
-        url (str): URL-en til den originale WinSplit resultat-siden
+        url (str): URL-en til den originale WinSplits resultat-siden
 
     Returns:
         str: Den nye URL-en
@@ -41,7 +41,7 @@ def hent_winsplits_resultater(url: str) -> dict:
     Henter de faktiske resultatene pakket i en dict.
 
     Args:
-        url (str): URL-en til den originale WinSplit resultat-siden
+        url (str): URL-en til den originale WinSplits resultat-siden
 
     Returns:
         dict: Resultatene pakket på formatet 'navn': {'club': str, 'splits': list}
@@ -80,5 +80,34 @@ def hent_winsplits_resultater(url: str) -> dict:
         splits = [int(m) * 60 + int(s) for m, s in (t.split(".") for t in splits)]
 
         resultater[name] = {"club": club, "splits": splits}
+
+    return fjern_null_spurt(resultater)
+
+
+##########################
+# Hjelpefunksjoner
+##########################
+
+
+def fjern_null_spurt(resultater: dict) -> dict:
+    """
+    Fjerner siste strekktid hvis det ligger en buggy 0sek på alle deltakere.
+
+    Args:
+        resultater (dict): Resultater hentet fra WinSplits på format {"utøver": {"club": str, "splits": list}, ...}
+
+    Returns:
+        dict: Resultatliste
+    """
+    if not resultater:
+        return resultater
+
+    if not all(
+        data["splits"] and data["splits"][-1] == 0 for data in resultater.values()
+    ):
+        return resultater
+
+    for data in resultater.values():
+        data["splits"] = data["splits"][:-1]
 
     return resultater

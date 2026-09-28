@@ -320,6 +320,22 @@ SIDEBAR
     transform: translateX(2px);
 }
 
+.winsplits-sidebar-button.active {
+    background-color: var(--color-accent);
+    color: var(--color-surface);
+    border-color: var(--color-accent);
+
+    transform: none;
+}
+
+.winsplits-sidebar-button.active:hover {
+    background-color: var(--color-accent);
+    color: var(--color-surface);
+    border-color: var(--color-surface);
+
+    transform: translateX(2px);
+}
+
 .winsplits-sidebar-button:focus-visible {
     outline: none;
     border-color: var(--color-primary);
@@ -327,8 +343,7 @@ SIDEBAR
 }
 
 .winsplits-sidebar-button:active {
-    background-color: var(--color-accent);
-    color: var(--color-surface);
+    transform: translateX(2px);
 }
 
 /*
