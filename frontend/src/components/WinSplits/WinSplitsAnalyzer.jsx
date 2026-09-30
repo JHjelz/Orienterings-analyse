@@ -3,21 +3,35 @@ import { useEffect, useState } from "react";
 import WinSplitsSidebar from "./WinSplitsSidebar";
 
 import SplitTimes from "./analysis/SplitTimes";
+import SplitAnalysis from "./analysis/SplitAnalysis";
 
 function WinSplitsAnalyzer({ data, status }) {
     const [activeAnalysis, setActiveAnalysis] = useState(null);
 
     const analyses = [
-        { name: "Strekktider", func: SplitTimes }
+        {
+            id: "split-times",
+            name: "Strekktider",
+            component: SplitTimes,
+        },
+        {
+            id: "split-stats",
+            name: "Strekkanalyse",
+            component: SplitAnalysis
+        }
     ];
 
     useEffect(() => {
         if (data) {
-            setActiveAnalysis(() => SplitTimes);
+            setActiveAnalysis("split-times");
         }
     }, [data]);
 
-    const ActiveAnalysis = activeAnalysis;
+    const activeAnalysisConfig = analyses.find(
+        (analysis) => analysis.id === activeAnalysis
+    );
+
+    const ActiveAnalysis = activeAnalysisConfig?.component;
 
     return (
         <div className="winsplits-analyzer">
@@ -28,7 +42,7 @@ function WinSplitsAnalyzer({ data, status }) {
             />
 
             <div className="winsplits-container">
-                {!data && status.type == "idle" && (
+                {!data && status.type === "idle" && (
                     <p>
                         Lim inn en WinSplits-lenke og trykk "Hent data".
                     </p>

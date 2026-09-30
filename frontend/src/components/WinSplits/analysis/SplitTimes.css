@@ -65,7 +65,7 @@ FULLSCREEN BUTTONS
     padding: 4px;
 
     border: none;
-    background: transparent;
+    background-color: transparent;
     color: var(--color-text-light);
 
     cursor: pointer;
@@ -77,7 +77,7 @@ FULLSCREEN BUTTONS
 
 .split-times-expand-button:hover,
 .split-times-modal-close-button:hover {
-    background: transparent;
+    background-color: transparent;
     color: var(--color-accent);
 
     transform: scale(1.1);
@@ -106,7 +106,7 @@ TABLE SCROLL
 
     overflow: auto;
 
-    background: var(--color-surface);
+    background-color: var(--color-surface);
 }
 
 
@@ -133,6 +133,7 @@ ROWS
 
     grid-template-columns:
         160px
+        140px
         repeat(var(--split-count), 110px)
         120px;
 
@@ -163,7 +164,7 @@ TABLE HEADER
 
     box-sizing: border-box;
 
-    background: var(--color-primary);
+    background-color: var(--color-primary);
     color: var(--color-surface);
 
     border-right: 1px solid var(--color-primary-dark);
@@ -204,13 +205,52 @@ NAME
 
     box-sizing: border-box;
 
-    background: var(--color-surface);
+    background-color: var(--color-surface);
+}
+
+.split-times-club {
+    position: sticky;
+    left: 160px;
+
+    z-index: 8;
+
+    width: 140px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+
+    padding: 5px 14px;
+
+    background-color: var(--color-surface);
+
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+
+    color: var(--color-text-light);
+    font-size: 0.9rem;
 }
 
 .split-times-header-row .split-times-name {
     z-index: 20;
 
-    background: var(--color-primary);
+    background-color: var(--color-primary);
+}
+
+.split-times-header-row .split-times-club {
+    z-index: 20;
+
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    justify-content: center;
+
+    border-right: 1px solid var(--color-primary-dark);
+    border-bottom: 1px solid var(--color-primary-dark);
 }
 
 .split-times-runner-name {
@@ -233,7 +273,7 @@ NAME
 
     border-radius: 50%;
 
-    background: var(--color-bg);
+    background-color: var(--color-bg);
     color: var(--color-primary);
 
     font-size: 0.75rem;
@@ -313,7 +353,7 @@ TOTAL
 
     box-sizing: border-box;
 
-    background: var(--color-surface);
+    background-color: var(--color-surface);
 
     border-left: 1px solid var(--color-border);
 
@@ -324,7 +364,7 @@ TOTAL
 .split-times-header-row .split-times-total {
     z-index: 20;
 
-    background: var(--color-primary);
+    background-color: var(--color-primary);
 }
 
 .split-times-runner-total {
@@ -342,8 +382,9 @@ HOVER
 
 .split-times-runner:hover .split-times-split,
 .split-times-runner:hover .split-times-runner-name,
+.split-times-runner:hover .split-times-club,
 .split-times-runner:hover .split-times-runner-total {
-    background: var(--color-bg);
+    background-color: var(--color-bg);
 }
 
 
@@ -364,7 +405,7 @@ MODAL
     padding: 20px;
     box-sizing: border-box;
 
-    background: var(--color-text-light);
+    background-color: var(--color-text-light);
 
     backdrop-filter: blur(4px);
 
@@ -380,7 +421,7 @@ MODAL
 
     overflow: hidden;
 
-    background: var(--color-surface);
+    background-color: var(--color-surface);
 
     border-radius: 8px;
 
@@ -436,12 +477,18 @@ MOBILE
     .split-times-row {
         grid-template-columns:
             140px
+            120px
             repeat(var(--split-count), 100px)
             110px;
     }
 
     .split-times-name {
         width: 140px;
+    }
+
+    .split-times-club {
+        left: 140px;
+        width: 120px;
     }
 
     .split-times-split-header,

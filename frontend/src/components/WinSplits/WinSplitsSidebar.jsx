@@ -4,15 +4,15 @@ function WinSplitsSidebar({ analyses, activeAnalysis, onAnalysisSelect }) {
             <h3>Analyser</h3>
 
             <div className="winsplits-sidebar-list">
-                {analyses.map(({name, func}) => (
+                {analyses.map(({ id, name }) => (
                     <button
-                        key={name}
+                        key={id}
                         className={
-                            activeAnalysis === func
+                            activeAnalysis === id
                                 ? "winsplits-sidebar-button active"
                                 : "winsplits-sidebar-button"
                         }
-                        onClick={() => onAnalysisSelect(() => func)}
+                        onClick={() => onAnalysisSelect(id)}
                     >
                         {name}
                     </button>

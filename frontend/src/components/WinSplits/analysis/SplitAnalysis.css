@@ -1,0 +1,182 @@
+.split-stats {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    min-height: 0;
+
+    background-color: var(--color-surface);
+}
+
+
+/*
+==================================================
+HEADER
+==================================================
+*/
+
+.split-stats-header {
+    flex: 0 0 auto;
+
+    padding: 24px 24px 18px;
+
+    border-bottom: 1px solid var(--color-border);
+}
+
+.split-stats-header h2 {
+    margin: 0;
+
+    color: var(--color-primary);
+
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.split-stats-header p {
+    max-width: 700px;
+
+    margin: 6px 0 0;
+
+    color: var(--color-text-light);
+
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+
+/*
+==================================================
+CONTROLS
+==================================================
+*/
+
+.split-stats-controls {
+    flex: 0 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    padding: 20px 24px;
+
+    border-bottom: 1px solid var(--color-border);
+
+    background-color: var(--color-surface);
+}
+
+.split-stats-control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.split-stats-control-label {
+    color: var(--color-text);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.split-stats-buttons {
+    display: flex;
+    gap: 6px;
+    overflow-x: scroll;
+}
+
+
+/*
+==================================================
+BUTTONS
+==================================================
+*/
+
+.split-stats-button {
+    min-width: 40px;
+
+    padding: 7px 11px;
+
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+
+    background-color: var(--color-surface);
+    color: var(--color-text);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.split-stats-button:hover {
+    border-color: var(--color-primary);
+
+    background-color: var(--color-bg);
+}
+
+.split-stats-button-active {
+    border-color: var(--color-primary);
+
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+}
+
+.split-stats-button-active:hover {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+
+/*
+==================================================
+RESULT
+==================================================
+*/
+
+.split-stats-result {
+    flex: 0 0 auto;
+
+    padding: 14px 24px;
+
+    border-bottom: 1px solid var(--color-border);
+
+    color: var(--color-text-light);
+
+    font-size: 0.85rem;
+}
+
+.split-stats-result p {
+    margin: 0;
+}
+
+
+/*
+==================================================
+MOBILE
+==================================================
+*/
+
+@media (max-width: 700px) {
+    .split-stats-header {
+        padding: 18px;
+    }
+
+    .split-stats-controls {
+        padding: 16px 18px;
+    }
+
+    .split-stats-result {
+        padding: 12px 18px;
+    }
+
+    .split-stats-button {
+        min-width: 36px;
+
+        padding: 7px 9px;
+    }
+}
