@@ -1,8 +1,14 @@
+# Bibliotek
+
 from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import redirect
 
-from .client import StravaClient
+from .client import StravaKlient
+
+##########################
+# Funksjonalitet
+##########################
 
 
 def connect(request):
@@ -21,7 +27,7 @@ def connect(request):
 def callback(request):
     code = request.GET.get("code")
 
-    client = StravaClient(
+    client = StravaKlient(
         settings.STRAVA_CLIENT_ID,
         settings.STRAVA_CLIENT_SECRET,
     )

@@ -1,13 +1,13 @@
-# Libraries
+# Bibliotek
 
 import requests
 
 ##########################
-# Class
+# Klasser
 ##########################
 
 
-class StravaClient:
+class StravaKlient:
     """
     Klient for kommunikasjon med Strava API.
     """
@@ -37,7 +37,7 @@ class StravaClient:
 
         return response.json()
 
-    def refresh_access_token(self, refresh_token):
+    def forny_access_token(self, refresh_token):
         """
         Henter et nytt access token fra Strava.
         """

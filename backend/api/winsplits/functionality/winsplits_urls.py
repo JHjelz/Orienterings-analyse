@@ -5,17 +5,17 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import parse_qs, urlparse
 
-##############################
+##########################
 # Funksjonalitet
-##############################
+##########################
 
 
-def winsplits_table_url(url: str) -> str:
+def winsplits_tabell_url(url: str) -> str:
     """
     Henter en unik URL for bare tidtabellen.
 
     Args:
-        url (str): URL-en til den originale WinSplit resultat-siden
+        url (str): URL-en til den originale WinSplits resultat-siden
 
     Returns:
         str: Den nye URL-en
@@ -36,17 +36,17 @@ def winsplits_table_url(url: str) -> str:
     return f"https://obasen.orientering.se/winsplits/online/no/table.asp?databaseId={database_id}&categoryId={category_id}"
 
 
-def get_winsplit_results(url: str) -> dict:
+def hent_winsplits_resultater(url: str) -> dict:
     """
     Henter de faktiske resultatene pakket i en dict.
 
     Args:
-        url (str): URL-en til den originale WinSplit resultat-siden
+        url (str): URL-en til den originale WinSplits resultat-siden
 
     Returns:
         dict: Resultatene pakket på formatet 'navn': {'club': str, 'splits': list}
     """
-    table_url = winsplits_table_url(url)
+    table_url = winsplits_tabell_url(url)
 
     headers = {"User-Agent": "Mozilla/5.0"}
     response = requests.get(table_url, headers=headers, timeout=10)
@@ -54,13 +54,13 @@ def get_winsplit_results(url: str) -> dict:
 
     soup = BeautifulSoup(response.text, "html.parser")
 
-    rows = soup.find_all("tr")
+    rader = soup.find_all("tr")
 
-    results = {}
+    resultater = {}
 
-    for i in range(2, len(rows), 2):
-        row_leg = rows[i]
-        row_total = rows[i + 1]
+    for i in range(2, len(rader), 2):
+        row_leg = rader[i]
+        row_total = rader[i + 1]
 
         leg_cols = [c.get_text(strip=True) for c in row_leg.find_all("td")]
         total_cols = [c.get_text(strip=True) for c in row_total.find_all("td")]
@@ -79,6 +79,35 @@ def get_winsplit_results(url: str) -> dict:
         splits = leg_cols[2:-1]
         splits = [int(m) * 60 + int(s) for m, s in (t.split(".") for t in splits)]
 
-        results[name] = {"club": club, "splits": splits}
+        resultater[name] = {"club": club, "splits": splits}
 
-    return results
+    return fjern_null_spurt(resultater)
+
+
+##########################
+# Hjelpefunksjoner
+##########################
+
+
+def fjern_null_spurt(resultater: dict) -> dict:
+    """
+    Fjerner siste strekktid hvis det ligger en buggy 0sek på alle deltakere.
+
+    Args:
+        resultater (dict): Resultater hentet fra WinSplits på format {"utøver": {"club": str, "splits": list}, ...}
+
+    Returns:
+        dict: Resultatliste
+    """
+    if not resultater:
+        return resultater
+
+    if not all(
+        data["splits"] and data["splits"][-1] == 0 for data in resultater.values()
+    ):
+        return resultater
+
+    for data in resultater.values():
+        data["splits"] = data["splits"][:-1]
+
+    return resultater
