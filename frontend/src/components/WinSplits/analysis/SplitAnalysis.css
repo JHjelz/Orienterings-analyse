@@ -8,7 +8,6 @@
     background-color: var(--color-surface);
 }
 
-
 /*
 ==================================================
 HEADER
@@ -16,34 +15,20 @@ HEADER
 */
 
 .split-stats-header {
-    flex: 0 0 auto;
-
-    padding: 24px 24px 18px;
-
-    border-bottom: 1px solid var(--color-border);
+    padding: 20px 24px;
 }
 
-.split-stats-header h2 {
-    margin: 0;
+.split-stats-header-content {
+    display: flex;
+    align-items: center;
+    gap: 32px;
 
-    color: var(--color-primary);
-
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
+    min-width: 0;
 }
 
-.split-stats-header p {
-    max-width: 700px;
-
-    margin: 6px 0 0;
-
-    color: var(--color-text-light);
-
-    font-size: 0.9rem;
-    line-height: 1.5;
+.split-stats-header .split-times-title {
+    flex: 1;
 }
-
 
 /*
 ==================================================
@@ -51,24 +36,23 @@ CONTROLS
 ==================================================
 */
 
-.split-stats-controls {
+.split-stats-control-groups {
     flex: 0 0 auto;
 
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
 
-    padding: 20px 24px;
-
-    border-bottom: 1px solid var(--color-border);
-
-    background-color: var(--color-surface);
+    min-width: 0;
+    max-width: 50%;
 }
 
 .split-stats-control-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
+
+    min-width: 0;
 }
 
 .split-stats-control-label {
@@ -81,9 +65,38 @@ CONTROLS
 .split-stats-buttons {
     display: flex;
     gap: 6px;
-    overflow-x: scroll;
+
+    width: 100%;
+    min-width: 0;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) transparent;
 }
 
+/* Chrome, Edge, Safari */
+.split-stats-buttons::-webkit-scrollbar {
+    height: 6px;
+}
+
+.split-stats-buttons::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.split-stats-buttons::-webkit-scrollbar-thumb {
+    background-color: color-mix(
+        in srgb,
+        var(--color-primary) 70%,
+        transparent
+    );
+    border-radius: 999px;
+}
+
+.split-stats-buttons::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary-dark);
+}
 
 /*
 ==================================================
@@ -92,8 +105,9 @@ BUTTONS
 */
 
 .split-stats-button {
-    min-width: 40px;
+    flex: 0 0 auto;
 
+    min-width: 40px;
     padding: 7px 11px;
 
     border: 1px solid var(--color-border);
@@ -105,6 +119,8 @@ BUTTONS
     font-size: 0.85rem;
     font-weight: 700;
 
+    white-space: nowrap;
+
     cursor: pointer;
 
     transition:
@@ -114,23 +130,18 @@ BUTTONS
 }
 
 .split-stats-button:hover {
-    border-color: var(--color-primary);
-
-    background-color: var(--color-bg);
-}
-
-.split-stats-button-active {
-    border-color: var(--color-primary);
+    border-color: var(--color-primary-dark);
 
     background-color: var(--color-primary);
     color: var(--color-surface);
 }
 
-.split-stats-button-active:hover {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-}
+.split-stats-button-active {
+    border-color: var(--color-accent);
 
+    background-color: var(--color-accent);
+    color: var(--color-surface);
+}
 
 /*
 ==================================================
@@ -139,21 +150,14 @@ RESULT
 */
 
 .split-stats-result {
-    flex: 0 0 auto;
+    flex: 1;
+    min-height: 0;
 
-    padding: 14px 24px;
+    display: flex;
+    flex-direction: column;
 
-    border-bottom: 1px solid var(--color-border);
-
-    color: var(--color-text-light);
-
-    font-size: 0.85rem;
+    overflow: hidden;
 }
-
-.split-stats-result p {
-    margin: 0;
-}
-
 
 /*
 ==================================================
@@ -166,12 +170,10 @@ MOBILE
         padding: 18px;
     }
 
-    .split-stats-controls {
-        padding: 16px 18px;
-    }
-
-    .split-stats-result {
-        padding: 12px 18px;
+    .split-stats-header-content {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 16px;
     }
 
     .split-stats-button {

@@ -10,11 +10,11 @@ function formatTime(seconds) {
     return `${minutes}:${String(remainingSeconds).padStart(2, "0")}`;
 }
 
-function getNumSplits(runners) {
+function getMaxSplits(runners) {
     return Math.max(
         ...runners.map(([, runner]) => runner.splits.length),
         0
     );
 }
 
-export { formatTime, getNumSplits };
+export { formatTime, getMaxSplits };

@@ -3,6 +3,48 @@ import { useEffect, useState } from "react";
 import "./SplitTimes.css"
 
 import SplitTable from "./SplitTable";
+import { getMaxSplits } from "./GeneralFunctions";
+
+function PrepareSplitTimes(data) {
+    const runners = Object.entries(data);
+    const maxSplits = getMaxSplits(runners);
+
+    const columns = [
+        {key: "name", label: "Navn", type: "name"},
+        {key: "club", label: "Klubb", type: "club"},
+        ...Array.from({ length: maxSplits }, (_, index) => ({
+            key: `split-${index}`,
+            label: index + 1 === maxSplits
+                ? "Oppløp"
+                : `Post ${index + 1}`,
+            type: "split",
+        })),
+        {key: "total", label: "Totaltid", type: "total"},
+    ];
+
+    const rows = runners.map(([name, runner], runnerIndex) => {
+        let cumulative = 0;
+        const splits = runner.splits.map((split) => {
+            cumulative += split;
+            return { split, cumulative };
+        });
+
+        const row = {
+            position: runnerIndex + 1,
+            name,
+            club: runner.club,
+            total: cumulative
+        };
+
+        splits.forEach((split, index) =>  {
+            row[`split-${index}`] = split;
+        });
+
+        return row;
+    });
+
+    return { columns, rows };
+}
 
 function SplitTimes({ data }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +105,7 @@ function SplitTimes({ data }) {
 
     const table = (
         <SplitTable
-            data={data}
+            data={ PrepareSplitTimes(data) }
             isModal={isOpen}
         />
     )

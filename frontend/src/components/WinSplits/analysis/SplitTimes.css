@@ -24,6 +24,7 @@ HEADER
 .split-times-title {
     display: flex;
     align-items: center;
+
     width: 100%;
 }
 
@@ -65,6 +66,7 @@ FULLSCREEN BUTTONS
     padding: 4px;
 
     border: none;
+
     background-color: transparent;
     color: var(--color-text-light);
 
@@ -96,7 +98,7 @@ FULLSCREEN BUTTONS
 
 /*
 ==================================================
-TABLE SCROLL
+TABLE
 ==================================================
 */
 
@@ -109,36 +111,23 @@ TABLE SCROLL
     background-color: var(--color-surface);
 }
 
-
-/*
-==================================================
-TABLE
-==================================================
-*/
-
 .split-times-table {
     width: max-content;
     min-width: 100%;
 }
 
-
-/*
-==================================================
-ROWS
-==================================================
-*/
-
 .split-times-row {
     display: grid;
 
-    grid-template-columns:
-        160px
-        140px
-        repeat(var(--split-count), 110px)
-        120px;
-
     width: max-content;
     min-width: 100%;
+}
+
+.split-times-cell {
+    box-sizing: border-box;
+
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
 }
 
 
@@ -153,6 +142,8 @@ TABLE HEADER
     top: 0;
 
     z-index: 10;
+
+    height: 40px;
 }
 
 .split-times-header-row .split-times-cell {
@@ -160,32 +151,14 @@ TABLE HEADER
     align-items: center;
     justify-content: center;
 
-    height: 52px;
-
-    box-sizing: border-box;
-
     background-color: var(--color-primary);
     color: var(--color-surface);
 
-    border-right: 1px solid var(--color-primary-dark);
-    border-bottom: 1px solid var(--color-primary-dark);
+    border-right-color: var(--color-primary-dark);
+    border-bottom-color: var(--color-primary-dark);
 
     font-size: 0.85rem;
     font-weight: 700;
-}
-
-
-/*
-==================================================
-CELLS
-==================================================
-*/
-
-.split-times-cell {
-    box-sizing: border-box;
-
-    border-right: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
 }
 
 
@@ -201,56 +174,7 @@ NAME
 
     z-index: 8;
 
-    width: 160px;
-
-    box-sizing: border-box;
-
     background-color: var(--color-surface);
-}
-
-.split-times-club {
-    position: sticky;
-    left: 160px;
-
-    z-index: 8;
-
-    width: 140px;
-
-    box-sizing: border-box;
-
-    display: flex;
-    align-items: center;
-
-    padding: 5px 14px;
-
-    background-color: var(--color-surface);
-
-    border-right: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-
-    color: var(--color-text-light);
-    font-size: 0.9rem;
-}
-
-.split-times-header-row .split-times-name {
-    z-index: 20;
-
-    background-color: var(--color-primary);
-}
-
-.split-times-header-row .split-times-club {
-    z-index: 20;
-
-    background-color: var(--color-primary);
-    color: var(--color-surface);
-
-    font-size: 0.85rem;
-    font-weight: 700;
-
-    justify-content: center;
-
-    border-right: 1px solid var(--color-primary-dark);
-    border-bottom: 1px solid var(--color-primary-dark);
 }
 
 .split-times-runner-name {
@@ -280,6 +204,49 @@ NAME
     font-weight: 800;
 }
 
+.split-times-header-row .split-times-name {
+    z-index: 20;
+
+    background-color: var(--color-primary);
+}
+
+
+/*
+==================================================
+CLUB
+==================================================
+*/
+
+.split-times-club {
+    position: sticky;
+    left: 160px;
+
+    z-index: 8;
+
+    display: flex;
+    align-items: center;
+
+    padding: 5px 14px;
+
+    background-color: var(--color-surface);
+
+    color: var(--color-text-light);
+
+    font-size: 0.9rem;
+}
+
+.split-times-header-row .split-times-club {
+    z-index: 20;
+
+    justify-content: center;
+
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
 
 /*
 ==================================================
@@ -287,23 +254,11 @@ SPLITS
 ==================================================
 */
 
-.split-times-split-header,
-.split-times-split {
-    width: 110px;
-}
-
 .split-times-split {
     display: flex;
     flex-direction: column;
 
-    box-sizing: border-box;
-
-    min-height: 62px;
-
     background-color: var(--color-surface);
-
-    border-right: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
 }
 
 .split-times-split-time,
@@ -335,6 +290,27 @@ SPLITS
 
 /*
 ==================================================
+TIME / BEHIND
+==================================================
+*/
+
+.split-times-time,
+.split-times-behind {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--color-primary);
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+/*
+==================================================
 TOTAL
 ==================================================
 */
@@ -349,15 +325,15 @@ TOTAL
     align-items: center;
     justify-content: center;
 
-    width: 120px;
-
-    box-sizing: border-box;
-
     background-color: var(--color-surface);
 
     border-left: 1px solid var(--color-border);
 
+    color: var(--color-primary);
+
+    font-size: 1rem;
     font-weight: 700;
+
     text-align: center;
 }
 
@@ -365,12 +341,9 @@ TOTAL
     z-index: 20;
 
     background-color: var(--color-primary);
-}
+    color: var(--color-surface);
 
-.split-times-runner-total {
-    color: var(--color-primary);
-
-    font-size: 1rem;
+    border-left-color: var(--color-primary-dark);
 }
 
 
@@ -381,9 +354,9 @@ HOVER
 */
 
 .split-times-runner:hover .split-times-split,
-.split-times-runner:hover .split-times-runner-name,
+.split-times-runner:hover .split-times-name,
 .split-times-runner:hover .split-times-club,
-.split-times-runner:hover .split-times-runner-total {
+.split-times-runner:hover .split-times-total {
     background-color: var(--color-bg);
 }
 
@@ -428,18 +401,6 @@ MODAL
     box-shadow: 0 10px 40px var(--shadow);
 }
 
-
-/*
-==================================================
-MODAL TABLE CENTERING
-==================================================
-*/
-
-/*
-    I popupen får tabellen lov til å være
-    sentrert når den får plass.
-*/
-
 .split-times-table-wrapper-modal .split-times-table {
     width: max-content;
     min-width: 100%;
@@ -472,32 +433,6 @@ MOBILE
 @media (max-width: 700px) {
     .split-times-header {
         padding: 18px;
-    }
-
-    .split-times-row {
-        grid-template-columns:
-            140px
-            120px
-            repeat(var(--split-count), 100px)
-            110px;
-    }
-
-    .split-times-name {
-        width: 140px;
-    }
-
-    .split-times-club {
-        left: 140px;
-        width: 120px;
-    }
-
-    .split-times-split-header,
-    .split-times-split {
-        width: 100px;
-    }
-
-    .split-times-total {
-        width: 110px;
     }
 
     .split-times-modal-backdrop {
