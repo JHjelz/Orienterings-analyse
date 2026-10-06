@@ -5,13 +5,13 @@ STRAVA PAGE
 */
 
 .strava-page {
-    width: min(1200px, calc(100% - 40px));
-    min-height: 100%;
+  width: min(1200px, calc(100% - 40px));
+  min-height: 100%;
 
-    margin: 0 auto;
-    padding: 32px 0 40px;
-    
-    box-sizing: border-box;
+  margin: 0 auto;
+  padding: 32px 0 40px;
+
+  box-sizing: border-box;
 }
 
 /*
@@ -21,29 +21,29 @@ PAGE TITLE
 */
 
 .strava-page > h1 {
-    margin: 0 0 24px;
+  margin: 0 0 24px;
 
-    color: var(--color-primary);
-    
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    font-weight: 800;
-    line-height: 1.1;
+  color: var(--color-primary);
 
-    letter-spacing: -0.03em;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+
+  letter-spacing: -0.03em;
 }
 
 .strava-page > h1::after {
-    content: "";
+  content: "";
 
-    display: block;
+  display: block;
 
-    width: 55px;
-    height: 4px;
+  width: 55px;
+  height: 4px;
 
-    margin-top: 14px;
+  margin-top: 14px;
 
-    background-color: var(--color-accent);
-    border-radius: 999px;
+  background-color: var(--color-accent);
+  border-radius: 999px;
 }
 
 /*
@@ -53,41 +53,41 @@ PROFILE
 */
 
 .strava-profile {
-    position: relative;
-    overflow: hidden;
-    
-    display: flex;
-    align-items: center;
+  position: relative;
+  overflow: hidden;
 
-    gap: 18px;
+  display: flex;
+  align-items: center;
 
-    padding: 22px 24px;
-    margin-bottom: 20px;
+  gap: 18px;
 
-    background-color: var(--color-surface);
+  padding: 22px 24px;
+  margin-bottom: 20px;
 
-    border: 1px solid var(--color-border);
-    border-radius: 14px;
+  background-color: var(--color-surface);
+
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
 }
 
 .strava-profile::after {
-    content: "";
+  content: "";
 
-    position: absolute;
+  position: absolute;
 
-    width: 180px;
-    height: 180px;
+  width: 180px;
+  height: 180px;
 
-    right: -80px;
-    top: -100px;
+  right: -80px;
+  top: -100px;
 
-    border-radius: 50%;
+  border-radius: 50%;
 
-    background-color: var(--color-primary);
+  background-color: var(--color-primary);
 
-    opacity: 0.06;
+  opacity: 0.06;
 
-    pointer-events: none;
+  pointer-events: none;
 }
 
 /*
@@ -97,27 +97,27 @@ PROFILE AVATAR
 */
 
 .strava-profile__avatar {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    width: 64px;
-    height: 64px;
+  width: 64px;
+  height: 64px;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    border-radius: 50%;
+  border-radius: 50%;
 
-    background-color: var(--color-accent);
-    color: var(--color-surface);
+  background-color: var(--color-accent);
+  color: var(--color-surface);
 
-    font-size: 1.5rem;
-    font-weight: 800;
+  font-size: 1.5rem;
+  font-weight: 800;
 
-    box-shadow: 0 4px 12px var(--shadow);
+  box-shadow: 0 4px 12px var(--shadow);
 }
 
 /*
@@ -127,25 +127,25 @@ PROFILE INFO
 */
 
 .strava-profile__info {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .strava-profile__info h2 {
-    margin: 0 0 4px;
+  margin: 0 0 4px;
 
-    color: var(--color-text);
+  color: var(--color-text);
 
-    font-size: 1.35rem;
-    font-weight: 700;
+  font-size: 1.35rem;
+  font-weight: 700;
 }
 
 .strava-profile__info p {
-    margin: 3px 0;
+  margin: 3px 0;
 
-    color: var(--color-text-light);
+  color: var(--color-text-light);
 
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 /*
@@ -155,21 +155,20 @@ DASHBOARD
 */
 
 .strava-dashboard {
-    overflow: hidden;
+  overflow: hidden;
 
-    background-color: var(--color-surface);
+  background-color: var(--color-surface);
 
-    border: 1px solid var(--color-border);
-    border-radius: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
 
-    box-shadow: var(--shadow);
+  box-shadow: var(--shadow);
 }
 
 .strava-dashboard-body {
-    display: flex;
-    height: 440px;
+  display: flex;
+  height: 440px;
 }
-
 
 /*
 =========================================================
@@ -178,81 +177,81 @@ SIDEBAR
 */
 
 .strava-sidebar {
-    width: 220px;
+  width: 220px;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    padding: 20px;
+  padding: 20px;
 
-    box-sizing: border-box;
+  box-sizing: border-box;
 
-    background: var(--color-bg);
+  background: var(--color-bg);
 
-    border-right: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
 }
 
 .strava-sidebar h3 {
-    margin: 0 0 18px;
-    padding: 0 8px;
+  margin: 0 0 18px;
+  padding: 0 8px;
 
-    color: var(--color-text-light);
+  color: var(--color-text-light);
 
-    font-size: 0.75rem;
-    font-weight: 700;
+  font-size: 0.75rem;
+  font-weight: 700;
 
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 
-    color: var(--color-text-light);
+  color: var(--color-text-light);
 }
 
 .strava-sidebar nav {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    gap: 5px;
+  gap: 5px;
 }
 
 .strava-sidebar button {
-    width: 100%;
+  width: 100%;
 
-    padding: 11px 12px;
+  padding: 11px 12px;
 
-    background: transparent;
-    color: var(--color-text);
+  background: transparent;
+  color: var(--color-text);
 
-    border: 1px solid transparent;
-    border-radius: 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
 
-    font-size: 0.95rem;
-    font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 600;
 
-    text-align: left;
+  text-align: left;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .strava-sidebar button:hover {
-    background-color: var(--color-surface);
+  background-color: var(--color-surface);
 
-    border-color: var(--color-border);
-    
-    transform: translateX(2px);
+  border-color: var(--color-border);
+
+  transform: translateX(2px);
 }
 
 .strava-sidebar button.active {
-    background-color: var(--color-primary);
-    color: var(--color-surface);
+  background-color: var(--color-primary);
+  color: var(--color-surface);
 
-    border-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
 
-    box-shadow: 0 4px 10px var(--shadow);
+  box-shadow: 0 4px 10px var(--shadow);
 }
 
 /*
@@ -262,53 +261,52 @@ DATA / CONTENT
 */
 
 .strava-data {
-    flex: 1;
-    min-width: 0;
+  flex: 1;
+  min-width: 0;
 
-    padding: 28px 30px;
+  padding: 28px 30px;
 
-    box-sizing: border-box;
+  box-sizing: border-box;
 
-    background: var(--color-surface);
+  background: var(--color-surface);
 }
 
 .strava-data h2 {
-    margin: 0 0 10px;
+  margin: 0 0 10px;
 
-    color: var(--color-primary);
+  color: var(--color-primary);
 
-    font-size: 1.5rem;
-    font-weight: 800;
+  font-size: 1.5rem;
+  font-weight: 800;
 
-    letter-spacing: -0.02em;
+  letter-spacing: -0.02em;
 }
 
 .strava-data h2::after {
-    content: "";
+  content: "";
 
-    display: block;
+  display: block;
 
-    width: 35px;
-    height: 3px;
+  width: 35px;
+  height: 3px;
 
-    margin-top: 10px;
+  margin-top: 10px;
 
-    background-color: var(--color-accent);
+  background-color: var(--color-accent);
 
-    border-radius: 999px;
+  border-radius: 999px;
 }
 
 .strava-data p {
-    max-width: 650px;
+  max-width: 650px;
 
-    margin: 14px 0 0;
+  margin: 14px 0 0;
 
-    color: var(--color-text-light);
+  color: var(--color-text-light);
 
-    font-size: 0.95rem;
-    line-height: 1.7;
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
-
 
 /*
 =========================================================
@@ -317,88 +315,88 @@ CONNECTION
 */
 
 .strava-connection {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 
-    max-width: 620px;
+  max-width: 620px;
 
-    margin: 40px auto;
-    padding: 36px;
+  margin: 40px auto;
+  padding: 36px;
 
-    box-sizing: border-box;
+  box-sizing: border-box;
 
-    text-align: center;
+  text-align: center;
 
-    background-color: var(--color-surface);
+  background-color: var(--color-surface);
 
-    border: 1px solid var(--color-border);
-    border-radius: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
 
-    box-shadow: var(--shadow);
+  box-shadow: var(--shadow);
 }
 
 .strava-connection::before {
-    content: "🧭";
+  content: "🧭";
 
-    display: block;
+  display: block;
 
-    margin-bottom: 14px;
+  margin-bottom: 14px;
 
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .strava-connection h2 {
-    margin: 0;
+  margin: 0;
 
-    color: var(--color-primary);
+  color: var(--color-primary);
 
-    font-size: 1.6rem;
-    font-weight: 800;
+  font-size: 1.6rem;
+  font-weight: 800;
 }
 
 .strava-connection p {
-    max-width: 450px;
+  max-width: 450px;
 
-    margin: 12px auto 0;
+  margin: 12px auto 0;
 
-    color: var(--color-text-light);
+  color: var(--color-text-light);
 
-    font-size: 0.95rem;
-    line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .strava-connection button {
-    margin-top: 22px;
+  margin-top: 22px;
 
-    padding: 13px 22px;
+  padding: 13px 22px;
 
-    background-color: var(--color-accent);
-    color: var(--color-surface);
+  background-color: var(--color-accent);
+  color: var(--color-surface);
 
-    border: 1px solid var(--color-accent);
-    border-radius: 8px;
+  border: 1px solid var(--color-accent);
+  border-radius: 8px;
 
-    font-size: 0.95rem;
-    font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 700;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .strava-connection button:hover {
-    background-color: var(--color-primary);
-    color: var(--color-surface);
+  background-color: var(--color-primary);
+  color: var(--color-surface);
 
-    border-color: var(--color-primary);
+  border-color: var(--color-primary);
 
-    transform: translateY(-2px);
-    
-    box-shadow: var(--shadow);
+  transform: translateY(-2px);
+
+  box-shadow: var(--shadow);
 }
 
 /*
@@ -408,18 +406,17 @@ MESSAGE
 */
 
 .strava-message {
-    margin-bottom: 20px;
-    padding: 14px 18px;
+  margin-bottom: 20px;
+  padding: 14px 18px;
 
-    background-color: var(--color-bg);
-    color: var(--color-text);
+  background-color: var(--color-bg);
+  color: var(--color-text);
 
-    border: 1px solid var(--color-border);
-    border-radius: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
 
-    line-height: 1.5;
+  line-height: 1.5;
 }
-
 
 /*
 =========================================================
@@ -428,45 +425,45 @@ RESPONSIVE
 */
 
 @media (max-width: 500px) {
-    .strava-page {
-        width: calc(100% - 24px);
-        padding: 20px 0 28px;
-    }
-    
-    .strava-page > h1 {
-        margin-bottom: 20px;
-        font-size: 2rem;
-    }
-    
-    .strava-profile {
-        gap: 14px;
-        padding: 18px;
-    }
-    
-    .strava-profile__avatar {
-        width: 52px;
-        height: 52px;
-        font-size: 1.2rem;
-    }
-    
-    .strava-profile__info h2 {
-        font-size: 1.15rem;
-    }
-    
-    .strava-sidebar {
-        padding: 16px;
-    }
-    
-    .strava-sidebar nav {
-        grid-template-columns: 1fr 1fr;
-    }
-    
-    .strava-data {
-        padding: 20px;
-    }
-    
-    .strava-connection {
-        margin: 24px auto;
-        padding: 28px 20px;
-    }
+  .strava-page {
+    width: calc(100% - 24px);
+    padding: 20px 0 28px;
+  }
+
+  .strava-page > h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+
+  .strava-profile {
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .strava-profile__avatar {
+    width: 52px;
+    height: 52px;
+    font-size: 1.2rem;
+  }
+
+  .strava-profile__info h2 {
+    font-size: 1.15rem;
+  }
+
+  .strava-sidebar {
+    padding: 16px;
+  }
+
+  .strava-sidebar nav {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .strava-data {
+    padding: 20px;
+  }
+
+  .strava-connection {
+    margin: 24px auto;
+    padding: 28px 20px;
+  }
 }

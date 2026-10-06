@@ -5,17 +5,17 @@ WINSPLITS PAGE
 */
 
 .winsplits-page {
-    width: min(1200px, calc(100% - 40px));
-    height: 100%;
+  width: min(1200px, calc(100% - 40px));
+  height: 100%;
 
-    margin: 0 auto;
-    padding: 32px 0 40px;
+  margin: 0 auto;
+  padding: 32px 0 40px;
 
-    box-sizing: border-box;
+  box-sizing: border-box;
 
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 /*
@@ -25,40 +25,40 @@ HEADER
 */
 
 .winsplits-header {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 
-    padding: 28px;
+  padding: 28px;
 
-    background-color: var(--color-primary-dark);
-    color: var(--color-surface);
+  background-color: var(--color-primary-dark);
+  color: var(--color-surface);
 
-    border: 1px solid var(--color-primary-dark);
-    border-radius: 14px;
+  border: 1px solid var(--color-primary-dark);
+  border-radius: 14px;
 
-    box-shadow: var(--shadow);
+  box-shadow: var(--shadow);
 }
 
 /* Dekorativ sirkel */
 
 .winsplits-header::after {
-    content: "";
+  content: "";
 
-    position: absolute;
+  position: absolute;
 
-    width: 220px;
-    height: 220px;
+  width: 220px;
+  height: 220px;
 
-    right: -80px;
-    top: -110px;
+  right: -80px;
+  top: -110px;
 
-    border-radius: 50%;
+  border-radius: 50%;
 
-    background-color: var(--color-accent);
-    
-    opacity: 0.30;
+  background-color: var(--color-accent);
 
-    pointer-events: none;
+  opacity: 0.3;
+
+  pointer-events: none;
 }
 
 /*
@@ -68,40 +68,40 @@ HEADER TITLE
 */
 
 .winsplits-name {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 
-    display: block;
-    width: fit-content;
-    
-    margin: 0 0 18px;
-    padding: 8px 14px;
+  display: block;
+  width: fit-content;
 
-    background-color: var(--color-accent);
-    color: var(--color-surface);
+  margin: 0 0 18px;
+  padding: 8px 14px;
 
-    border-radius: 8px;
+  background-color: var(--color-accent);
+  color: var(--color-surface);
 
-    font-size: 1.8rem;
-    font-weight: 800;
-    line-height: 1.2;
+  border-radius: 8px;
 
-    box-shadow: 0 4px 12px var(--shadow);
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+
+  box-shadow: 0 4px 12px var(--shadow);
 }
 
 .winsplits-info {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 
-    width: 90%;
-    max-width: 700px;
+  width: 90%;
+  max-width: 700px;
 
-    margin: 0;
+  margin: 0;
 
-    color: var(--color-surface);
+  color: var(--color-surface);
 
-    font-size: 1rem;
-    line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
 /*
@@ -111,71 +111,71 @@ INPUT
 */
 
 .winsplits-input {
-    width: 100%;
-    
-    padding: 18px 20px;
+  width: 100%;
 
-    box-sizing: border-box;
+  padding: 18px 20px;
 
-    background-color: var(--color-surface);
+  box-sizing: border-box;
 
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
+  background-color: var(--color-surface);
 
-    box-shadow: var(--shadow);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+
+  box-shadow: var(--shadow);
 }
 
 .winsplits-input form {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    align-items: center;
-    
-    gap: 14px;
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
 }
 
 .winsplits-input label {
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    color: var(--color-text);
+  color: var(--color-text);
 
-    font-size: 0.95rem;
-    font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
 .winsplits-input-field {
-    flex: 1;
+  flex: 1;
 
-    padding: 11px 14px;
+  padding: 11px 14px;
 
-    background-color: var(--color-bg);
-    color: var(--color-text);
+  background-color: var(--color-bg);
+  color: var(--color-text);
 
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
 
-    font-size: 0.95rem;
+  font-size: 0.95rem;
 
-    outline: none;
+  outline: none;
 
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        background-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .winsplits-input-field::placeholder {
-    color: var(--color-text-light);
+  color: var(--color-text-light);
 }
 
 .winsplits-input-field:hover {
-    border-color: var(--color-text-light);
+  border-color: var(--color-text-light);
 }
 
 .winsplits-input-field:focus {
-    background-color: var(--color-surface);
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px var(--shadow);
+  background-color: var(--color-surface);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--shadow);
 }
 
 /*
@@ -185,43 +185,43 @@ BUTTON
 */
 
 .winsplits-button {
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    padding: 11px 20px;
+  padding: 11px 20px;
 
-    background-color: var(--color-primary);
-    color: var(--color-surface);
+  background-color: var(--color-primary);
+  color: var(--color-surface);
 
-    border: 1px solid var(--color-primary-dark);
-    border-radius: 8px;
+  border: 1px solid var(--color-primary-dark);
+  border-radius: 8px;
 
-    font-size: 0.95rem;
-    font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 700;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition:
-        background-color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .winsplits-button:hover:not(:disabled) {
-    background-color: var(--color-primary-dark);
-    
-    transform: translateY(-1px);
+  background-color: var(--color-primary-dark);
 
-    box-shadow: 0 5px 14px var(--shadow);
+  transform: translateY(-1px);
+
+  box-shadow: 0 5px 14px var(--shadow);
 }
 
 .winsplits-button:active:not(:disabled) {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 .winsplits-button:disabled {
-    opacity: 0.65;
+  opacity: 0.65;
 
-    cursor: not-allowed;
+  cursor: not-allowed;
 }
 
 /*
@@ -231,19 +231,19 @@ ANALYZER
 */
 
 .winsplits-analyzer {
-    flex: 1;
-    min-height: 420px;
+  flex: 1;
+  min-height: 420px;
 
-    display: flex;
-    
-    padding: 10px;
+  display: flex;
 
-    background-color: var(--color-surface);
+  padding: 10px;
 
-    border: 1px solid var(--color-border);
-    border-radius: 14px;
+  background-color: var(--color-surface);
 
-    box-shadow: var(--shadow);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+
+  box-shadow: var(--shadow);
 }
 
 /*
@@ -253,98 +253,98 @@ SIDEBAR
 */
 
 .winsplits-sidebar {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    width: 240px;
-    min-width: 240px;
-    
-    padding: 16px;
+  width: 240px;
+  min-width: 240px;
 
-    box-sizing: border-box;
+  padding: 16px;
 
-    background-color: var(--color-bg);
-    border-right: 1px solid var(--color-border);
+  box-sizing: border-box;
+
+  background-color: var(--color-bg);
+  border-right: 1px solid var(--color-border);
 }
 
 .winsplits-sidebar h3 {
-    margin: 0 0 16px;
+  margin: 0 0 16px;
 
-    color: var(--color-primary);
+  color: var(--color-primary);
 
-    font-size: 1rem;
-    font-weight: 700;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .winsplits-sidebar-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
-    overflow-x: hidden;
-    overflow-y: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 
-    min-height: 0;
+  min-height: 0;
 }
 
 .winsplits-sidebar-button {
-    width: 100%;
+  width: 100%;
 
-    padding: 11px 14px;
+  padding: 11px 14px;
 
-    box-sizing: border-box;
+  box-sizing: border-box;
 
-    background-color: var(--color-surface);
-    color: var(--color-text);
+  background-color: var(--color-surface);
+  color: var(--color-text);
 
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
 
-    font: inherit;
-    font-weight: 600;
-    text-align: left;
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .winsplits-sidebar-button:hover {
-    background-color: var(--color-primary);
-    color: var(--color-surface);
-    border-color: var(--color-primary-dark);
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  border-color: var(--color-primary-dark);
 
-    transform: translateX(2px);
+  transform: translateX(2px);
 }
 
 .winsplits-sidebar-button.active {
-    background-color: var(--color-accent);
-    color: var(--color-surface);
-    border-color: var(--color-accent);
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+  border-color: var(--color-accent);
 
-    transform: none;
+  transform: none;
 }
 
 .winsplits-sidebar-button.active:hover {
-    background-color: var(--color-accent);
-    color: var(--color-surface);
-    border-color: var(--color-surface);
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+  border-color: var(--color-surface);
 
-    transform: translateX(2px);
+  transform: translateX(2px);
 }
 
 .winsplits-sidebar-button:focus-visible {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px var(--shadow);
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--shadow);
 }
 
 .winsplits-sidebar-button:active {
-    transform: translateX(2px);
+  transform: translateX(2px);
 }
 
 /*
@@ -354,60 +354,60 @@ CONTENT
 */
 
 .winsplits-container {
-    flex: 1;
-    min-width: 0;
+  flex: 1;
+  min-width: 0;
 
-    margin-left: 10px;
-    padding: 20px;
+  margin-left: 10px;
+  padding: 20px;
 
-    box-sizing: border-box;
+  box-sizing: border-box;
 
-    background-color: var(--color-surface);
+  background-color: var(--color-surface);
 
-    border: 1px solid var(--color-border);
-    border-radius: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
 
-    overflow-x: auto;
-    overflow-y: auto;
+  overflow-x: auto;
+  overflow-y: auto;
 
-    color: var(--color-text);
+  color: var(--color-text);
 }
 
 .winsplits-container > p {
-    margin: 0;
+  margin: 0;
 
-    color: var(--color-text-light);
+  color: var(--color-text-light);
 
-    font-size: 0.95rem;
-    line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .winsplits-container pre {
-    margin: 0;
+  margin: 0;
 
-    padding: 16px;
+  padding: 16px;
 
-    background-color: var(--color-bg);
+  background-color: var(--color-bg);
 
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
 
-    color: var(--color-text);
+  color: var(--color-text);
 
-    font-size: 0.85rem;
-    line-height: 1.5;
+  font-size: 0.85rem;
+  line-height: 1.5;
 
-    overflow-x: auto;
+  overflow-x: auto;
 }
 
 .winsplits-error {
-    padding: 14px 16px;
+  padding: 14px 16px;
 
-    background-color: var(--color-bg);
-    color: var(--color-accent);
+  background-color: var(--color-bg);
+  color: var(--color-accent);
 
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
 }
 
 /*
@@ -417,34 +417,34 @@ RESPONSIVE
 */
 
 @media (max-width: 500px) {
-    .winsplits-page {
-        width: calc(100% - 24px);
-        padding: 18px 0 28px;
-        gap: 14px;
-    }
-    
-    .winsplits-header {
-        padding: 20px;
-    }
-    
-    .winsplits-name {
-        margin-bottom: 14px;
-        font-size: 1.5rem;
-    }
-    
-    .winsplits-info {
-        font-size: 0.9rem;
-    }
-    
-    .winsplits-input {
-        padding: 16px;
-    }
-    
-    .winsplits-analyzer {
-        padding: 8px;
-    }
-    
-    .winsplits-container {
-        padding: 16px;
-    }
+  .winsplits-page {
+    width: calc(100% - 24px);
+    padding: 18px 0 28px;
+    gap: 14px;
+  }
+
+  .winsplits-header {
+    padding: 20px;
+  }
+
+  .winsplits-name {
+    margin-bottom: 14px;
+    font-size: 1.5rem;
+  }
+
+  .winsplits-info {
+    font-size: 0.9rem;
+  }
+
+  .winsplits-input {
+    padding: 16px;
+  }
+
+  .winsplits-analyzer {
+    padding: 8px;
+  }
+
+  .winsplits-container {
+    padding: 16px;
+  }
 }

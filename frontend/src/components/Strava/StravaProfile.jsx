@@ -1,26 +1,22 @@
 function StravaProfile() {
-    return (
-        <section className="strava-profile">
-            <div className="strava-profile__avatar">
-                N
-            </div>
+  return (
+    <section className="strava-profile">
+      <div className="strava-profile__avatar">N</div>
 
-            <div className="strava-profile__info">
-                <h2>Navn Navnesen</h2>
+      <div className="strava-profile__info">
+        <h2>Navn Navnesen</h2>
 
-                <p>@navnnavnesen</p>
+        <p>@navnnavnesen</p>
 
-                <p>
-                    Oslo, Norge
-                </p>
-            </div>
+        <p>Oslo, Norge</p>
+      </div>
 
-            {/*
+      {/*
                 TODO:
                 Bytt ut testdata med informasjon fra Strava API.
             */}
-        </section>
-    );
+    </section>
+  );
 }
 
 export default StravaProfile;

@@ -1,13 +1,12 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home"
+import Home from "./pages/Home";
 
-import StravaPage from "./pages/StravaPage"
+import StravaPage from "./pages/StravaPage";
 import WinSplitsPage from "./pages/WinSplitsPage";
 import CalculatorPage from "./pages/CalculatorPage";
 
 import Navbar from "./components/Navbar/Navbar";
-
 
 function App() {
   return (
@@ -22,7 +21,7 @@ function App() {
         </Routes>
       </main>
     </div>
-  )
+  );
 }
 
 export default App;
