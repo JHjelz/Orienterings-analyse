@@ -1,51 +1,87 @@
+/*
+=========================================================
+MAIN BUTTON — PRIMARY NAVIGATION
+=========================================================
+*/
+
 .main-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
   width: 280px;
-  min-height: 48px;
-
-  padding: 13px 20px;
+  min-height: 50px;
+  padding: var(--space-3) var(--space-6);
 
   box-sizing: border-box;
 
-  background-color: var(--color-primary);
-  color: var(--color-surface);
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
 
-  border: 1px solid var(--color-primary-dark);
-  border-radius: 8px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
 
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1.2;
-
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.005em;
+  text-align: center;
   text-decoration: none;
 
   cursor: pointer;
 
+  box-shadow: var(--shadow-sm);
+
   transition:
-    background-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    background-color var(--duration-normal) ease,
+    border-color var(--duration-normal) ease,
+    box-shadow var(--duration-normal) ease,
+    transform var(--duration-fast) var(--ease-out);
 }
 
-.main-button:hover {
-  background: var(--color-primary-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow);
+/*
+=========================================================
+HOVER
+=========================================================
+*/
+
+@media (hover: hover) {
+  .main-button:hover {
+    color: var(--color-text-inverse);
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+
+    box-shadow: var(--shadow);
+
+    transform: translateY(-2px);
+  }
 }
+
+/*
+=========================================================
+ACTIVE
+=========================================================
+*/
 
 .main-button:active {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+
+  box-shadow: var(--shadow-sm);
+
   transform: translateY(0);
 }
 
-.main-button:focus-visible {
-  outline: none;
+/*
+=========================================================
+KEYBOARD FOCUS
+=========================================================
+*/
 
-  box-shadow:
-    0 0 0 3px var(--color-bg),
-    0 0 0 5px var(--color-primary);
+.main-button:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
 }
 
 /*
@@ -57,5 +93,23 @@ RESPONSIVE
 @media (max-width: 500px) {
   .main-button {
     width: 100%;
+    min-height: 48px;
+  }
+}
+
+/*
+=========================================================
+REDUCED MOTION
+=========================================================
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  .main-button {
+    transition: none;
+  }
+
+  .main-button:hover,
+  .main-button:active {
+    transform: none;
   }
 }

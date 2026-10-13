@@ -1,16 +1,43 @@
 import "./InfoModal.css";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function InfoModal() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const triggerButtonRef = useRef(null);
+  const closeButtonRef = useRef(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const triggerButton = triggerButtonRef.current;
+
+    closeButtonRef.current?.focus();
+
+    function handleKeyDown(event) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      triggerButton?.focus();
+    };
+  }, [isOpen]);
+
   return (
     <>
       <button
+        ref={triggerButtonRef}
         className="info-button"
         onClick={() => setIsOpen(true)}
         aria-label="Åpne informasjon"
+        aria-haspopup="dialog"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -28,12 +55,17 @@ function InfoModal() {
         <div className="modal-backdrop" onClick={() => setIsOpen(false)}>
           <div
             className="info-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="info-modal-title"
+            aria-describedby="info-modal-description"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="info-modal-header">
               <h2>Om Orienterings-analyse</h2>
 
               <button
+                ref={closeButtonRef}
                 className="modal-close-button"
                 onClick={() => setIsOpen(false)}
                 aria-label="Lukk informasjon"
@@ -51,7 +83,9 @@ function InfoModal() {
               </button>
             </div>
 
-            <p>Her kan du analysere orienteringsdata fra ulike kilder.</p>
+            <p id="info-modal-description">
+              Her kan du analysere orienteringsdata fra ulike kilder.
+            </p>
           </div>
         </div>
       )}

@@ -1,0 +1,466 @@
+/* =====================================================
+   SPLIT PLOT — LAYOUT
+   ===================================================== */
+
+.split-plot {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--space-4);
+
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+
+  padding: var(--space-5);
+  box-sizing: border-box;
+
+  color: var(--color-text);
+  background: var(--color-surface);
+
+  border-radius: var(--radius-md);
+
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.split-plot-header {
+  flex: 0 0 auto;
+
+  padding-bottom: var(--space-4);
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.split-plot-header h2 {
+  margin: 0;
+
+  color: var(--color-primary-dark);
+
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.split-plot-header p {
+  margin: var(--space-2) 0 0;
+
+  color: var(--color-text-light, var(--color-text-muted));
+
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+/* =====================================================
+   MODE SELECTOR
+   ===================================================== */
+
+.split-plot-mode {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.split-plot-mode button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 40px;
+  padding: var(--space-2) var(--space-4);
+
+  color: var(--color-text);
+  background: var(--color-surface);
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color var(--duration-fast) ease,
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
+}
+
+.split-plot-mode button[aria-pressed="true"] {
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+@media (hover: hover) {
+  .split-plot-mode button:hover:not([aria-pressed="true"]) {
+    color: var(--color-primary-dark);
+    background: var(--color-primary-soft);
+    border-color: var(--color-primary);
+  }
+
+  .split-plot-mode button[aria-pressed="true"]:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+  }
+}
+
+.split-plot-mode button:focus-visible,
+.split-plot-actions button:focus-visible,
+.runner-control button:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* =====================================================
+   RUNNER CONTROLS PANEL
+   ===================================================== */
+
+.split-plot-controls {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: var(--space-3);
+
+  min-width: 0;
+  padding: var(--space-4);
+
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+/* =====================================================
+   SELECT ALL / NONE
+   ===================================================== */
+
+.split-plot-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.split-plot-actions button {
+  min-height: 34px;
+  padding: var(--space-1) var(--space-3);
+
+  color: var(--color-primary-dark);
+  background: var(--color-surface);
+
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+
+  font: inherit;
+  font-size: var(--text-xs);
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color var(--duration-fast) ease,
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
+}
+
+@media (hover: hover) {
+  .split-plot-actions button:hover {
+    color: var(--color-text-inverse);
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+}
+
+/* =====================================================
+   RUNNER LIST
+   ===================================================== */
+
+.split-plot-runners {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: var(--space-2);
+
+  min-width: 0;
+}
+
+/* =====================================================
+   INDIVIDUAL RUNNER
+   ===================================================== */
+
+.runner-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+
+  transition:
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
+}
+
+.runner-control:has(input:checked) {
+  background: var(--color-primary-soft);
+  border-color: var(--color-border-strong);
+}
+
+.runner-control label {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--space-2);
+
+  min-width: 0;
+
+  color: var(--color-text);
+
+  font-size: var(--text-sm);
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.runner-control label input {
+  flex: 0 0 auto;
+
+  width: 16px;
+  height: 16px;
+  margin: 0;
+
+  accent-color: var(--color-primary);
+
+  cursor: pointer;
+}
+
+.runner-control label span {
+  min-width: 0;
+
+  overflow-wrap: anywhere;
+  line-height: 1.4;
+}
+
+/* =====================================================
+   REFERENCE RUNNER BUTTON
+   ===================================================== */
+
+.runner-control button {
+  flex: 0 0 auto;
+
+  min-height: 32px;
+  max-width: 100%;
+  padding: var(--space-1) var(--space-2);
+
+  color: var(--color-primary-dark);
+  background: var(--color-surface);
+
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+
+  font: inherit;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+
+  cursor: pointer;
+
+  transition:
+    color var(--duration-fast) ease,
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
+}
+
+.runner-control button[aria-pressed="true"] {
+  color: var(--color-text-inverse);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+@media (hover: hover) {
+  .runner-control button:hover:not([aria-pressed="true"]) {
+    background: var(--color-accent-soft);
+    border-color: var(--color-accent);
+  }
+
+  .runner-control button[aria-pressed="true"]:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+  }
+}
+
+/* =====================================================
+   CHART PANEL
+   ===================================================== */
+
+.split-plot-chart {
+  display: flex;
+  flex: 1 0 300px;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 300px;
+
+  padding: var(--space-3);
+  box-sizing: border-box;
+
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  overflow: hidden;
+}
+
+/* Recharts responsive container */
+.split-plot-chart > div {
+  min-width: 0;
+}
+
+/* =====================================================
+   EMPTY STATE
+   ===================================================== */
+
+.split-plot-empty {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 260px;
+  padding: var(--space-6);
+
+  background: var(--color-moss-soft);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-sm);
+
+  text-align: center;
+}
+
+.split-plot-empty p {
+  margin: 0;
+
+  color: var(--color-text-light, var(--color-text-muted));
+
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+/* =====================================================
+   RECHARTS — TOOLTIP
+   ===================================================== */
+
+.split-plot-chart .recharts-default-tooltip {
+  padding: var(--space-3) var(--space-4) !important;
+
+  background: var(--color-surface-raised) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-sm) !important;
+
+  box-shadow: var(--shadow-card);
+}
+
+.split-plot-chart .recharts-tooltip-label {
+  margin-bottom: var(--space-2);
+
+  color: var(--color-primary-dark);
+  font-weight: 800;
+}
+
+.split-plot-chart .recharts-tooltip-item {
+  font-size: var(--text-sm);
+}
+
+.split-plot-chart .recharts-legend-item-text {
+  color: var(--color-text) !important;
+  font-size: var(--text-sm);
+}
+
+.split-plot-chart .recharts-cartesian-grid-horizontal line,
+.split-plot-chart .recharts-cartesian-grid-vertical line {
+  stroke: var(--color-map-grid);
+}
+
+.split-plot-chart .recharts-text {
+  fill: var(--color-text-light, var(--color-text-muted));
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 700px) {
+  .split-plot {
+    gap: var(--space-3);
+    padding: var(--space-3);
+  }
+
+  .split-plot-header {
+    padding-bottom: var(--space-3);
+  }
+
+  .split-plot-header h2 {
+    font-size: var(--text-xl);
+  }
+
+  .split-plot-controls {
+    padding: var(--space-3);
+  }
+
+  .split-plot-runners {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .split-plot-chart {
+    flex-basis: 300px;
+    min-height: 300px;
+    padding: var(--space-2);
+  }
+}
+
+@media (max-width: 400px) {
+  .split-plot {
+    padding: var(--space-2);
+  }
+
+  .split-plot-mode button {
+    flex: 1 1 auto;
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .runner-control {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .runner-control button {
+    margin-left: calc(16px + var(--space-2));
+  }
+}
+
+/* =====================================================
+   REDUCED MOTION
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .split-plot-mode button,
+  .split-plot-actions button,
+  .runner-control,
+  .runner-control button {
+    transition: none;
+  }
+}
