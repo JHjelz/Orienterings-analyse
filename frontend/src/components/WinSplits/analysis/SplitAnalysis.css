@@ -1,82 +1,128 @@
+/* =====================================================
+   SPLIT ANALYSIS — LAYOUT
+   ===================================================== */
+
 .split-stats {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
 
+  width: 100%;
   height: 100%;
+  min-width: 0;
   min-height: 0;
 
-  background-color: var(--color-surface);
+  overflow: hidden;
+
+  color: var(--color-text);
+  background: var(--color-surface);
+
+  border-radius: var(--radius-md);
 }
 
-/*
-==================================================
-HEADER
-==================================================
-*/
+/* =====================================================
+   HEADER
+   ===================================================== */
 
 .split-stats-header {
-  padding: 20px 24px;
+  flex: 0 0 auto;
+
+  padding: var(--space-5) var(--space-6);
+
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .split-stats-header-content {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: var(--space-6);
 
   min-width: 0;
 }
 
 .split-stats-header .split-times-title {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
-/*
-==================================================
-CONTROLS
-==================================================
-*/
+.split-stats-header .split-times-title > div {
+  min-width: 0;
+}
+
+.split-stats-header .split-times-title h2 {
+  margin: 0;
+
+  color: var(--color-primary-dark);
+
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.split-stats-header .split-times-title p {
+  max-width: 620px;
+  margin: var(--space-2) 0 0;
+
+  color: var(--color-text-light, var(--color-text-muted));
+
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+/* =====================================================
+   CONTROL GROUPS
+   ===================================================== */
 
 .split-stats-control-groups {
-  flex: 0 0 auto;
-
   display: flex;
+  flex: 0 1 48%;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-3);
 
   min-width: 0;
-  max-width: 50%;
+  max-width: 560px;
 }
 
 .split-stats-control-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--space-1);
 
   min-width: 0;
 }
 
 .split-stats-control-label {
-  color: var(--color-text);
+  color: var(--color-text-light, var(--color-text-muted));
 
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
+
+/* =====================================================
+   SCROLLABLE BUTTON ROWS
+   ===================================================== */
 
 .split-stats-buttons {
   display: flex;
-  gap: 6px;
+  align-items: center;
+  gap: var(--space-2);
 
   width: 100%;
   min-width: 0;
+  padding: 2px 2px 6px;
 
   overflow-x: auto;
   overflow-y: hidden;
 
   scrollbar-width: thin;
-  scrollbar-color: var(--color-primary) transparent;
+  scrollbar-color: var(--color-border-strong) transparent;
+  overscroll-behavior-x: contain;
 }
 
-/* Chrome, Edge, Safari */
 .split-stats-buttons::-webkit-scrollbar {
   height: 6px;
 }
@@ -86,95 +132,157 @@ CONTROLS
 }
 
 .split-stats-buttons::-webkit-scrollbar-thumb {
-  background-color: color-mix(in srgb, var(--color-primary) 70%, transparent);
-  border-radius: 999px;
+  background: var(--color-border-strong);
+  border-radius: var(--radius-pill);
 }
 
 .split-stats-buttons::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-primary-dark);
+  background: var(--color-moss);
 }
 
-/*
-==================================================
-BUTTONS
-==================================================
-*/
+/* =====================================================
+   CONTROL BUTTONS
+   ===================================================== */
 
 .split-stats-button {
+  display: inline-flex;
   flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
 
   min-width: 40px;
-  padding: 7px 11px;
+  min-height: 36px;
+  padding: var(--space-2) var(--space-3);
+
+  color: var(--color-text);
+  background: var(--color-surface);
 
   border: 1px solid var(--color-border);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
 
-  background-color: var(--color-surface);
-  color: var(--color-text);
-
-  font-size: 0.85rem;
+  font: inherit;
+  font-size: var(--text-sm);
   font-weight: 700;
-
+  line-height: 1.3;
   white-space: nowrap;
 
   cursor: pointer;
 
   transition:
-    background-color 0.15s ease,
-    color 0.15s ease,
-    border-color 0.15s ease;
+    background-color var(--duration-fast) ease,
+    color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease;
 }
 
-.split-stats-button:hover {
-  border-color: var(--color-primary-dark);
-
-  background-color: var(--color-primary);
-  color: var(--color-surface);
+@media (hover: hover) {
+  .split-stats-button:hover {
+    color: var(--color-primary-dark);
+    background: var(--color-primary-soft);
+    border-color: var(--color-primary);
+  }
 }
 
 .split-stats-button-active {
+  color: var(--color-text-inverse);
+  background: var(--color-accent);
   border-color: var(--color-accent);
 
-  background-color: var(--color-accent);
-  color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
 }
 
-/*
-==================================================
-RESULT
-==================================================
-*/
+@media (hover: hover) {
+  .split-stats-button-active:hover {
+    color: var(--color-text-inverse);
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+  }
+}
+
+.split-stats-button:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.split-stats-button:active {
+  box-shadow: none;
+}
+
+/* =====================================================
+   RESULTS
+   ===================================================== */
 
 .split-stats-result {
-  flex: 1;
-  min-height: 0;
-
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
 
+  min-width: 0;
+  min-height: 0;
+
   overflow: hidden;
+
+  background: var(--color-surface);
 }
 
-/*
-==================================================
-MOBILE
-==================================================
-*/
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
 
-@media (max-width: 700px) {
-  .split-stats-header {
-    padding: 18px;
-  }
-
+@media (max-width: 900px) {
   .split-stats-header-content {
     align-items: stretch;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--space-4);
+  }
+
+  .split-stats-control-groups {
+    flex: 0 1 auto;
+    width: 100%;
+    max-width: none;
+  }
+
+  .split-stats-control-groups {
+    gap: var(--space-2);
+  }
+}
+
+@media (max-width: 700px) {
+  .split-stats-header {
+    padding: var(--space-4);
+  }
+
+  .split-stats-header .split-times-title h2 {
+    font-size: var(--text-xl);
+  }
+
+  .split-stats-buttons {
+    gap: var(--space-2);
   }
 
   .split-stats-button {
     min-width: 36px;
+    min-height: 36px;
+    padding: var(--space-2) var(--space-3);
+  }
+}
 
-    padding: 7px 9px;
+@media (max-width: 400px) {
+  .split-stats-header {
+    padding: var(--space-3);
+  }
+
+  .split-stats-control-groups {
+    gap: var(--space-3);
+  }
+}
+
+/* =====================================================
+   REDUCED MOTION
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .split-stats-button {
+    transition: none;
   }
 }

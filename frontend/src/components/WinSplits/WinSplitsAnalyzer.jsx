@@ -4,6 +4,7 @@ import WinSplitsSidebar from "./WinSplitsSidebar";
 
 import SplitTimes from "./analysis/SplitTimes";
 import SplitAnalysis from "./analysis/SplitAnalysis";
+import SplitPlot from "./analysis/SplitPlot";
 
 function WinSplitsAnalyzer({ data, status }) {
   const [selectedAnalysis, setSelectedAnalysis] = useState(null);
@@ -18,6 +19,11 @@ function WinSplitsAnalyzer({ data, status }) {
       id: "split-stats",
       name: "Strekkanalyse",
       component: SplitAnalysis,
+    },
+    {
+      id: "split-plot",
+      name: "Grafvisning",
+      component: SplitPlot,
     },
   ];
 

@@ -1,71 +1,59 @@
-/*
-=========================================================
-WINSPLITS PAGE
-=========================================================
-*/
+/* =====================================================
+   WINSPLITS — PAGE LAYOUT
+   ===================================================== */
 
 .winsplits-page {
-  width: min(1200px, calc(100% - 40px));
-  height: 100%;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--space-5);
 
+  width: min(1200px, calc(100% - 40px));
+  min-height: 0;
   margin: 0 auto;
-  padding: 32px 0 40px;
+  padding: var(--space-6) 0;
 
   box-sizing: border-box;
-
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 
-/*
-=========================================================
-HEADER
-=========================================================
-*/
+/* =====================================================
+   HEADER
+   ===================================================== */
 
 .winsplits-header {
+  flex: 0 0 auto;
   position: relative;
+  isolation: isolate;
   overflow: hidden;
 
-  padding: 28px;
+  padding: var(--space-7, 28px);
 
-  background-color: var(--color-primary-dark);
-  color: var(--color-surface);
+  color: var(--color-text-inverse);
+  background: var(--color-primary-dark);
 
   border: 1px solid var(--color-primary-dark);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
 
   box-shadow: var(--shadow);
 }
 
-/* Dekorativ sirkel */
-
 .winsplits-header::after {
   content: "";
-
   position: absolute;
+  z-index: -1;
+
+  top: -110px;
+  right: -80px;
 
   width: 220px;
   height: 220px;
 
-  right: -80px;
-  top: -110px;
-
+  background: var(--color-accent);
   border-radius: 50%;
-
-  background-color: var(--color-accent);
-
   opacity: 0.3;
 
   pointer-events: none;
 }
-
-/*
-=========================================================
-HEADER TITLE
-=========================================================
-*/
 
 .winsplits-name {
   position: relative;
@@ -73,20 +61,22 @@ HEADER TITLE
 
   display: block;
   width: fit-content;
+  max-width: 100%;
 
-  margin: 0 0 18px;
-  padding: 8px 14px;
+  margin: 0 0 var(--space-4);
+  padding: var(--space-2) var(--space-4);
 
-  background-color: var(--color-accent);
-  color: var(--color-surface);
+  color: var(--color-text-inverse);
+  background: var(--color-accent);
 
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
 
-  font-size: 1.8rem;
+  font-size: var(--text-2xl);
   font-weight: 800;
-  line-height: 1.2;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
 
-  box-shadow: 0 4px 12px var(--shadow);
+  box-shadow: var(--shadow-sm);
 }
 
 .winsplits-info {
@@ -95,356 +85,437 @@ HEADER TITLE
 
   width: 90%;
   max-width: 700px;
-
   margin: 0;
 
-  color: var(--color-surface);
-
-  font-size: 1rem;
+  color: var(--color-text-inverse);
+  font-size: var(--text-base);
   line-height: 1.7;
 }
 
-/*
-=========================================================
-INPUT
-=========================================================
-*/
+/* =====================================================
+   INPUT FORM
+   ===================================================== */
 
 .winsplits-input {
   width: 100%;
-
-  padding: 18px 20px;
+  padding: var(--space-4) var(--space-5);
 
   box-sizing: border-box;
 
-  background-color: var(--color-surface);
-
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
 
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm);
 }
 
 .winsplits-input form {
-  width: 100%;
-
   display: flex;
   align-items: center;
+  gap: var(--space-3);
 
-  gap: 14px;
+  width: 100%;
 }
 
 .winsplits-input label {
   flex-shrink: 0;
 
   color: var(--color-text);
-
-  font-size: 0.95rem;
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 
 .winsplits-input-field {
   flex: 1;
+  min-width: 0;
 
-  padding: 11px 14px;
+  padding: var(--space-3) var(--space-4);
 
-  background-color: var(--color-bg);
   color: var(--color-text);
+  background: var(--color-bg);
 
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
 
-  font-size: 0.95rem;
-
-  outline: none;
+  font: inherit;
+  font-size: var(--text-sm);
 
   transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
+    border-color var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease,
+    background-color var(--duration-fast) ease;
 }
 
 .winsplits-input-field::placeholder {
-  color: var(--color-text-light);
+  color: var(--color-text-muted);
 }
 
 .winsplits-input-field:hover {
-  border-color: var(--color-text-light);
+  border-color: var(--color-border-strong);
 }
 
-.winsplits-input-field:focus {
-  background-color: var(--color-surface);
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--shadow);
+.winsplits-input-field:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+  background: var(--color-surface);
 }
 
-/*
-=========================================================
-BUTTON
-=========================================================
-*/
+/* =====================================================
+   ACTION BUTTON
+   ===================================================== */
 
 .winsplits-button {
+  display: inline-flex;
   flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
 
-  padding: 11px 20px;
+  min-height: 44px;
+  padding: var(--space-3) var(--space-5);
 
-  background-color: var(--color-primary);
-  color: var(--color-surface);
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
 
-  border: 1px solid var(--color-primary-dark);
-  border-radius: 8px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
 
-  font-size: 0.95rem;
+  font: inherit;
+  font-size: var(--text-sm);
   font-weight: 700;
+  line-height: 1.4;
 
   cursor: pointer;
 
   transition:
-    background-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    background-color var(--duration-normal) ease,
+    border-color var(--duration-normal) ease,
+    box-shadow var(--duration-normal) ease,
+    transform var(--duration-fast) var(--ease-out);
 }
 
-.winsplits-button:hover:not(:disabled) {
-  background-color: var(--color-primary-dark);
-
-  transform: translateY(-1px);
-
-  box-shadow: 0 5px 14px var(--shadow);
+@media (hover: hover) {
+  .winsplits-button:hover:not(:disabled) {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    box-shadow: var(--shadow);
+    transform: translateY(-1px);
+  }
 }
 
 .winsplits-button:active:not(:disabled) {
+  background: var(--color-primary-dark);
   transform: translateY(0);
 }
 
 .winsplits-button:disabled {
-  opacity: 0.65;
-
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
-/*
-=========================================================
-ANALYZER
-=========================================================
-*/
-
-.winsplits-analyzer {
-  flex: 1;
-  min-height: 420px;
-
-  display: flex;
-
-  padding: 10px;
-
-  background-color: var(--color-surface);
-
-  border: 1px solid var(--color-border);
-  border-radius: 14px;
-
-  box-shadow: var(--shadow);
+.winsplits-button:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
 }
 
-/*
-=========================================================
-SIDEBAR
-=========================================================
-*/
+/* =====================================================
+   ANALYZER LAYOUT
+   ===================================================== */
 
-.winsplits-sidebar {
+.winsplits-analyzer {
   display: flex;
-  flex-direction: column;
+  flex: 1 1 0;
+  flex-direction: row;
+  gap: var(--space-5);
 
-  width: 240px;
-  min-width: 240px;
-
-  padding: 16px;
+  width: 100%;
+  min-height: 0;
+  padding: var(--space-5);
 
   box-sizing: border-box;
 
-  background-color: var(--color-bg);
-  border-right: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* =====================================================
+   SIDEBAR
+   ===================================================== */
+
+.winsplits-sidebar {
+  display: flex;
+  flex: 0 0 240px;
+  flex-direction: column;
+
+  min-width: 0;
+  min-height: 0;
+  padding: var(--space-4);
+
+  box-sizing: border-box;
+
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .winsplits-sidebar h3 {
-  margin: 0 0 16px;
+  margin: 0 0 var(--space-4);
 
-  color: var(--color-primary);
-
-  font-size: 1rem;
+  color: var(--color-primary-dark);
+  font-size: var(--text-base);
   font-weight: 700;
 }
 
 .winsplits-sidebar-list {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-2);
+
+  min-height: 0;
 
   overflow-x: hidden;
   overflow-y: auto;
-
-  min-height: 0;
+  overscroll-behavior: contain;
 }
 
 .winsplits-sidebar-button {
   width: 100%;
+  flex-shrink: 0;
 
-  padding: 11px 14px;
+  padding: var(--space-3) var(--space-4);
 
   box-sizing: border-box;
 
-  background-color: var(--color-surface);
   color: var(--color-text);
+  background: var(--color-surface);
 
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
 
   font: inherit;
+  font-size: var(--text-sm);
   font-weight: 600;
+  line-height: 1.4;
   text-align: left;
 
   cursor: pointer;
 
   transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
+    background-color var(--duration-fast) ease,
+    color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    transform var(--duration-fast) var(--ease-out);
 }
 
-.winsplits-sidebar-button:hover {
-  background-color: var(--color-primary);
-  color: var(--color-surface);
-  border-color: var(--color-primary-dark);
-
-  transform: translateX(2px);
+@media (hover: hover) {
+  .winsplits-sidebar-button:hover {
+    color: var(--color-text-inverse);
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    transform: translateX(2px);
+  }
 }
 
 .winsplits-sidebar-button.active {
-  background-color: var(--color-accent);
-  color: var(--color-surface);
+  color: var(--color-text-inverse);
+  background: var(--color-accent);
   border-color: var(--color-accent);
-
-  transform: none;
 }
 
-.winsplits-sidebar-button.active:hover {
-  background-color: var(--color-accent);
-  color: var(--color-surface);
-  border-color: var(--color-surface);
-
-  transform: translateX(2px);
+@media (hover: hover) {
+  .winsplits-sidebar-button.active:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+  }
 }
 
 .winsplits-sidebar-button:focus-visible {
-  outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--shadow);
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 .winsplits-sidebar-button:active {
-  transform: translateX(2px);
+  transform: translateX(1px);
 }
 
-/*
-=========================================================
-CONTENT
-=========================================================
-*/
+/* =====================================================
+   ANALYSIS CONTENT
+   ===================================================== */
 
 .winsplits-container {
-  flex: 1;
+  flex: 1 1 0;
   min-width: 0;
-
-  margin-left: 10px;
-  padding: 20px;
+  min-height: 0;
+  padding: var(--space-5);
 
   box-sizing: border-box;
 
-  background-color: var(--color-surface);
-
+  background: var(--color-surface-raised);
   border: 1px solid var(--color-border);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
 
-  overflow-x: auto;
-  overflow-y: auto;
-
-  color: var(--color-text);
+  overflow: auto;
+  overscroll-behavior: contain;
 }
 
 .winsplits-container > p {
   margin: 0;
 
   color: var(--color-text-light);
-
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: var(--text-sm);
+  line-height: 1.7;
 }
 
 .winsplits-container pre {
+  max-width: 100%;
   margin: 0;
-
-  padding: 16px;
-
-  background-color: var(--color-bg);
-
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
+  padding: var(--space-4);
 
   color: var(--color-text);
+  background: var(--color-map-paper);
 
-  font-size: 0.85rem;
-  line-height: 1.5;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
 
-  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+
+  overflow: auto;
 }
 
 .winsplits-error {
-  padding: 14px 16px;
+  padding: var(--space-3) var(--space-4);
 
-  background-color: var(--color-bg);
-  color: var(--color-accent);
+  color: var(--color-danger);
+  background: var(--color-danger-soft);
 
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
+
+  font-size: var(--text-sm);
+  line-height: 1.6;
 }
 
-/*
-=========================================================
-RESPONSIVE
-=========================================================
-*/
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 800px) {
+  .winsplits-page {
+    width: calc(100% - 32px);
+    gap: var(--space-4);
+  }
+
+  .winsplits-analyzer {
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .winsplits-sidebar {
+    flex: 0 0 auto;
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .winsplits-sidebar h3 {
+    margin-bottom: var(--space-3);
+  }
+
+  .winsplits-sidebar-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+
+    max-height: 220px;
+  }
+
+  .winsplits-container {
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 0;
+    overflow: auto;
+  }
+}
 
 @media (max-width: 500px) {
   .winsplits-page {
     width: calc(100% - 24px);
-    padding: 18px 0 28px;
-    gap: 14px;
+    padding: var(--space-4) 0 var(--space-6);
+    gap: var(--space-3);
   }
 
   .winsplits-header {
-    padding: 20px;
+    padding: var(--space-5);
   }
 
   .winsplits-name {
-    margin-bottom: 14px;
-    font-size: 1.5rem;
+    margin-bottom: var(--space-3);
+    font-size: var(--text-xl);
   }
 
   .winsplits-info {
-    font-size: 0.9rem;
+    width: 100%;
+    font-size: var(--text-sm);
   }
 
   .winsplits-input {
-    padding: 16px;
+    padding: var(--space-3);
+  }
+
+  .winsplits-input form {
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .winsplits-input label {
+    width: 100%;
+  }
+
+  .winsplits-input-field {
+    flex: 1 1 160px;
+  }
+
+  .winsplits-button {
+    flex: 0 0 auto;
   }
 
   .winsplits-analyzer {
-    padding: 8px;
+    padding: var(--space-2);
+  }
+
+  .winsplits-sidebar-list {
+    grid-template-columns: 1fr 1fr;
   }
 
   .winsplits-container {
-    padding: 16px;
+    padding: var(--space-4);
+  }
+}
+
+/* =====================================================
+   REDUCED MOTION
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .winsplits-button,
+  .winsplits-sidebar-button,
+  .winsplits-input-field {
+    transition: none;
+  }
+
+  .winsplits-button:hover,
+  .winsplits-sidebar-button:hover,
+  .winsplits-sidebar-button:active {
+    transform: none;
   }
 }
