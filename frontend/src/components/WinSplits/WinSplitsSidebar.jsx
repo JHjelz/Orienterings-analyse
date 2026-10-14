@@ -1,4 +1,9 @@
-function WinSplitsSidebar({ analyses, activeAnalysis, onAnalysisSelect, disabled }) {
+function WinSplitsSidebar({
+  analyses,
+  activeAnalysis,
+  onAnalysisSelect,
+  disabled,
+}) {
   return (
     <aside className="winsplits-sidebar">
       <h3>Analyser</h3>
