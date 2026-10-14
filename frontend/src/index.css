@@ -255,3 +255,68 @@ RESPONSIVT OPPSETT
     transition-duration: 0.01ms !important;
   }
 }
+
+/*
+========================================
+NATT-TEMA - Mørk skog & kart
+========================================
+*/
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Bakgrunner og overflater */
+  --color-bg: #171e19;
+  --color-surface: #222c25;
+  --color-surface-soft: #2b372d;
+  --color-surface-raised: #303c32;
+
+  /* Tekst */
+  --color-text: #e8eee5;
+  --color-text-light: #c0cbbd;
+  --color-text-muted: #9ca999;
+  --color-text-inverse: #171e19;
+
+  /* Skog-grønn */
+  --color-primary: #a4c69c;
+  --color-primary-hover: #bed9b6;
+  --color-primary-dark: #d0e4c9;
+  --color-primary-soft: #304533;
+
+  /* Mose & terreng */
+  --color-moss: #a5b889;
+  --color-moss-soft: #303a2c;
+
+  /* Kompass / rutefarge */
+  --color-accent: #f0a16e;
+  --color-accent-hover: #ffbb8e;
+  --color-accent-soft: #493326;
+
+  /* Respons */
+  --color-success: #91c99a;
+  --color-success-soft: #293f30;
+
+  --color-warning: #e7bd77;
+  --color-warning-soft: #453a27;
+
+  --color-danger: #ed9990;
+  --color-danger-soft: #482d2b;
+
+  /* Kanter og fokus */
+  --color-border: #414e43;
+  --color-border-strong: #5c6d5d;
+  --color-focus: #f0a16e;
+
+  /* Kart og analyse */
+  --color-map-paper: #252d25;
+  --color-route-primary: #a4c69c;
+  --color-route-alternative: #f0a16e;
+  --color-route-selected: #ff8274;
+  --color-map-grid: #3b4538;
+
+  /* Skygger */
+  --shadow-sm: 0 1px 3px rgb(0 0 0 / 18%);
+  --shadow: 0 4px 14px rgb(0 0 0 / 20%);
+  --shadow-card: 0 8px 24px rgb(0 0 0 / 25%);
+  --shadow-raised: 0 14px 36px rgb(0 0 0 / 35%);
+}
