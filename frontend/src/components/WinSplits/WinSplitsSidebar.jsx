@@ -1,4 +1,9 @@
-function WinSplitsSidebar({ analyses, activeAnalysis, onAnalysisSelect }) {
+function WinSplitsSidebar({
+  analyses,
+  activeAnalysis,
+  onAnalysisSelect,
+  disabled,
+}) {
   return (
     <aside className="winsplits-sidebar">
       <h3>Analyser</h3>
@@ -13,6 +18,7 @@ function WinSplitsSidebar({ analyses, activeAnalysis, onAnalysisSelect }) {
                 : "winsplits-sidebar-button"
             }
             onClick={() => onAnalysisSelect(id)}
+            disabled={disabled}
           >
             {name}
           </button>
