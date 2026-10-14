@@ -2,7 +2,7 @@ import "./InfoModal.css";
 
 import { useEffect, useRef, useState } from "react";
 
-function InfoModal() {
+function InfoModal({ title = "Informasjon", children }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const triggerButtonRef = useRef(null);
@@ -38,6 +38,7 @@ function InfoModal() {
         onClick={() => setIsOpen(true)}
         aria-label="Åpne informasjon"
         aria-haspopup="dialog"
+        aria-expanded={isOpen}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -58,11 +59,10 @@ function InfoModal() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="info-modal-title"
-            aria-describedby="info-modal-description"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="info-modal-header">
-              <h2>Om Orienterings-analyse</h2>
+              <h2 id="info-modal-title">{title}</h2>
 
               <button
                 ref={closeButtonRef}
@@ -83,9 +83,9 @@ function InfoModal() {
               </button>
             </div>
 
-            <p id="info-modal-description">
-              Her kan du analysere orienteringsdata fra ulike kilder.
-            </p>
+            <div className="info-modal-content" aria-live="polite">
+              {children}
+            </div>
           </div>
         </div>
       )}
