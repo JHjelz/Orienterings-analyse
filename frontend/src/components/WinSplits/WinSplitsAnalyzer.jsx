@@ -9,6 +9,8 @@ import SplitPlot from "./analysis/SplitPlot";
 function WinSplitsAnalyzer({ data, status }) {
   const [selectedAnalysis, setSelectedAnalysis] = useState(null);
 
+  const hasData = data != null && Object.keys(data).length > 0;
+
   const analyses = [
     {
       id: "split-times",
@@ -27,7 +29,7 @@ function WinSplitsAnalyzer({ data, status }) {
     },
   ];
 
-  const activeAnalysis = selectedAnalysis ?? (data ? "split-times" : null);
+  const activeAnalysis = selectedAnalysis ?? (hasData ? "split-times" : null);
 
   const activeAnalysisConfig = analyses.find(
     (analysis) => analysis.id === activeAnalysis,
@@ -41,6 +43,7 @@ function WinSplitsAnalyzer({ data, status }) {
         analyses={analyses}
         activeAnalysis={activeAnalysis}
         onAnalysisSelect={setSelectedAnalysis}
+        disabled={!hasData}
       />
 
       <div className="winsplits-container">
